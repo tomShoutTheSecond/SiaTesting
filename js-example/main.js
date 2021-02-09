@@ -40,9 +40,9 @@ class FileUploader
             {
                 console.log(fileReader.result);
 
-                var filename = "bernie.jpg";
+                let filename = file.name;
 
-                fetch("https://siasky.net/skynet/skyfile", 
+                fetch(`https://${SkynetConfig.portal}/skynet/skyfile`, 
                 {
                     "headers": 
                     {
@@ -155,26 +155,54 @@ class FileInputController
         Log.instance.log("Uploading file...");
 
         this.file = this.fileInput.files[0];
-        Log.instance.log(this.file);
 
         let response = await FileUploader.instance.uploadFileToSkynet(this.file);
         Log.instance.log(response);
+        Log.instance.logHtml(this.getSkylinkAnchor(response));
+    }
+
+    getSkylinkAnchor(response)
+    {
+        let linkUrl = this.getSkylinkUrl(response);
+
+        let a = document.createElement('a');
+        let linkText = document.createTextNode(linkUrl);
+        a.appendChild(linkText);
+        a.title = linkUrl;
+        a.href = linkUrl;
+
+        return a;
+    }
+
+    getSkylinkUrl(response)
+    {
+        let responseJson = JSON.parse(response);
+        return `https://${SkynetConfig.portal}/${responseJson.skylink}`
     }
 }
 
 class Log
 {
     static instance;
+    
+    logArea;
 
     constructor()
     {
         Log.instance = this;
+        this.logArea = document.getElementById("log");
     }
 
     log(message)
     {
-        let logArea = document.getElementById("log");
-        logArea.innerText += message + "\n";
+        let p = document.createElement('p');
+        p.innerText = message;
+        this.logArea.appendChild(p);
+    }
+
+    logHtml(element)
+    {
+        this.logArea.appendChild(element);
     }
 }
 
