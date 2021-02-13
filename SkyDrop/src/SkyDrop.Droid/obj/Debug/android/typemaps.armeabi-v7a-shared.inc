@@ -28796,8 +28796,8 @@
 	.section	.rodata.java_type_name.4799,"aMS",%progbits,1
 	.type	.L.java_type_name.4799, %object
 .L.java_type_name.4799:
-	.asciz	"crc648fa36db5c6c1a031/MainFragment"
-	.size	.L.java_type_name.4799, 35
+	.asciz	"crc648fa36db5c6c1a031/MainView"
+	.size	.L.java_type_name.4799, 31
 
 	.section	.rodata.java_type_name.4800,"aMS",%progbits,1
 	.type	.L.java_type_name.4800, %object
@@ -79806,8 +79806,8 @@
 	.section	.rodata.managed_type_name.7253,"aMS",%progbits,1
 	.type	.L.managed_type_name.7253, %object
 .L.managed_type_name.7253:
-	.asciz	"SkyDrop.Droid.Views.Main.MainFragment, SkyDrop.Droid"
-	.size	.L.managed_type_name.7253, 53
+	.asciz	"SkyDrop.Droid.Views.Main.MainView, SkyDrop.Droid"
+	.size	.L.managed_type_name.7253, 49
 	.section	.rodata.managed_type_name.7254,"aMS",%progbits,1
 	.type	.L.managed_type_name.7254, %object
 .L.managed_type_name.7254:

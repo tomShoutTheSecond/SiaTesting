@@ -39,7 +39,6 @@
 /Users/tom/SiaTesting/SkyDrop/src/SkyDrop.Droid/obj/Debug/android/bin/com.mvxscaffolding.app.apks
 /Users/tom/SiaTesting/SkyDrop/src/SkyDrop.Droid/obj/Debug/res/layout/fragment_main.xml
 /Users/tom/SiaTesting/SkyDrop/src/SkyDrop.Droid/obj/Debug/res/layout/layout_toolbar.xml
-/Users/tom/SiaTesting/SkyDrop/src/SkyDrop.Droid/obj/Debug/res/layout/activity_main_container.xml
 /Users/tom/SiaTesting/SkyDrop/src/SkyDrop.Droid/obj/Debug/res/values/strings.xml
 /Users/tom/SiaTesting/SkyDrop/src/SkyDrop.Droid/obj/Debug/res/values/styles.xml
 /Users/tom/SiaTesting/SkyDrop/src/SkyDrop.Droid/obj/Debug/res/values/colors.xml
@@ -390,3 +389,5 @@
 /Users/tom/SiaTesting/SkyDrop/src/SkyDrop.Droid/obj/Debug/stamp/_GenerateJavaStubs.stamp
 /Users/tom/SiaTesting/SkyDrop/src/SkyDrop.Droid/obj/Debug/stamp/_GeneratePackageManagerJava.stamp
 /Users/tom/SiaTesting/SkyDrop/src/SkyDrop.Droid/obj/Debug/stamp/_ResolveLibraryProjectImports.stamp
+/Users/tom/SiaTesting/SkyDrop/src/SkyDrop.Droid/obj/Debug/res/layout/activity_main.xml
+/Users/tom/SiaTesting/SkyDrop/src/SkyDrop.Droid/obj/Debug/android/src/crc648fa36db5c6c1a031/MainView.java

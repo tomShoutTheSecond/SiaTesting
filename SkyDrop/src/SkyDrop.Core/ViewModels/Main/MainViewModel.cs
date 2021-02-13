@@ -6,5 +6,9 @@ namespace SkyDrop.Core.ViewModels.Main
 {
     public class MainViewModel : BaseViewModel
     {
+        public MainViewModel()
+        {
+            Title = "Upload";
+        }
     }
 }

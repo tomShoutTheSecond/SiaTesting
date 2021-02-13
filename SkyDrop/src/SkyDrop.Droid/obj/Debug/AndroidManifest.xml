@@ -12,6 +12,7 @@
       </intent-filter>
     </activity>
     <activity android:theme="@style/AppTheme" android:windowSoftInputMode="stateHidden|adjustResize" android:name="crc648fa36db5c6c1a031.MainContainerActivity" />
+    <activity android:theme="@style/AppTheme" android:windowSoftInputMode="stateHidden|adjustResize" android:name="crc648fa36db5c6c1a031.MainView" />
     <provider android:name="mono.MonoRuntimeProvider" android:exported="false" android:initOrder="1999999999" android:authorities="com.mvxscaffolding.app.mono.MonoRuntimeProvider.__mono_init__" />
     <!--suppress ExportedReceiver-->
     <receiver android:name="mono.android.Seppuku">

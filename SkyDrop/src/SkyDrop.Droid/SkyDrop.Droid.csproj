@@ -94,7 +94,7 @@
   <ItemGroup>
     <AndroidResource Include="Resources\layout\fragment_main.axml" />
     <AndroidResource Include="Resources\layout\layout_toolbar.axml" />
-    <AndroidResource Include="Resources\layout\activity_main_container.axml" />
+    <AndroidResource Include="Resources\layout\activity_main.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\strings.xml" />

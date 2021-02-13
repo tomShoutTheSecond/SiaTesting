@@ -7,5 +7,6 @@ namespace SkyDrop.Core.ViewModels
 {
     public abstract class BaseViewModel : MvxViewModel
     {
+        public string Title { get; set; }
     }
 }

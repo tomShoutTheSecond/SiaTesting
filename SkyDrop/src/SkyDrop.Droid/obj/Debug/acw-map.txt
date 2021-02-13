@@ -13,9 +13,9 @@ skydrop.droid.views.splash.SplashActivity;crc642be9c5fe75a2b84f.SplashActivity
 SkyDrop.Droid.Views.Main.MainContainerActivity, SkyDrop.Droid;crc648fa36db5c6c1a031.MainContainerActivity
 SkyDrop.Droid.Views.Main.MainContainerActivity;crc648fa36db5c6c1a031.MainContainerActivity
 skydrop.droid.views.main.MainContainerActivity;crc648fa36db5c6c1a031.MainContainerActivity
-SkyDrop.Droid.Views.Main.MainFragment, SkyDrop.Droid;crc648fa36db5c6c1a031.MainFragment
-SkyDrop.Droid.Views.Main.MainFragment;crc648fa36db5c6c1a031.MainFragment
-skydrop.droid.views.main.MainFragment;crc648fa36db5c6c1a031.MainFragment
+SkyDrop.Droid.Views.Main.MainView, SkyDrop.Droid;crc648fa36db5c6c1a031.MainView
+SkyDrop.Droid.Views.Main.MainView;crc648fa36db5c6c1a031.MainView
+skydrop.droid.views.main.MainView;crc648fa36db5c6c1a031.MainView
 MvvmCross.Platforms.Android.MvxJavaContainer, MvvmCross;crc64f17390f589b10bdb.MvxJavaContainer
 MvvmCross.Platforms.Android.MvxJavaContainer;crc64f17390f589b10bdb.MvxJavaContainer
 mvvmcross.platforms.android.MvxJavaContainer;crc64f17390f589b10bdb.MvxJavaContainer

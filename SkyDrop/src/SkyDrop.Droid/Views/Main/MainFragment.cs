@@ -14,9 +14,11 @@ using MvvmCross.Platforms.Android.Presenters.Attributes;
 
 namespace SkyDrop.Droid.Views.Main
 {
-    [MvxFragmentPresentation(typeof(MainContainerViewModel), Resource.Id.content_frame)]
-    public class MainFragment : BaseFragment<MainViewModel>
+    [Activity(
+        Theme = "@style/AppTheme",
+        WindowSoftInputMode = SoftInput.AdjustResize | SoftInput.StateHidden)]
+    public class MainView : BaseActivity<MainViewModel>
     {
-        protected override int FragmentLayoutId => Resource.Layout.fragment_main;
+        protected override int ActivityLayoutId => Resource.Layout.activity_main;
     }
 }
