@@ -1,0 +1,31 @@
+﻿<Properties StartupConfiguration="{729B3DEE-1D24-47B7-8EEE-3D75F2090F0A}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="src/SkyDrop.Core/ViewModels/BaseViewModel.cs">
+    <Files>
+      <File FileName="src/SkyDrop.Core/ViewModels/Main/MainViewModel.cs" Line="1" Column="1" />
+      <File FileName="src/SkyDrop.Core/ViewModels/Main/MainContainerViewModel.cs" Line="1" Column="1" />
+      <File FileName="src/SkyDrop.Core/ViewModels/BaseViewModel.cs" Line="1" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="SkyDrop" expanded="True">
+            <Node name="SkyDrop.Core" expanded="True">
+              <Node name="ViewModels" expanded="True">
+                <Node name="Main" expanded="True" />
+                <Node name="BaseViewModel.cs" selected="True" />
+              </Node>
+            </Node>
+            <Node name="SkyDrop.Droid" expanded="True" />
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.SkyDrop.Droid PreferredExecutionTarget="Android.5200b5c9eaec6437" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

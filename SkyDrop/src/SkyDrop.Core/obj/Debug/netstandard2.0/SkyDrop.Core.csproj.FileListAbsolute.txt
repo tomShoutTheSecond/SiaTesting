@@ -1,0 +1,9 @@
+/Users/tom/SiaTesting/SkyDrop/src/SkyDrop.Core/bin/Debug/netstandard2.0/SkyDrop.Core.deps.json
+/Users/tom/SiaTesting/SkyDrop/src/SkyDrop.Core/bin/Debug/netstandard2.0/SkyDrop.Core.dll
+/Users/tom/SiaTesting/SkyDrop/src/SkyDrop.Core/bin/Debug/netstandard2.0/SkyDrop.Core.pdb
+/Users/tom/SiaTesting/SkyDrop/src/SkyDrop.Core/obj/Debug/netstandard2.0/SkyDrop.Core.csprojAssemblyReference.cache
+/Users/tom/SiaTesting/SkyDrop/src/SkyDrop.Core/obj/Debug/netstandard2.0/SkyDrop.Core.AssemblyInfoInputs.cache
+/Users/tom/SiaTesting/SkyDrop/src/SkyDrop.Core/obj/Debug/netstandard2.0/SkyDrop.Core.AssemblyInfo.cs
+/Users/tom/SiaTesting/SkyDrop/src/SkyDrop.Core/obj/Debug/netstandard2.0/SkyDrop.Core.csproj.CoreCompileInputs.cache
+/Users/tom/SiaTesting/SkyDrop/src/SkyDrop.Core/obj/Debug/netstandard2.0/SkyDrop.Core.dll
+/Users/tom/SiaTesting/SkyDrop/src/SkyDrop.Core/obj/Debug/netstandard2.0/SkyDrop.Core.pdb

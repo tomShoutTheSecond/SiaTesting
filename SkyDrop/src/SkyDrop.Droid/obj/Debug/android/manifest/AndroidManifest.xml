@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.mvxscaffolding.app" android:installLocation="auto" android:versionCode="1" android:versionName="1.0">
+  <uses-sdk android:minSdkVersion="21" android:targetSdkVersion="30" />
+  <uses-permission android:name="android.permission.INTERNET" />
+  <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+  <queries>
+    <package android:name="Mono.Android.DebugRuntime" />
+    <package android:name="Mono.Android.Platform.ApiLevel_30" />
+  </queries>
+  <application android:name="crc64b8cb12ffc326be19.MainApplication" android:allowBackup="true" android:appComponentFactory="androidx.core.app.CoreComponentFactory" android:debuggable="true" android:extractNativeLibs="true" android:icon="@mipmap/ic_launcher" android:label="@string/app_name" android:resizeableActivity="true" android:roundIcon="@mipmap/ic_launcher_round" android:theme="@style/AppTheme">
+    <meta-data android:name="android.max_aspect" android:value="2.1" />
+    <activity android:name="crc642be9c5fe75a2b84f.SplashActivity" android:icon="@mipmap/ic_launcher" android:label="@string/app_name" android:noHistory="true" android:roundIcon="@mipmap/ic_launcher_round" android:theme="@style/AppTheme.Splash">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+        <category android:name="android.intent.category.LAUNCHER" />
+      </intent-filter>
+    </activity>
+    <activity android:name="crc648fa36db5c6c1a031.MainContainerActivity" android:theme="@style/AppTheme" android:windowSoftInputMode="stateHidden|adjustResize" />
+    <provider android:name="mono.MonoRuntimeProvider" android:authorities="com.mvxscaffolding.app.mono.MonoRuntimeProvider.__mono_init__" android:exported="false" android:initOrder="1999999999" />
+    <!-- suppress ExportedReceiver -->
+    <receiver android:name="mono.android.Seppuku">
+      <intent-filter>
+        <action android:name="mono.android.intent.action.SEPPUKU" />
+        <category android:name="mono.android.intent.category.SEPPUKU.com.mvxscaffolding.app" />
+      </intent-filter>
+    </receiver>
+  </application>
+</manifest>
