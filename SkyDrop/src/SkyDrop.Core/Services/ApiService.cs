@@ -26,6 +26,7 @@ namespace SkyDrop.Core.Services
             var responseString = await response.Content.ReadAsStringAsync();
             var skyfile = JsonConvert.DeserializeObject<SkyFile>(responseString);
             skyfile.Filename = filename;
+            skyfile.Skylink = $"siasky.net/{skyfile.Skylink}";
 
             return skyfile;
         }
