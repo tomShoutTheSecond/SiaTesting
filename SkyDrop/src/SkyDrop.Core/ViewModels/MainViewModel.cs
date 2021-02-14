@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -119,7 +118,7 @@ namespace SkyDrop.Core.ViewModels.Main
 
             IsLoading = false;
 
-            RaiseAllPropertiesChanged();
+            _ = RaiseAllPropertiesChanged();
         }
 
         private void SetSelectedFile(SkyFile selectedFile)
@@ -135,7 +134,7 @@ namespace SkyDrop.Core.ViewModels.Main
 
             SkyFiles = new List<SkyFileDVM>(SkyFiles);
 
-            RaiseAllPropertiesChanged();
+            _ = RaiseAllPropertiesChanged();
         }
 
         private string GetSkyLinksText()

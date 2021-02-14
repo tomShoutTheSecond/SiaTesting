@@ -28,7 +28,7 @@ namespace SkyDrop.Droid.Views.Main
 
             await ViewModel.InitializeTask.Task;
 
-            ViewModel.SelectFileAsyncFunc = async () => await SelectFileCommand();
+            ViewModel.SelectFileAsyncFunc = SelectFileCommand;
             ViewModel.FileTapCommand = new MvxCommand<SkyFile>(OpenFile);
         }
 
