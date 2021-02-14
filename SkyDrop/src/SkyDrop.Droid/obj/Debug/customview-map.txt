@@ -40,6 +40,7 @@ LinearLayout;obj/Debug/res/layout/mainview.xml
 mvvmcross.droid.support.v7.recyclerview.MvxRecyclerView;obj/Debug/res/layout/mainview.xml
 path;obj/Debug/res/drawable/ic_file.xml
 path;obj/Debug/res/drawable/ic_launcher_foreground.xml
+path;obj/Debug/res/drawable/ic_siacoin.xml
 paths;/Users/tom/SiaTesting/SkyDrop/src/SkyDrop.Droid/obj/Debug/lp/48/jl/res/xml/xamarin_essentials_fileprovider_file_paths.xml
 ProgressBar;obj/Debug/res/layout/mainview.xml
 resources;/Users/tom/SiaTesting/SkyDrop/src/SkyDrop.Droid/obj/Debug/lp/0/jl/res/values/ids.xml
@@ -64,3 +65,4 @@ TextView;obj/Debug/res/layout/layout_toolbar.xml
 TextView;obj/Debug/res/layout/mainview.xml
 vector;obj/Debug/res/drawable/ic_file.xml
 vector;obj/Debug/res/drawable/ic_launcher_foreground.xml
+vector;obj/Debug/res/drawable/ic_siacoin.xml

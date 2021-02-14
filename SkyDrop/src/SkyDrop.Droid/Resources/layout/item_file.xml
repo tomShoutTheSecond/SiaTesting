@@ -24,7 +24,7 @@
                 android:layout_height="32dp"
                 android:layout_margin="8dp"
                 android:orientation="vertical"
-                android:src="@drawable/ic_file"/>
+                android:src="@drawable/ic_siacoin"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

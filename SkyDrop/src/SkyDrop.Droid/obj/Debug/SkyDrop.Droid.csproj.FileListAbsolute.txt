@@ -494,3 +494,4 @@
 /Users/tom/SiaTesting/SkyDrop/src/SkyDrop.Droid/obj/Debug/stamp/_GeneratePackageManagerJava.stamp
 /Users/tom/SiaTesting/SkyDrop/src/SkyDrop.Droid/obj/Debug/stamp/_ResolveLibraryProjectImports.stamp
 /Users/tom/SiaTesting/SkyDrop/src/SkyDrop.Droid/obj/Debug/SkyDrop.Droid.csprojAssemblyReference.cache
+/Users/tom/SiaTesting/SkyDrop/src/SkyDrop.Droid/obj/Debug/res/drawable/ic_siacoin.xml
