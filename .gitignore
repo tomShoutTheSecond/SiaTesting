@@ -113,5 +113,9 @@ dist
 packages/
 TestResults/
 
+SkyDrop/src/SkyDrop.Droid/Resources/Resource.Designer.cs
+SkyDrop/src/SkyDrop.Droid/obj/
+SkyDrop/.vs/SkyDrop/xs/UserPrefs.xml
+
 # Autosave files
 *~
