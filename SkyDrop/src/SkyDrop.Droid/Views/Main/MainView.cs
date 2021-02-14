@@ -1,22 +1,15 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Threading.Tasks;
-using Acr.UserDialogs;
 using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Provider;
 using Android.Views;
 using Android.Widget;
-using MvvmCross;
 using MvvmCross.Commands;
-using MvvmCross.IoC;
-using SkyDrop.Core.ViewModels.Main;
-using Xamarin.Essentials;
-using Android.Graphics;
-using Android.Provider;
 using SkyDrop.Core.DataModels;
+using SkyDrop.Core.ViewModels.Main;
 using SkyDrop.Droid.Helper;
+using Xamarin.Essentials;
 
 namespace SkyDrop.Droid.Views.Main
 {
@@ -35,9 +28,7 @@ namespace SkyDrop.Droid.Views.Main
 
             await ViewModel.InitializeTask.Task;
 
-            ViewModel.SelectFileAsyncFunc = SelectFileCommand;
-
-            ViewModel.SelectTheFileNative = async () => await SelectFileCommand();
+            ViewModel.SelectFileAsyncFunc = async () => await SelectFileCommand();
             ViewModel.FileTapCommand = new MvxCommand<SkyFile>(OpenFile);
         }
 
