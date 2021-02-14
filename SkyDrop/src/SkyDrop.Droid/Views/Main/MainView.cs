@@ -118,6 +118,8 @@ namespace SkyDrop.Droid.Views.Main
 
         private void OpenFile(SkyFile file)
         {
+            Toast.MakeText(this, $"Opening file {file.Filename}", ToastLength.Long).Show();
+
             var browserIntent = new Intent(Intent.ActionView, Android.Net.Uri.Parse(file.Skylink));
             StartActivity(browserIntent);
         }

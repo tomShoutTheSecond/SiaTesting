@@ -50,5 +50,6 @@
     <Import Project="$(NuGetPackageRoot)xamarin.androidx.lifecycle.livedata/2.2.0.4/buildTransitive/monoandroid90/Xamarin.AndroidX.Lifecycle.LiveData.targets" Condition="Exists('$(NuGetPackageRoot)xamarin.androidx.lifecycle.livedata/2.2.0.4/buildTransitive/monoandroid90/Xamarin.AndroidX.Lifecycle.LiveData.targets')" />
     <Import Project="$(NuGetPackageRoot)xamarin.androidx.constraintlayout.solver/1.1.3.2/buildTransitive/monoandroid90/Xamarin.AndroidX.ConstraintLayout.Solver.targets" Condition="Exists('$(NuGetPackageRoot)xamarin.androidx.constraintlayout.solver/1.1.3.2/buildTransitive/monoandroid90/Xamarin.AndroidX.ConstraintLayout.Solver.targets')" />
     <Import Project="$(NuGetPackageRoot)xamarin.androidx.constraintlayout/1.1.3.2/buildTransitive/monoandroid90/Xamarin.AndroidX.ConstraintLayout.targets" Condition="Exists('$(NuGetPackageRoot)xamarin.androidx.constraintlayout/1.1.3.2/buildTransitive/monoandroid90/Xamarin.AndroidX.ConstraintLayout.targets')" />
+    <Import Project="$(NuGetPackageRoot)fody/6.3.0/build/Fody.targets" Condition="Exists('$(NuGetPackageRoot)fody/6.3.0/build/Fody.targets')" />
   </ImportGroup>
 </Project>

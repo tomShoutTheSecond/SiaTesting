@@ -18,5 +18,7 @@
   <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
     <Import Project="$(NuGetPackageRoot)xamarin.androidx.migration/1.0.8/buildTransitive/monoandroid90/Xamarin.AndroidX.Migration.props" Condition="Exists('$(NuGetPackageRoot)xamarin.androidx.migration/1.0.8/buildTransitive/monoandroid90/Xamarin.AndroidX.Migration.props')" />
     <Import Project="$(NuGetPackageRoot)xamarin.build.download/0.10.0/buildTransitive/Xamarin.Build.Download.props" Condition="Exists('$(NuGetPackageRoot)xamarin.build.download/0.10.0/buildTransitive/Xamarin.Build.Download.props')" />
+    <Import Project="$(NuGetPackageRoot)realm.fody/10.1.0/build/Realm.Fody.props" Condition="Exists('$(NuGetPackageRoot)realm.fody/10.1.0/build/Realm.Fody.props')" />
+    <Import Project="$(NuGetPackageRoot)realm/10.1.0/build/Realm.props" Condition="Exists('$(NuGetPackageRoot)realm/10.1.0/build/Realm.props')" />
   </ImportGroup>
 </Project>

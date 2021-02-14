@@ -4,14 +4,12 @@ androidx.appcompat.widget.Toolbar;obj/Debug/res/layout/layout_toolbar.xml
 androidx.cardview.widget.CardView;obj/Debug/res/layout/item_file.xml
 androidx.constraintlayout.widget.ConstraintLayout;obj/Debug/res/layout/fragment_main.xml
 androidx.constraintlayout.widget.Guideline;obj/Debug/res/layout/fragment_main.xml
-androidx.coordinatorlayout.widget.CoordinatorLayout;obj/Debug/res/layout/item_file.xml
 androidx.coordinatorlayout.widget.CoordinatorLayout;obj/Debug/res/layout/mainview.xml
 attr;/Users/tom/SiaTesting/SkyDrop/src/SkyDrop.Droid/obj/Debug/lp/0/jl/res/values/mvxbindingattributes.xml
 attr;/Users/tom/SiaTesting/SkyDrop/src/SkyDrop.Droid/obj/Debug/lp/1/jl/res/values/mvxrecyclerviewbindingattributes.xml
 background;obj/Debug/res/mipmap-anydpi-v26/ic_launcher.xml
 background;obj/Debug/res/mipmap-anydpi-v26/ic_launcher_round.xml
 bitmap;obj/Debug/res/drawable/splash_screen.xml
-Button;obj/Debug/res/layout/item_file.xml
 Button;obj/Debug/res/layout/mainview.xml
 cache-path;/Users/tom/SiaTesting/SkyDrop/src/SkyDrop.Droid/obj/Debug/lp/48/jl/res/xml/xamarin_essentials_fileprovider_file_paths.xml
 color;obj/Debug/res/drawable/splash_screen.xml
@@ -27,7 +25,6 @@ foreground;obj/Debug/res/mipmap-anydpi-v26/ic_launcher.xml
 foreground;obj/Debug/res/mipmap-anydpi-v26/ic_launcher_round.xml
 group;obj/Debug/res/drawable/ic_launcher_foreground.xml
 ImageView;obj/Debug/res/layout/item_file.xml
-include;obj/Debug/res/layout/item_file.xml
 include;obj/Debug/res/layout/mainview.xml
 item;/Users/tom/SiaTesting/SkyDrop/src/SkyDrop.Droid/obj/Debug/lp/0/jl/res/values/ids.xml
 item;/Users/tom/SiaTesting/SkyDrop/src/SkyDrop.Droid/obj/Debug/lp/0/jl/res/values/mvxbindingattributes.xml
@@ -39,11 +36,9 @@ layer-list;obj/Debug/res/drawable/splash_screen.xml
 LinearLayout;obj/Debug/res/layout/item_file.xml
 LinearLayout;obj/Debug/res/layout/mainview.xml
 mvvmcross.droid.support.v7.recyclerview.MvxRecyclerView;obj/Debug/res/layout/mainview.xml
-path;obj/Debug/res/drawable/file.xml
 path;obj/Debug/res/drawable/ic_file.xml
 path;obj/Debug/res/drawable/ic_launcher_foreground.xml
 paths;/Users/tom/SiaTesting/SkyDrop/src/SkyDrop.Droid/obj/Debug/lp/48/jl/res/xml/xamarin_essentials_fileprovider_file_paths.xml
-ProgressBar;obj/Debug/res/layout/item_file.xml
 ProgressBar;obj/Debug/res/layout/mainview.xml
 resources;/Users/tom/SiaTesting/SkyDrop/src/SkyDrop.Droid/obj/Debug/lp/0/jl/res/values/ids.xml
 resources;/Users/tom/SiaTesting/SkyDrop/src/SkyDrop.Droid/obj/Debug/lp/0/jl/res/values/mvxbindingattributes.xml
@@ -65,8 +60,5 @@ TextView;obj/Debug/res/layout/fragment_main.xml
 TextView;obj/Debug/res/layout/item_file.xml
 TextView;obj/Debug/res/layout/layout_toolbar.xml
 TextView;obj/Debug/res/layout/mainview.xml
-vector;obj/Debug/res/drawable/file.xml
 vector;obj/Debug/res/drawable/ic_file.xml
 vector;obj/Debug/res/drawable/ic_launcher_foreground.xml
-vvmcross.droid.support.v7.recyclerview.MvxRecyclerView;obj/Debug/res/layout/item_file.xml
-vvmcross.droid.support.v7.recyclerview.MvxRecyclerView;obj/Debug/res/layout/mainview.xml

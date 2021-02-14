@@ -18,14 +18,16 @@ namespace SkyDrop.Core.ViewModels.Main
         public bool IsLoading { get; set; }
 
         private IApiService apiService;
+        private IStorageService storageService;
 
-        public MainViewModel(IApiService apiService)
+        public MainViewModel(IApiService apiService, IStorageService storageService)
         {
             Title = "Upload";
 
             SelectFileCommand = new MvxCommand(DoSomething);
 
             this.apiService = apiService;
+            this.storageService = storageService;
         }
 
         public IMvxCommand SelectFileCommand { get; set; }
@@ -38,6 +40,20 @@ namespace SkyDrop.Core.ViewModels.Main
             SelectTheFileNative.Invoke();
         }
 
+        public override async Task Initialize()
+        {
+            await base.Initialize();
+
+            LoadSkyFiles();
+        }
+
+        private void LoadSkyFiles()
+        {
+            SkyFiles = storageService.LoadSkyFiles();
+
+            RaiseAllPropertiesChanged();
+        }
+
         public async Task UploadFile(string filename, byte[] file)
         {
             IsLoading = true;
@@ -47,6 +63,8 @@ namespace SkyDrop.Core.ViewModels.Main
             Console.WriteLine("UPLOAD COMPLETE: " + skyFile.Skylink);
 
             SkyFiles.Add(skyFile);
+
+            storageService.SaveSkyFiles(skyFile);
 
             SkylinksText = GetSkyLinksText();
 

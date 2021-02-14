@@ -5,7 +5,7 @@
       "Fody/6.3.0": {
         "type": "package",
         "build": {
-          "build/_._": {}
+          "build/Fody.targets": {}
         }
       },
       "Microsoft.CSharp/4.5.0": {
@@ -154,7 +154,7 @@
           "lib/netstandard2.0/Realm.dll": {}
         },
         "build": {
-          "build/_._": {}
+          "build/Realm.props": {}
         },
         "runtimeTargets": {
           "runtimes/linux-x64/native/librealm-wrappers.so": {
@@ -181,7 +181,7 @@
           "System.Management": "4.5.0"
         },
         "build": {
-          "build/_._": {}
+          "build/Realm.Fody.props": {}
         }
       },
       "Remotion.Linq/2.2.0": {
@@ -3730,6 +3730,7 @@
       "MvvmCross.DroidX.Material >= 7.1.2",
       "MvvmCross.Plugin.Visibility >= 7.1.2",
       "Plugin.CurrentActivity >= 2.1.0.4",
+      "Realm >= 10.1.0",
       "SkyDrop.Core >= 1.0.0",
       "Xamarin.AndroidX.ConstraintLayout >= 1.1.3.2",
       "Xamarin.AndroidX.Lifecycle.LiveData >= 2.2.0.4",
@@ -3790,6 +3791,10 @@
           "Plugin.CurrentActivity": {
             "target": "Package",
             "version": "[2.1.0.4, )"
+          },
+          "Realm": {
+            "target": "Package",
+            "version": "[10.1.0, )"
           },
           "Xamarin.AndroidX.ConstraintLayout": {
             "target": "Package",

@@ -3,6 +3,7 @@ public class MonoPackageManager_Resources {
 	public static String[] Assemblies = new String[]{
 		/* We need to ensure that "SkyDrop.Droid.dll" comes first in this list. */
 		"SkyDrop.Droid.dll",
+		"MongoDB.Bson.dll",
 		"MvvmCross.dll",
 		"MvvmCross.Droid.Support.V7.RecyclerView.dll",
 		"MvvmCross.DroidX.Material.dll",
@@ -10,6 +11,8 @@ public class MonoPackageManager_Resources {
 		"Newtonsoft.Json.dll",
 		"Plugin.CurrentActivity.dll",
 		"Plugin.Permissions.dll",
+		"Realm.dll",
+		"Remotion.Linq.dll",
 		"SkyDrop.Core.dll",
 		"Xamarin.Android.Arch.Core.Common.dll",
 		"Xamarin.Android.Arch.Core.Runtime.dll",
