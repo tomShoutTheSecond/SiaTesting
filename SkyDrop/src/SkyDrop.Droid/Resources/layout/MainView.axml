@@ -15,7 +15,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="40dp"
-            android:text="Select File"
+            android:text="Upload File"
             android:layout_gravity="center"
             android:layout_marginTop="48dp"
             app:MvxBind="Click SelectFileCommand"/>
@@ -39,10 +39,9 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:text="Copy link to clipboard"
+        android:text="Select File"
         android:layout_gravity="center"
         android:padding="48dp"
-        android:layout_marginBottom="16dp"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"

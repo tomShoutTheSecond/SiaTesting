@@ -104,12 +104,16 @@ namespace SkyDrop.Core.ViewModels.Main
             var existingFile = SkyFiles.FirstOrDefault(s => s.SkyFile.Skylink == skyFile.Skylink);
             if (existingFile != null)
             {
-                System.Diagnostics.Debug.WriteLine("FILE ALREADY UPLOADED!");
+                var message = "FILE ALREADY UPLOADED!";
+                System.Diagnostics.Debug.WriteLine(message);
+                userDialogs.Toast(message);
                 IsLoading = false;
+                _ = RaisePropertyChanged(() => IsLoading);
                 return;
             }
 
             SkyFiles.Add(GetSkyFileDVM(skyFile));
+            SkyFiles = new List<SkyFileDVM>(SkyFiles);
 
             LastSkyFile = skyFile;
 

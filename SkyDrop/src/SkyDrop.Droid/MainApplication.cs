@@ -16,6 +16,7 @@ namespace SkyDrop.Droid
     {
         public MainApplication(IntPtr javaReference, JniHandleOwnership transfer) : base(javaReference, transfer)
         {
+            Xamarin.Essentials.Platform.Init(this);
         }
     }
 }

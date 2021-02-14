@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using Android.Content;
 using Android.Provider;
 
