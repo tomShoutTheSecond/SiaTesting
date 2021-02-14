@@ -5,6 +5,8 @@ public class MonoPackageManager_Resources {
 		"SkyDrop.Droid.dll",
 		"MvvmCross.dll",
 		"MvvmCross.DroidX.Material.dll",
+		"Plugin.CurrentActivity.dll",
+		"Plugin.Permissions.dll",
 		"SkyDrop.Core.dll",
 		"Xamarin.AndroidX.Activity.dll",
 		"Xamarin.AndroidX.Annotation.dll",
@@ -13,6 +15,7 @@ public class MonoPackageManager_Resources {
 		"Xamarin.AndroidX.Arch.Core.Common.dll",
 		"Xamarin.AndroidX.Arch.Core.Runtime.dll",
 		"Xamarin.AndroidX.AsyncLayoutInflater.dll",
+		"Xamarin.AndroidX.Browser.dll",
 		"Xamarin.AndroidX.CardView.dll",
 		"Xamarin.AndroidX.Collection.dll",
 		"Xamarin.AndroidX.ConstraintLayout.dll",
@@ -46,7 +49,9 @@ public class MonoPackageManager_Resources {
 		"Xamarin.AndroidX.VectorDrawable.dll",
 		"Xamarin.AndroidX.VersionedParcelable.dll",
 		"Xamarin.AndroidX.ViewPager.dll",
+		"Xamarin.Essentials.dll",
 		"Xamarin.Google.Android.Material.dll",
+		"Xamarin.Google.Guava.ListenableFuture.dll",
 	};
 	public static String[] Dependencies = new String[]{
 	};

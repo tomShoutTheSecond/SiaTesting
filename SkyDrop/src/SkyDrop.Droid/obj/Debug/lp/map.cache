@@ -1,5 +1,7 @@
 MvvmCross
 MvvmCross.DroidX.Material
+Plugin.CurrentActivity
+Plugin.Permissions
 Xamarin.AndroidX.Activity
 Xamarin.AndroidX.Annotation
 Xamarin.AndroidX.AppCompat.AppCompatResources
@@ -7,6 +9,7 @@ Xamarin.AndroidX.AppCompat
 Xamarin.AndroidX.Arch.Core.Common
 Xamarin.AndroidX.Arch.Core.Runtime
 Xamarin.AndroidX.AsyncLayoutInflater
+Xamarin.AndroidX.Browser
 Xamarin.AndroidX.CardView
 Xamarin.AndroidX.Collection
 Xamarin.AndroidX.ConstraintLayout
@@ -40,7 +43,9 @@ Xamarin.AndroidX.VectorDrawable.Animated
 Xamarin.AndroidX.VectorDrawable
 Xamarin.AndroidX.VersionedParcelable
 Xamarin.AndroidX.ViewPager
+Xamarin.Essentials
 Xamarin.Google.Android.Material
+Xamarin.Google.Guava.ListenableFuture
 androidx.versionedparcelable.versionedparcelable
 androidx.lifecycle.lifecycle-runtime
 androidx.core.core
@@ -74,5 +79,6 @@ androidx.cardview.cardview
 androidx.appcompat.appcompat-resources
 androidx.appcompat.appcompat
 com.google.android.material.material
+androidx.browser.browser
 androidx.preference.preference
 androidx.constraintlayout.constraintlayout

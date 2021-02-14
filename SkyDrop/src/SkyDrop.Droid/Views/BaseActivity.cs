@@ -11,6 +11,7 @@ using Android.Views;
 using Android.Widget;
 using MvvmCross.Platforms.Android.Views;
 using MvvmCross.ViewModels;
+using Plugin.Permissions;
 
 namespace SkyDrop.Droid.Views
 {
@@ -24,6 +25,13 @@ namespace SkyDrop.Droid.Views
             base.OnCreate(bundle);
 
             SetContentView(ActivityLayoutId);
+        }
+
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Android.Content.PM.Permission[] grantResults)
+        {
+            Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+
+            base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
 }
