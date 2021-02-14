@@ -1,4 +1,22 @@
+[Oo]bj/
+[Bb]in/
+packages/
+TestResults/
+
+SkyDrop/.vs/SkyDrop/xs/UserPrefs.xml
+
+
+SkyDrop/src/SkyDrop.Droid/Resources/Resource.Designer.cs
+
+
+*~
+
+
+
+
+
 # Created by https://www.toptal.com/developers/gitignore/api/visualstudio,xamarinstudio
+
 # Edit at https://www.toptal.com/developers/gitignore?templates=visualstudio,xamarinstudio
 
 ### XamarinStudio ###

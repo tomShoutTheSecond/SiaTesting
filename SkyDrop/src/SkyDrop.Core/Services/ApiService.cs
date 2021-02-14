@@ -18,6 +18,7 @@ namespace SkyDrop.Core.Services
             var form = new MultipartFormDataContent();
 
             form.Add(new ByteArrayContent(file), "file", filename);
+
             var response = await httpClient.PostAsync(url, form);
 
             response.EnsureSuccessStatusCode();

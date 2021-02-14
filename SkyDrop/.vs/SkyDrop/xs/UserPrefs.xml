@@ -1,9 +1,9 @@
 ﻿<Properties StartupConfiguration="{729B3DEE-1D24-47B7-8EEE-3D75F2090F0A}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="src/SkyDrop.Droid/Resources/layout/item_file.xml">
+  <MonoDevelop.Ide.Workbench ActiveDocument="src/SkyDrop.Core/ViewModels/MainViewModel.cs">
     <Files>
       <File FileName="src/SkyDrop.Core/DataViewModels/SkyFileDVM.cs" Line="19" Column="39" />
-      <File FileName="src/SkyDrop.Core/ViewModels/Main/MainViewModel.cs" />
-      <File FileName="src/SkyDrop.Droid/Resources/layout/item_file.xml" Line="38" Column="26" />
+      <File FileName="src/SkyDrop.Droid/Resources/layout/item_file.xml" />
+      <File FileName="src/SkyDrop.Core/ViewModels/MainViewModel.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -15,7 +15,7 @@
               <Node name="DataViewModels" expanded="True" />
               <Node name="Services" expanded="True" />
               <Node name="ViewModels" expanded="True">
-                <Node name="Main" expanded="True" />
+                <Node name="MainViewModel.cs" selected="True" />
               </Node>
             </Node>
             <Node name="SkyDrop.Droid" expanded="True">
@@ -27,9 +27,7 @@
                 <Node name="drawable-xhdpi" expanded="True" />
                 <Node name="drawable-xxhdpi" expanded="True" />
                 <Node name="drawable-xxxhdpi" expanded="True" />
-                <Node name="layout" expanded="True">
-                  <Node name="item_file.xml" selected="True" />
-                </Node>
+                <Node name="layout" expanded="True" />
                 <Node name="mipmap-anydpi-v26" expanded="True" />
                 <Node name="mipmap-hdpi" expanded="True" />
                 <Node name="mipmap-mdpi" expanded="True" />
@@ -46,12 +44,10 @@
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.ItemProperties.SkyDrop.Droid AndroidDesignerPreferredTheme="AppTheme" AndroidDesignerPreferredDevice="Nexus 4" PreferredExecutionTarget="Android.5200b5c9eaec6437" />
+  <MonoDevelop.Ide.ItemProperties.SkyDrop.Droid AndroidDesignerPreferredTheme="AppTheme" PreferredExecutionTarget="Android.5200b5c9eaec6437" />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/tom/SiaTesting/SkyDrop/src/SkyDrop.Core/ViewModels/Main/MainViewModel.cs" relfile="src/SkyDrop.Core/ViewModels/Main/MainViewModel.cs" line="99" column="1" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
 </Properties>

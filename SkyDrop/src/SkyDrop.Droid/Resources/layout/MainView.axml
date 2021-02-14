@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -27,7 +27,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:MvxBind="Text SkylinksText"/>
+            app:MvxBind="Text FileNameForSkyLink"/>
         <mvvmcross.droid.support.v7.recyclerview.MvxRecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -35,4 +35,15 @@
             app:MvxBind="ItemsSource SkyFiles"
             />
     </LinearLayout>
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:text="Select File"
+        android:layout_gravity="center"
+        android:padding="48dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:MvxBind="Click CopyLatestSkyLinkCommand;"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

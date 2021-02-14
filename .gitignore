@@ -102,3 +102,20 @@ dist
 
 # TernJS port file
 .tern-port
+
+
+# Started editing here
+
+# Xamarin / VS
+
+[Oo]bj/
+[Bb]in/
+packages/
+TestResults/
+
+SkyDrop/src/SkyDrop.Droid/Resources/Resource.Designer.cs
+SkyDrop/src/SkyDrop.Droid/obj/
+SkyDrop/.vs/SkyDrop/xs/UserPrefs.xml
+
+# Autosave files
+*~

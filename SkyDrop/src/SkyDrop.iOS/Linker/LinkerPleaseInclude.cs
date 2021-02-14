@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Specialized;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Windows.Input;
 using Foundation;
 using MvvmCross.Binding.BindingContext;
@@ -137,7 +138,7 @@ namespace SkyDrop.iOS.Linker
         public void Include(ConsoleColor color)
         {
             Console.Write("");
-            Console.WriteLine("");
+            Debug.WriteLine("");
             _ = Console.ForegroundColor;
             Console.ForegroundColor = ConsoleColor.Red;
             Console.ForegroundColor = ConsoleColor.Yellow;

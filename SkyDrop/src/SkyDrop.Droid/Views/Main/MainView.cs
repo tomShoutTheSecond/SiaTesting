@@ -1,25 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-using SkyDrop.Core.ViewModels.Main;
-using MvvmCross.Platforms.Android.Presenters.Attributes;
 using MvvmCross.Commands;
-using System.IO;
-using System.Threading.Tasks;
-using Plugin.Permissions;
-using Plugin.Permissions.Abstractions;
-using Xamarin.Essentials;
-using Android.Graphics;
-using Android.Provider;
 using SkyDrop.Core.DataModels;
+using SkyDrop.Core.ViewModels.Main;
 using SkyDrop.Droid.Helper;
+using Xamarin.Essentials;
 
 namespace SkyDrop.Droid.Views.Main
 {
@@ -32,15 +22,13 @@ namespace SkyDrop.Droid.Views.Main
 
         protected override async void OnCreate(Bundle bundle)
         {
+            System.Diagnostics.Debug.WriteLine("MainView OnCreate()");
+
             base.OnCreate(bundle);
 
             await ViewModel.InitializeTask.Task;
 
-            Xamarin.Essentials.Platform.Init(this, bundle);
-
-            //ViewModel.SelectFileCommand = new MvxCommand(SelectFileCommand);
-
-            ViewModel.SelectTheFileNative = async () => await SelectFileCommand();
+            ViewModel.SelectFileAsyncFunc = async () => await SelectFileCommand();
             ViewModel.FileTapCommand = new MvxCommand<SkyFile>(OpenFile);
         }
 
@@ -60,12 +48,12 @@ namespace SkyDrop.Droid.Views.Main
             {
                 var status = await Permissions.CheckStatusAsync<Permissions.StorageRead>();
 
-                if (status != Xamarin.Essentials.PermissionStatus.Granted)
+                if (status != PermissionStatus.Granted)
                 {
                     status = await Permissions.RequestAsync<Permissions.StorageRead>();
                 }
 
-                return status == Xamarin.Essentials.PermissionStatus.Granted;
+                return status == PermissionStatus.Granted;
             }
             catch (Exception ex)
             {
