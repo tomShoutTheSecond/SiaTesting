@@ -102,45 +102,5 @@ namespace SkyDrop.Droid.Views.Main
 
             return bytes;
         }
-        /*
-        public byte[] UploadFile(Android.Net.Uri uri)
-        {
-            string path = GetRealPathFromUri(this, uri);//Path.Combine(Android.OS.Environment.GetExternalStoragePublicDirectory(Android.OS.Environment.DirectoryPictures).AbsolutePath, uri.Path);
-            var inputStream = new FileStream(path, FileMode.Open);
-
-            byte[] bytes = new byte[inputStream.Length];
-            try
-            {
-                var buffer = new Java.IO.BufferedInputStream(inputStream);
-                buffer.Read(bytes, 0, bytes.Length);
-                buffer.Close();
-            }
-            catch (Exception e)
-            {
-
-            }
-
-            return bytes;
-        }
-        */
-        private string GetRealPathFromUri(Context context, Android.Net.Uri contentUri)
-        {
-            Android.Database.ICursor cursor = null;
-            try
-            {
-                string[] proj = { MediaStore.Images.Media.ContentType };
-                cursor = context.ContentResolver.Query(contentUri, proj, null, null, null);
-                int column_index = cursor.GetColumnIndexOrThrow(MediaStore.Images.Media.ContentType);
-                cursor.MoveToFirst();
-                return cursor.GetString(column_index);
-            }
-            finally
-            {
-                if (cursor != null)
-                {
-                    cursor.Close();
-                }
-            }
-        }
     }
 }
