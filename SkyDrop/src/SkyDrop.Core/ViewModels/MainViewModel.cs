@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -98,12 +98,12 @@ namespace SkyDrop.Core.ViewModels.Main
             _ = RaisePropertyChanged(() => IsLoading);
 
             var skyFile = await apiService.UploadFile(filename, file);
-            Console.WriteLine("UPLOAD COMPLETE: " + skyFile.Skylink);
+            Debug.WriteLine("UPLOAD COMPLETE: " + skyFile.Skylink);
 
             var existingFile = SkyFiles.FirstOrDefault(s => s.SkyFile.Skylink == skyFile.Skylink);
             if (existingFile != null)
             {
-                Console.WriteLine("FILE ALREADY UPLOADED!");
+                Debug.WriteLine("FILE ALREADY UPLOADED!");
                 IsLoading = false;
                 return;
             }

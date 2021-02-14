@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Android.Content;
 using Android.Provider;
 
@@ -25,7 +25,7 @@ namespace SkyDrop.Droid.Helper
                     // Note it's called "Display Name". This is
                     // provider-specific, and might not necessarily be the file name.
                     displayName = cursor.GetString(cursor.GetColumnIndex(OpenableColumns.DisplayName));
-                    Console.WriteLine("Display Name: " + displayName);
+                    Debug.WriteLine("Display Name: " + displayName);
 
                     var sizeIndex = cursor.GetColumnIndex(OpenableColumns.Size);
                     // If the size is unknown, the value stored is null. But because an
@@ -45,7 +45,7 @@ namespace SkyDrop.Droid.Helper
                     {
                         size = "Unknown";
                     }
-                    Console.WriteLine("Size: " + size);
+                    Debug.WriteLine("Size: " + size);
                 }
             }
             catch (Exception e)
