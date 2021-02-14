@@ -105,6 +105,7 @@ namespace SkyDrop.Core.ViewModels.Main
             if (existingFile != null)
             {
                 Console.WriteLine("FILE ALREADY UPLOADED!");
+                IsLoading = false;
                 return;
             }
 
