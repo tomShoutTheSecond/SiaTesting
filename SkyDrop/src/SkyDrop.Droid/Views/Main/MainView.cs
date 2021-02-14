@@ -13,6 +13,10 @@ using MvvmCross.Commands;
 using MvvmCross.IoC;
 using SkyDrop.Core.ViewModels.Main;
 using Xamarin.Essentials;
+using Android.Graphics;
+using Android.Provider;
+using SkyDrop.Core.DataModels;
+using SkyDrop.Droid.Helper;
 
 namespace SkyDrop.Droid.Views.Main
 {
@@ -33,7 +37,8 @@ namespace SkyDrop.Droid.Views.Main
 
             ViewModel.SelectFileAsyncFunc = SelectFileCommand;
 
-            Platform.Init(this, bundle);
+            ViewModel.SelectTheFileNative = async () => await SelectFileCommand();
+            ViewModel.FileTapCommand = new MvxCommand<SkyFile>(OpenFile);
         }
 
         private async Task SelectFileCommand()
@@ -71,79 +76,28 @@ namespace SkyDrop.Droid.Views.Main
         {
             base.OnActivityResult(requestCode, resultCode, data);
 
-            //handle the selected file
-            var uri = data.Data;
-            string mimeType = ContentResolver.GetType(uri);
-            Console.WriteLine("mime type: ", mimeType);
-
-            string extension = System.IO.Path.GetExtension(uri.Path);
-            Console.WriteLine("extension: ", extension);
-
-            Console.WriteLine("path: ", uri.Path);
-
-            var filename = GetFileName(uri);
-
-            Toast.MakeText(this, uri.Path, ToastLength.Long).Show();
-
-            var fileBytes = UploadFile(uri);
-            await ViewModel.UploadFile(filename, fileBytes);
-        }
-
-        private string GetFileName(Android.Net.Uri uri)
-        {
-
-            // The query, because it only applies to a single document, returns only
-            // one row. There's no need to filter, sort, or select fields,
-            // because we want all fields for one document.
-            Android.Database.ICursor cursor = ContentResolver.Query(uri, null, null, null, null, null);
-            var displayName = "";
-            try
+            if(requestCode == pickFileRequestCode)
             {
-                // moveToFirst() returns false if the cursor has 0 rows. Very handy for
-                // "if there's anything to look at, look at it" conditionals.
-                if (cursor != null && cursor.MoveToFirst())
-                {
+                if (data == null)
+                    return;
 
-                    // Note it's called "Display Name". This is
-                    // provider-specific, and might not necessarily be the file name.
-                    displayName = cursor.GetString(
-                            cursor.GetColumnIndex(OpenableColumns.DisplayName));
-                    Console.WriteLine("Display Name: " + displayName);
+                //handle the selected file
+                var uri = data.Data;
+                string mimeType = ContentResolver.GetType(uri);
+                Console.WriteLine("mime type: ", mimeType);
 
+                string extension = System.IO.Path.GetExtension(uri.Path);
+                Console.WriteLine("extension: ", extension);
 
-                    int sizeIndex = cursor.GetColumnIndex(OpenableColumns.Size);
-                    // If the size is unknown, the value stored is null. But because an
-                    // int can't be null, the behavior is implementation-specific,
-                    // and unpredictable. So as
-                    // a rule, check if it's null before assigning to an int. This will
-                    // happen often: The storage API allows for remote files, whose
-                    // size might not be locally known.
-                    String size = null;
-                    if (!cursor.IsNull(sizeIndex))
-                    {
-                        // Technically the column stores an int, but cursor.getString()
-                        // will do the conversion automatically.
-                        size = cursor.GetString(sizeIndex);
-                    }
-                    else
-                    {
-                        size = "Unknown";
-                    }
-                    Console.WriteLine("Size: " + size);
-                }
+                Console.WriteLine("path: ", uri.Path);
+
+                var filename = AndroidUtil.GetFileName(this, uri);
+
+                Toast.MakeText(this, uri.Path, ToastLength.Long).Show();
+
+                var fileBytes = UploadFile(uri);
+                await ViewModel.UploadFile(filename, fileBytes);
             }
-            catch(Exception e)
-            {
-                return "error.jpg";
-            }
-            finally
-            {
-                cursor.Close();
-
-            }
-
-            return displayName;
-
         }
 
         public byte[] UploadFile(Android.Net.Uri uri)
@@ -159,10 +113,18 @@ namespace SkyDrop.Droid.Views.Main
             }
             catch (Exception e)
             {
-
+                Console.WriteLine("File upload failed: " + e);
             }
 
             return bytes;
+        }
+
+        private void OpenFile(SkyFile file)
+        {
+            Toast.MakeText(this, $"Opening file {file.Filename}", ToastLength.Long).Show();
+
+            var browserIntent = new Intent(Intent.ActionView, Android.Net.Uri.Parse(file.Skylink));
+            StartActivity(browserIntent);
         }
     }
 }
