@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MvvmCross.Commands;
@@ -56,15 +57,22 @@ namespace SkyDrop.Core.ViewModels.Main
             RaiseAllPropertiesChanged();
         }
 
-        public List<SkyFileDVM> GetSkyFileDVMs(List<SkyFile> skyFiles)
+        private List<SkyFileDVM> GetSkyFileDVMs(List<SkyFile> skyFiles)
         {
             var dvms = new List<SkyFileDVM>();
             foreach (var skyFile in skyFiles)
             {
-                dvms.Add(new SkyFileDVM(skyFile, new MvxCommand(() => FileTapCommand.Execute(skyFile))));
+                dvms.Add(GetSkyFileDVM(skyFile));
             }
 
             return dvms;
+        }
+
+        private SkyFileDVM GetSkyFileDVM(SkyFile skyFile)
+        {
+            return new SkyFileDVM(skyFile,
+                new MvxCommand(() => SetSelectedFile(skyFile)),
+                new MvxCommand(() => FileTapCommand.Execute(skyFile)));
         }
 
         public async Task UploadFile(string filename, byte[] file)
@@ -75,13 +83,29 @@ namespace SkyDrop.Core.ViewModels.Main
             var skyFile = await apiService.UploadFile(filename, file);
             Console.WriteLine("UPLOAD COMPLETE: " + skyFile.Skylink);
 
-            SkyFiles.Add(new SkyFileDVM(skyFile, new MvxCommand(() => FileTapCommand.Execute(skyFile))));
+            SkyFiles.Add(GetSkyFileDVM(skyFile));
 
             storageService.SaveSkyFiles(skyFile);
 
             SkylinksText = GetSkyLinksText();
 
             IsLoading = false;
+
+            RaiseAllPropertiesChanged();
+        }
+
+        private void SetSelectedFile(SkyFile selectedFile)
+        {
+            var selectedFileDVM = SkyFiles.FirstOrDefault(s => s.SkyFile.Skylink == selectedFile.Skylink);
+
+            foreach(var skyFile in SkyFiles)
+            {
+                skyFile.IsSelected = false;
+            }
+
+            selectedFileDVM.IsSelected = true;
+
+            SkyFiles = new List<SkyFileDVM>(SkyFiles);
 
             RaiseAllPropertiesChanged();
         }
