@@ -1,23 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Diagnostics;
+using System.Threading.Tasks;
+using Acr.UserDialogs;
 using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
+using Android.Provider;
 using Android.Views;
 using Android.Widget;
-using SkyDrop.Core.ViewModels.Main;
-using MvvmCross.Platforms.Android.Presenters.Attributes;
+using MvvmCross;
 using MvvmCross.Commands;
-using System.IO;
-using System.Threading.Tasks;
-using Plugin.Permissions;
-using Plugin.Permissions.Abstractions;
+using MvvmCross.IoC;
+using SkyDrop.Core.ViewModels.Main;
 using Xamarin.Essentials;
-using Android.Graphics;
-using Android.Provider;
 
 namespace SkyDrop.Droid.Views.Main
 {
@@ -30,15 +25,15 @@ namespace SkyDrop.Droid.Views.Main
 
         protected override async void OnCreate(Bundle bundle)
         {
+            System.Diagnostics.Debug.WriteLine("MainView OnCreate()");
+
             base.OnCreate(bundle);
+
+            ViewModel.SelectFileCommand = new MvxAsyncCommand(SelectFileCommand);
 
             await ViewModel.InitializeTask.Task;
 
-            Xamarin.Essentials.Platform.Init(this, bundle);
-
-            //ViewModel.SelectFileCommand = new MvxCommand(SelectFileCommand);
-
-            ViewModel.SelectTheFileNative = async () => await SelectFileCommand();
+            Platform.Init(this, bundle);
         }
 
         private async Task SelectFileCommand()

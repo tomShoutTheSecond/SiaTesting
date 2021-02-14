@@ -1,4 +1,6 @@
-﻿using MvvmCross.IoC;
+﻿using Acr.UserDialogs;
+using MvvmCross;
+using MvvmCross.IoC;
 using MvvmCross.ViewModels;
 using SkyDrop.Core.ViewModels.Main;
 

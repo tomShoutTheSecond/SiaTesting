@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Specialized;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Windows.Input;
 using Android.App;
 using Android.Runtime;
@@ -102,7 +103,7 @@ namespace SkyDrop.Droid.Linker
         public void Include(ConsoleColor color)
         {
             Console.Write("");
-            Console.WriteLine("");
+            Debug.WriteLine("");
             _ = Console.ForegroundColor;
             Console.ForegroundColor = ConsoleColor.Red;
             Console.ForegroundColor = ConsoleColor.Yellow;
