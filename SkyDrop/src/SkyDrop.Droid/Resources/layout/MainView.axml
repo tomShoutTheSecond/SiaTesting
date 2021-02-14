@@ -28,5 +28,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:MvxBind="Text SkylinksText"/>
+        <mvvmcross.droid.support.v7.recyclerview.MvxRecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:MvxItemTemplate="@layout/item_file"
+            app:MvxBind="ItemsSource SkyFiles; ItemClick FileTapCommand;"
+            />
     </LinearLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

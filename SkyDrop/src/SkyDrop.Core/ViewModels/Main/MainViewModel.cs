@@ -29,6 +29,7 @@ namespace SkyDrop.Core.ViewModels.Main
         }
 
         public IMvxCommand SelectFileCommand { get; set; }
+        public IMvxCommand FileTapCommand { get; set; }
 
         public Action SelectTheFileNative { get; set; }
 

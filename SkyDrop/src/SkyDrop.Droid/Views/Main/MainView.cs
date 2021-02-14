@@ -18,6 +18,7 @@ using Plugin.Permissions.Abstractions;
 using Xamarin.Essentials;
 using Android.Graphics;
 using Android.Provider;
+using SkyDrop.Core.DataModels;
 
 namespace SkyDrop.Droid.Views.Main
 {
@@ -39,6 +40,7 @@ namespace SkyDrop.Droid.Views.Main
             //ViewModel.SelectFileCommand = new MvxCommand(SelectFileCommand);
 
             ViewModel.SelectTheFileNative = async () => await SelectFileCommand();
+            ViewModel.FileTapCommand = new MvxCommand<SkyFile>(OpenFile);
         }
 
         private async Task SelectFileCommand()
@@ -168,6 +170,12 @@ namespace SkyDrop.Droid.Views.Main
             }
 
             return bytes;
+        }
+
+        private void OpenFile(SkyFile file)
+        {
+            var browserIntent = new Intent(Intent.ActionView, Android.Net.Uri.Parse(file.Skylink));
+            StartActivity(browserIntent);
         }
     }
 }

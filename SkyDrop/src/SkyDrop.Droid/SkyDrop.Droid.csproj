@@ -94,6 +94,12 @@
     <PackageReference Include="MvvmCross.Plugin.Visibility">
       <Version>7.1.2</Version>
     </PackageReference>
+    <PackageReference Include="MvvmCross.Droid.Support.V7.RecyclerView">
+      <Version>6.4.2</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.AndroidX.Lifecycle.LiveData">
+      <Version>2.2.0.4</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <ProguardConfiguration Include="proguard.cfg" />
@@ -103,6 +109,14 @@
     <AndroidResource Include="Resources\layout\fragment_main.axml" />
     <AndroidResource Include="Resources\layout\layout_toolbar.axml" />
     <AndroidResource Include="Resources\layout\MainView.axml">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\item_file.xml">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\ic_file.xml">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>

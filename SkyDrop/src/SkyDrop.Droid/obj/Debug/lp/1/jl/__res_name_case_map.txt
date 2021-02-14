@@ -1,1 +1,1 @@
-values/strings.xml;values/strings.xml
+values/MvxRecyclerViewBindingAttributes.xml;values/mvxrecyclerviewbindingattributes.xml

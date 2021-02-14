@@ -175,6 +175,21 @@ mvvmcross.platforms.android.binding.binders.MvxLayoutInflaterCompat_FactoryWrapp
 MvvmCross.Platforms.Android.Binding.Binders.MvxLayoutInflaterCompat+FactoryWrapper2, MvvmCross;crc64f3befd0e0f1a0348.MvxLayoutInflaterCompat_FactoryWrapper2
 MvvmCross.Platforms.Android.Binding.Binders.MvxLayoutInflaterCompat.FactoryWrapper2;crc64f3befd0e0f1a0348.MvxLayoutInflaterCompat_FactoryWrapper2
 mvvmcross.platforms.android.binding.binders.MvxLayoutInflaterCompat_FactoryWrapper2;crc64f3befd0e0f1a0348.MvxLayoutInflaterCompat_FactoryWrapper2
+MvvmCross.Droid.Support.V7.RecyclerView.MvxGuardedGridLayoutManager, MvvmCross.Droid.Support.V7.RecyclerView;mvvmcross.droid.support.v7.recyclerview.MvxGuardedGridLayoutManager
+MvvmCross.Droid.Support.V7.RecyclerView.MvxGuardedGridLayoutManager;mvvmcross.droid.support.v7.recyclerview.MvxGuardedGridLayoutManager
+mvvmcross.droid.support.v7.recyclerview.MvxGuardedGridLayoutManager;mvvmcross.droid.support.v7.recyclerview.MvxGuardedGridLayoutManager
+MvvmCross.Droid.Support.V7.RecyclerView.MvxGuardedLinearLayoutManager, MvvmCross.Droid.Support.V7.RecyclerView;mvvmcross.droid.support.v7.recyclerview.MvxGuardedLinearLayoutManager
+MvvmCross.Droid.Support.V7.RecyclerView.MvxGuardedLinearLayoutManager;mvvmcross.droid.support.v7.recyclerview.MvxGuardedLinearLayoutManager
+mvvmcross.droid.support.v7.recyclerview.MvxGuardedLinearLayoutManager;mvvmcross.droid.support.v7.recyclerview.MvxGuardedLinearLayoutManager
+MvvmCross.Droid.Support.V7.RecyclerView.MvxRecyclerAdapter, MvvmCross.Droid.Support.V7.RecyclerView;mvvmcross.droid.support.v7.recyclerview.MvxRecyclerAdapter
+MvvmCross.Droid.Support.V7.RecyclerView.MvxRecyclerAdapter;mvvmcross.droid.support.v7.recyclerview.MvxRecyclerAdapter
+mvvmcross.droid.support.v7.recyclerview.MvxRecyclerAdapter;mvvmcross.droid.support.v7.recyclerview.MvxRecyclerAdapter
+MvvmCross.Droid.Support.V7.RecyclerView.MvxRecyclerView, MvvmCross.Droid.Support.V7.RecyclerView;mvvmcross.droid.support.v7.recyclerview.MvxRecyclerView
+MvvmCross.Droid.Support.V7.RecyclerView.MvxRecyclerView;mvvmcross.droid.support.v7.recyclerview.MvxRecyclerView
+mvvmcross.droid.support.v7.recyclerview.MvxRecyclerView;mvvmcross.droid.support.v7.recyclerview.MvxRecyclerView
+MvvmCross.Droid.Support.V7.RecyclerView.MvxRecyclerViewHolder, MvvmCross.Droid.Support.V7.RecyclerView;mvvmcross.droid.support.v7.recyclerview.MvxRecyclerViewHolder
+MvvmCross.Droid.Support.V7.RecyclerView.MvxRecyclerViewHolder;mvvmcross.droid.support.v7.recyclerview.MvxRecyclerViewHolder
+mvvmcross.droid.support.v7.recyclerview.MvxRecyclerViewHolder;mvvmcross.droid.support.v7.recyclerview.MvxRecyclerViewHolder
 MvvmCross.DroidX.Material.MvxBottomSheetDialogFragment, MvvmCross.DroidX.Material;mvvmcross.droidx.material.MvxBottomSheetDialogFragment
 MvvmCross.DroidX.Material.MvxBottomSheetDialogFragment;mvvmcross.droidx.material.MvxBottomSheetDialogFragment
 mvvmcross.droidx.material.MvxBottomSheetDialogFragment;mvvmcross.droidx.material.MvxBottomSheetDialogFragment
