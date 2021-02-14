@@ -97,9 +97,9 @@ dotnet_style_null_propagation                                       = true : war
 
 # Implicit and explicit types
 # https://docs.microsoft.com/en-us/visualstudio/ide/editorconfig-code-style-settings-reference#implicit-and-explicit-types
-csharp_style_var_for_built_in_types                                 = true : warning
-csharp_style_var_when_type_is_apparent                              = true : warning
-csharp_style_var_elsewhere                                          = false : warning
+csharp_style_var_for_built_in_types = true:silent
+csharp_style_var_when_type_is_apparent = true:silent
+csharp_style_var_elsewhere = false:silent
 
 # Expression-bodied members
 # https://docs.microsoft.com/en-us/visualstudio/ide/editorconfig-code-style-settings-reference#expression_bodied_members
@@ -345,3 +345,9 @@ dotnet_naming_rule.interface_types_must_be_prefixed_with_i.style                
 dotnet_naming_rule.suffix_method_with_async.severity                            = warning
 dotnet_naming_rule.suffix_method_with_async.symbols                             = async_method
 dotnet_naming_rule.suffix_method_with_async.style                               = suffix_method_with_async_style
+
+# Default severity for analyzer diagnostics with category 'Style'
+dotnet_analyzer_diagnostic.category-Style.severity = suggestion
+
+# IDE0008: Use explicit type
+dotnet_diagnostic.IDE0008.severity = silent
