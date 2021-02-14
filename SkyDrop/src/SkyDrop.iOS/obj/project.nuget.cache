@@ -1,14 +1,25 @@
 {
   "version": 2,
-  "dgSpecHash": "ISqigxvGvlEeQOlqu3ln4cYm/f4p7xTJ3wPE/y36gHbULyeD6jAMS4cpV0XmVErb31I0BgfaoFw+NkkTd/n4Eg==",
+  "dgSpecHash": "uY/L9ZI6Ma94LuuNxfSjd7yGg7h8mm1fmIm+tZBZVjXPuEP9MC2wO26KV3FsKnpVAiGq9MNHsVOHmhrnX4IXsQ==",
   "success": true,
   "projectFilePath": "/Users/tom/SiaTesting/SkyDrop/src/SkyDrop.iOS/SkyDrop.iOS.csproj",
   "expectedPackageFiles": [
     "/Users/tom/.nuget/packages/cirrious.fluentlayout/2.9.0/cirrious.fluentlayout.2.9.0.nupkg.sha512",
+    "/Users/tom/.nuget/packages/fody/6.3.0/fody.6.3.0.nupkg.sha512",
+    "/Users/tom/.nuget/packages/microsoft.csharp/4.5.0/microsoft.csharp.4.5.0.nupkg.sha512",
+    "/Users/tom/.nuget/packages/mongodb.bson/2.11.3/mongodb.bson.2.11.3.nupkg.sha512",
     "/Users/tom/.nuget/packages/mvvmcross/7.1.2/mvvmcross.7.1.2.nupkg.sha512",
     "/Users/tom/.nuget/packages/newtonsoft.json/12.0.3/newtonsoft.json.12.0.3.nupkg.sha512",
     "/Users/tom/.nuget/packages/plugin.permissions/6.0.1/plugin.permissions.6.0.1.nupkg.sha512",
+    "/Users/tom/.nuget/packages/realm/10.1.0/realm.10.1.0.nupkg.sha512",
+    "/Users/tom/.nuget/packages/realm.fody/10.1.0/realm.fody.10.1.0.nupkg.sha512",
+    "/Users/tom/.nuget/packages/remotion.linq/2.2.0/remotion.linq.2.2.0.nupkg.sha512",
+    "/Users/tom/.nuget/packages/system.buffers/4.4.0/system.buffers.4.4.0.nupkg.sha512",
+    "/Users/tom/.nuget/packages/system.codedom/4.5.0/system.codedom.4.5.0.nupkg.sha512",
+    "/Users/tom/.nuget/packages/system.dynamic.runtime/4.3.0/system.dynamic.runtime.4.3.0.nupkg.sha512",
+    "/Users/tom/.nuget/packages/system.management/4.5.0/system.management.4.5.0.nupkg.sha512",
     "/Users/tom/.nuget/packages/system.numerics.vectors/4.5.0/system.numerics.vectors.4.5.0.nupkg.sha512",
+    "/Users/tom/.nuget/packages/system.runtime.compilerservices.unsafe/4.5.3/system.runtime.compilerservices.unsafe.4.5.3.nupkg.sha512",
     "/Users/tom/.nuget/packages/xamarin.essentials/1.6.1/xamarin.essentials.1.6.1.nupkg.sha512"
   ],
   "logs": []
