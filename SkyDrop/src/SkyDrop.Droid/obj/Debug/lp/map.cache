@@ -1,5 +1,6 @@
 MvvmCross
 MvvmCross.DroidX.Material
+MvvmCross.Plugin.Visibility
 Plugin.CurrentActivity
 Plugin.Permissions
 Xamarin.AndroidX.Activity

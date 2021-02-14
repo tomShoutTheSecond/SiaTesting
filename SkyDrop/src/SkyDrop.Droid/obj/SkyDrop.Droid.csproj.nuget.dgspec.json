@@ -115,6 +115,10 @@
               "target": "Package",
               "version": "[7.1.2, )"
             },
+            "MvvmCross.Plugin.Visibility": {
+              "target": "Package",
+              "version": "[7.1.2, )"
+            },
             "Plugin.CurrentActivity": {
               "target": "Package",
               "version": "[2.1.0.4, )"

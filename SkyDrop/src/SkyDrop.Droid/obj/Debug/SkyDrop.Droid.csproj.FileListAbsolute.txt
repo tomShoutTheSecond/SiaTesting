@@ -14,9 +14,6 @@
 /Users/tom/SiaTesting/SkyDrop/src/SkyDrop.Droid/obj/Debug/res.flag
 /Users/tom/SiaTesting/SkyDrop/src/SkyDrop.Droid/obj/Debug/lp/0/jl/files.cache
 /Users/tom/SiaTesting/SkyDrop/src/SkyDrop.Droid/obj/Debug/lp/1/jl/files.cache
-/Users/tom/SiaTesting/SkyDrop/src/SkyDrop.Droid/obj/Debug/lp/45/jl/files.cache
-/Users/tom/SiaTesting/SkyDrop/src/SkyDrop.Droid/obj/Debug/lp/74/jl/files.cache
-/Users/tom/SiaTesting/SkyDrop/src/SkyDrop.Droid/obj/Debug/lp/77/jl/files.cache
 /Users/tom/SiaTesting/SkyDrop/src/SkyDrop.Droid/obj/Debug/R.txt
 /Users/tom/SiaTesting/SkyDrop/src/SkyDrop.Droid/obj/Debug/R.cs.flag
 /Users/tom/SiaTesting/SkyDrop/src/SkyDrop.Droid/obj/Debug/SkyDrop.Droid.csproj.CoreCompileInputs.cache
@@ -384,11 +381,7 @@
 /Users/tom/SiaTesting/SkyDrop/src/SkyDrop.Droid/obj/Debug/lp/79/jl/files.cache
 /Users/tom/SiaTesting/SkyDrop/src/SkyDrop.Droid/obj/Debug/lp/80/jl/files.cache
 /Users/tom/SiaTesting/SkyDrop/src/SkyDrop.Droid/obj/Debug/lp/81/jl/files.cache
-/Users/tom/SiaTesting/SkyDrop/src/SkyDrop.Droid/obj/Debug/lp/50/jl/files.cache
-/Users/tom/SiaTesting/SkyDrop/src/SkyDrop.Droid/obj/Debug/lp/56/jl/files.cache
-/Users/tom/SiaTesting/SkyDrop/src/SkyDrop.Droid/obj/Debug/lp/63/jl/files.cache
 /Users/tom/SiaTesting/SkyDrop/src/SkyDrop.Droid/obj/Debug/lp/64/jl/files.cache
-/Users/tom/SiaTesting/SkyDrop/src/SkyDrop.Droid/obj/Debug/lp/67/jl/files.cache
 /Users/tom/SiaTesting/SkyDrop/src/SkyDrop.Droid/obj/Debug/lp/82/jl/files.cache
 /Users/tom/SiaTesting/SkyDrop/src/SkyDrop.Droid/obj/Debug/lp/83/jl/files.cache
 /Users/tom/SiaTesting/SkyDrop/src/SkyDrop.Droid/obj/Debug/android/assets/Plugin.CurrentActivity.dll
@@ -423,3 +416,12 @@
 /Users/tom/SiaTesting/SkyDrop/src/SkyDrop.Droid/obj/Debug/android/src/crc64a0e0a82d0db9a07d/WebAuthenticatorIntermediateActivity.java
 /Users/tom/SiaTesting/SkyDrop/src/SkyDrop.Droid/obj/Debug/android/src/xamarin/essentials/fileProvider.java
 /Users/tom/SiaTesting/SkyDrop/src/SkyDrop.Droid/obj/Debug/android/assets/Newtonsoft.Json.dll
+/Users/tom/SiaTesting/SkyDrop/src/SkyDrop.Droid/obj/Debug/lp/46/jl/files.cache
+/Users/tom/SiaTesting/SkyDrop/src/SkyDrop.Droid/obj/Debug/lp/51/jl/files.cache
+/Users/tom/SiaTesting/SkyDrop/src/SkyDrop.Droid/obj/Debug/lp/57/jl/files.cache
+/Users/tom/SiaTesting/SkyDrop/src/SkyDrop.Droid/obj/Debug/lp/65/jl/files.cache
+/Users/tom/SiaTesting/SkyDrop/src/SkyDrop.Droid/obj/Debug/lp/68/jl/files.cache
+/Users/tom/SiaTesting/SkyDrop/src/SkyDrop.Droid/obj/Debug/lp/75/jl/files.cache
+/Users/tom/SiaTesting/SkyDrop/src/SkyDrop.Droid/obj/Debug/lp/84/jl/files.cache
+/Users/tom/SiaTesting/SkyDrop/src/SkyDrop.Droid/obj/Debug/android/assets/MvvmCross.Plugin.Visibility.dll
+/Users/tom/SiaTesting/SkyDrop/src/SkyDrop.Droid/obj/Debug/android/assets/MvvmCross.Plugin.Visibility.pdb

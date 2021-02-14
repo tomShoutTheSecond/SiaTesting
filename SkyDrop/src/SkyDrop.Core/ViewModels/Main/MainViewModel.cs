@@ -40,6 +40,7 @@ namespace SkyDrop.Core.ViewModels.Main
         public async Task UploadFile(string filename, byte[] file)
         {
             IsLoading = true;
+            RaisePropertyChanged(() => IsLoading);
 
             var skyFile = await apiService.UploadFile(filename, file);
             Console.WriteLine("UPLOAD COMPLETE: " + skyFile.Skylink);
