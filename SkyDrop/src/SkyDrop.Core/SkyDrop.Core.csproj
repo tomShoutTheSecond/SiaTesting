@@ -16,5 +16,6 @@
     <Folder Include="Services\" />
     <Folder Include="Data Transfer Models\" />
     <Folder Include="DataModels\" />
+    <Folder Include="DataViewModels\" />
   </ItemGroup>
 </Project>

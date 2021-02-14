@@ -32,7 +32,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:MvxItemTemplate="@layout/item_file"
-            app:MvxBind="ItemsSource SkyFiles; ItemClick FileTapCommand;"
+            app:MvxBind="ItemsSource SkyFiles"
             />
     </LinearLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

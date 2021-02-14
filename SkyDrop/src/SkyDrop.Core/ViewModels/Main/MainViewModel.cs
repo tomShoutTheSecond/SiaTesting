@@ -5,13 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using MvvmCross.Commands;
 using SkyDrop.Core.DataModels;
+using SkyDrop.Core.DataViewModels;
 using SkyDrop.Core.Services;
 
 namespace SkyDrop.Core.ViewModels.Main
 {
     public class MainViewModel : BaseViewModel
     {
-        public List<SkyFile> SkyFiles { get; set; } = new List<SkyFile>();
+        public List<SkyFileDVM> SkyFiles { get; set; } = new List<SkyFileDVM>();
 
         public string SkylinksText { get; set; }
 
@@ -24,20 +25,21 @@ namespace SkyDrop.Core.ViewModels.Main
         {
             Title = "Upload";
 
-            SelectFileCommand = new MvxCommand(DoSomething);
-
             this.apiService = apiService;
             this.storageService = storageService;
+
+            SelectFileCommand = new MvxCommand(NativeFileSelect);
         }
 
         public IMvxCommand SelectFileCommand { get; set; }
+
         public IMvxCommand FileTapCommand { get; set; }
 
         public Action SelectTheFileNative { get; set; }
 
-        private void DoSomething()
+        private void NativeFileSelect()
         {
-            SelectTheFileNative.Invoke();
+            SelectTheFileNative?.Invoke();
         }
 
         public override async Task Initialize()
@@ -49,9 +51,20 @@ namespace SkyDrop.Core.ViewModels.Main
 
         private void LoadSkyFiles()
         {
-            SkyFiles = storageService.LoadSkyFiles();
+            SkyFiles = GetSkyFileDVMs(storageService.LoadSkyFiles());
 
             RaiseAllPropertiesChanged();
+        }
+
+        public List<SkyFileDVM> GetSkyFileDVMs(List<SkyFile> skyFiles)
+        {
+            var dvms = new List<SkyFileDVM>();
+            foreach (var skyFile in skyFiles)
+            {
+                dvms.Add(new SkyFileDVM(skyFile, new MvxCommand(() => FileTapCommand.Execute(skyFile))));
+            }
+
+            return dvms;
         }
 
         public async Task UploadFile(string filename, byte[] file)
@@ -62,7 +75,7 @@ namespace SkyDrop.Core.ViewModels.Main
             var skyFile = await apiService.UploadFile(filename, file);
             Console.WriteLine("UPLOAD COMPLETE: " + skyFile.Skylink);
 
-            SkyFiles.Add(skyFile);
+            SkyFiles.Add(new SkyFileDVM(skyFile, new MvxCommand(() => FileTapCommand.Execute(skyFile))));
 
             storageService.SaveSkyFiles(skyFile);
 
@@ -77,7 +90,7 @@ namespace SkyDrop.Core.ViewModels.Main
         {
             var stringBuilder = new StringBuilder();
             foreach (var skyfile in SkyFiles)
-                stringBuilder.Append(skyfile.Filename + "\n");
+                stringBuilder.Append(skyfile.SkyFile.Filename + "\n");
 
             return stringBuilder.ToString();
         }

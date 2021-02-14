@@ -79,22 +79,28 @@ namespace SkyDrop.Droid.Views.Main
         {
             base.OnActivityResult(requestCode, resultCode, data);
 
-            //handle the selected file
-            var uri = data.Data;
-            string mimeType = ContentResolver.GetType(uri);
-            Console.WriteLine("mime type: ", mimeType);
+            if(requestCode == pickFileRequestCode)
+            {
+                if (data == null)
+                    return;
 
-            string extension = System.IO.Path.GetExtension(uri.Path);
-            Console.WriteLine("extension: ", extension);
+                //handle the selected file
+                var uri = data.Data;
+                string mimeType = ContentResolver.GetType(uri);
+                Console.WriteLine("mime type: ", mimeType);
 
-            Console.WriteLine("path: ", uri.Path);
+                string extension = System.IO.Path.GetExtension(uri.Path);
+                Console.WriteLine("extension: ", extension);
 
-            var filename = AndroidUtil.GetFileName(this, uri);
+                Console.WriteLine("path: ", uri.Path);
 
-            Toast.MakeText(this, uri.Path, ToastLength.Long).Show();
+                var filename = AndroidUtil.GetFileName(this, uri);
 
-            var fileBytes = UploadFile(uri);
-            await ViewModel.UploadFile(filename, fileBytes);
+                Toast.MakeText(this, uri.Path, ToastLength.Long).Show();
+
+                var fileBytes = UploadFile(uri);
+                await ViewModel.UploadFile(filename, fileBytes);
+            }
         }
 
         public byte[] UploadFile(Android.Net.Uri uri)

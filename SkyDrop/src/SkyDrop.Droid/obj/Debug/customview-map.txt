@@ -33,7 +33,9 @@ item;obj/Debug/res/values/styles.xml
 item;obj/Debug/res/values-v19/styles.xml
 item;obj/Debug/res/values-v21/styles.xml
 layer-list;obj/Debug/res/drawable/splash_screen.xml
+LinearLayout;obj/Debug/res/layout/bosh.xml
 LinearLayout;obj/Debug/res/layout/item_file.xml
+LinearLayout;obj/Debug/res/layout/layout.xml
 LinearLayout;obj/Debug/res/layout/mainview.xml
 mvvmcross.droid.support.v7.recyclerview.MvxRecyclerView;obj/Debug/res/layout/mainview.xml
 path;obj/Debug/res/drawable/ic_file.xml
