@@ -19,5 +19,14 @@
             android:layout_gravity="center"
             android:layout_marginTop="48dp"
             app:MvxBind="Click SelectFileCommand"/>
+        <ProgressBar
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_gravity="center_horizontal"
+            app:MvxBind="Visibility Visibility(IsLoading)"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:MvxBind="Text SkylinksText"/>
     </LinearLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -32,6 +32,7 @@ layer-list;obj/Debug/res/drawable/splash_screen.xml
 LinearLayout;obj/Debug/res/layout/mainview.xml
 path;obj/Debug/res/drawable/ic_launcher_foreground.xml
 paths;/Users/tom/SiaTesting/SkyDrop/src/SkyDrop.Droid/obj/Debug/lp/45/jl/res/xml/xamarin_essentials_fileprovider_file_paths.xml
+ProgressBar;obj/Debug/res/layout/mainview.xml
 resources;/Users/tom/SiaTesting/SkyDrop/src/SkyDrop.Droid/obj/Debug/lp/0/jl/res/values/ids.xml
 resources;/Users/tom/SiaTesting/SkyDrop/src/SkyDrop.Droid/obj/Debug/lp/0/jl/res/values/mvxbindingattributes.xml
 resources;/Users/tom/SiaTesting/SkyDrop/src/SkyDrop.Droid/obj/Debug/lp/1/jl/res/values/strings.xml
@@ -49,4 +50,5 @@ style;obj/Debug/res/values-v19/styles.xml
 style;obj/Debug/res/values-v21/styles.xml
 TextView;obj/Debug/res/layout/fragment_main.xml
 TextView;obj/Debug/res/layout/layout_toolbar.xml
+TextView;obj/Debug/res/layout/mainview.xml
 vector;obj/Debug/res/drawable/ic_launcher_foreground.xml

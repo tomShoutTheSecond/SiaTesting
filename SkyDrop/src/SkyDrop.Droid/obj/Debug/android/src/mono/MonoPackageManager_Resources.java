@@ -5,6 +5,7 @@ public class MonoPackageManager_Resources {
 		"SkyDrop.Droid.dll",
 		"MvvmCross.dll",
 		"MvvmCross.DroidX.Material.dll",
+		"Newtonsoft.Json.dll",
 		"Plugin.CurrentActivity.dll",
 		"Plugin.Permissions.dll",
 		"SkyDrop.Core.dll",

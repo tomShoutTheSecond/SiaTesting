@@ -1,12 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "0GE2h6dIfFZtzLlQ2EkgVKwYivbjxxBv9HCEhcXPNo5ys1ammOpKreN3LFww5GIsTZXABBTqfFWoIX0eFIMznA==",
+  "dgSpecHash": "6dJVVPhKMTg6JMuPXjoE4IJPrlFkOnUl2Z4JhQbFcumQavOOqh6BE4al0mtbF2P/0AYYjCfTQ3EVzpZpOSqfKA==",
   "success": true,
   "projectFilePath": "/Users/tom/SiaTesting/SkyDrop/src/SkyDrop.Core/SkyDrop.Core.csproj",
   "expectedPackageFiles": [
     "/Users/tom/.nuget/packages/microsoft.netcore.platforms/1.1.0/microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "/Users/tom/.nuget/packages/mvvmcross/7.1.2/mvvmcross.7.1.2.nupkg.sha512",
     "/Users/tom/.nuget/packages/netstandard.library/2.0.3/netstandard.library.2.0.3.nupkg.sha512",
+    "/Users/tom/.nuget/packages/newtonsoft.json/12.0.3/newtonsoft.json.12.0.3.nupkg.sha512",
     "/Users/tom/.nuget/packages/plugin.permissions/6.0.1/plugin.permissions.6.0.1.nupkg.sha512",
     "/Users/tom/.nuget/packages/system.numerics.vectors/4.5.0/system.numerics.vectors.4.5.0.nupkg.sha512",
     "/Users/tom/.nuget/packages/xamarin.essentials/1.6.1/xamarin.essentials.1.6.1.nupkg.sha512"

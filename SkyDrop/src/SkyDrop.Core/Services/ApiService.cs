@@ -3,12 +3,14 @@ using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using SkyDrop.Core.DataModels;
 
 namespace SkyDrop.Core.Services
 {
     public class ApiService : IApiService
     {
-        public async Task<string> UploadFile(string filename, byte[] file)
+        public async Task<SkyFile> UploadFile(string filename, byte[] file)
         {
             var url = "https://siasky.net/skynet/skyfile";
 
@@ -21,13 +23,16 @@ namespace SkyDrop.Core.Services
             response.EnsureSuccessStatusCode();
             httpClient.Dispose();
 
-            return response.Content.ReadAsStringAsync().Result;
+            var responseString = await response.Content.ReadAsStringAsync();
+            var skyfile = JsonConvert.DeserializeObject<SkyFile>(responseString);
+            skyfile.Filename = filename;
 
+            return skyfile;
         }
     }
 
     public interface IApiService
     {
-        Task<string> UploadFile(string filename, byte[] file);
+        Task<SkyFile> UploadFile(string filename, byte[] file);
     }
 }

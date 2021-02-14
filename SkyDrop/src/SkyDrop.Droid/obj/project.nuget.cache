@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "5I23NcxSJfvdOLL3j96D5pD9ruvHKHViUQifDhjP+AsQ+IMxNHGc2k1TMAyuF3efJ/ui6E/ejrjmlfORFZllvg==",
+  "dgSpecHash": "q093WRU9uOk+NTrdgPXvSlvfP1sgGNf6LFOMCpRIiqHSUZlS2MfsCfVpxxyWHtsugXc5owixfwWTPqC1CdQvzA==",
   "success": true,
   "projectFilePath": "/Users/tom/SiaTesting/SkyDrop/src/SkyDrop.Droid/SkyDrop.Droid.csproj",
   "expectedPackageFiles": [
     "/Users/tom/.nuget/packages/mvvmcross/7.1.2/mvvmcross.7.1.2.nupkg.sha512",
     "/Users/tom/.nuget/packages/mvvmcross.droidx.material/7.1.2/mvvmcross.droidx.material.7.1.2.nupkg.sha512",
+    "/Users/tom/.nuget/packages/newtonsoft.json/12.0.3/newtonsoft.json.12.0.3.nupkg.sha512",
     "/Users/tom/.nuget/packages/plugin.currentactivity/2.1.0.4/plugin.currentactivity.2.1.0.4.nupkg.sha512",
     "/Users/tom/.nuget/packages/plugin.permissions/6.0.1/plugin.permissions.6.0.1.nupkg.sha512",
     "/Users/tom/.nuget/packages/system.numerics.vectors/4.5.0/system.numerics.vectors.4.5.0.nupkg.sha512",

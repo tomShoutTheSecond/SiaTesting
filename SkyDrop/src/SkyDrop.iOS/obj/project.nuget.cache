@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "PK7f7nrdXbz1ieLZN1UySRMVRRDDdJ5+WefYRayR1rp9zpsLgg/dHDBWlL8D/IN+PedPpeDf0xxzwtqT34/fAg==",
+  "dgSpecHash": "ISqigxvGvlEeQOlqu3ln4cYm/f4p7xTJ3wPE/y36gHbULyeD6jAMS4cpV0XmVErb31I0BgfaoFw+NkkTd/n4Eg==",
   "success": true,
   "projectFilePath": "/Users/tom/SiaTesting/SkyDrop/src/SkyDrop.iOS/SkyDrop.iOS.csproj",
   "expectedPackageFiles": [
     "/Users/tom/.nuget/packages/cirrious.fluentlayout/2.9.0/cirrious.fluentlayout.2.9.0.nupkg.sha512",
     "/Users/tom/.nuget/packages/mvvmcross/7.1.2/mvvmcross.7.1.2.nupkg.sha512",
+    "/Users/tom/.nuget/packages/newtonsoft.json/12.0.3/newtonsoft.json.12.0.3.nupkg.sha512",
     "/Users/tom/.nuget/packages/plugin.permissions/6.0.1/plugin.permissions.6.0.1.nupkg.sha512",
     "/Users/tom/.nuget/packages/system.numerics.vectors/4.5.0/system.numerics.vectors.4.5.0.nupkg.sha512",
     "/Users/tom/.nuget/packages/xamarin.essentials/1.6.1/xamarin.essentials.1.6.1.nupkg.sha512"

@@ -422,3 +422,4 @@
 /Users/tom/SiaTesting/SkyDrop/src/SkyDrop.Droid/obj/Debug/android/src/crc64a0e0a82d0db9a07d/WebAuthenticatorCallbackActivity.java
 /Users/tom/SiaTesting/SkyDrop/src/SkyDrop.Droid/obj/Debug/android/src/crc64a0e0a82d0db9a07d/WebAuthenticatorIntermediateActivity.java
 /Users/tom/SiaTesting/SkyDrop/src/SkyDrop.Droid/obj/Debug/android/src/xamarin/essentials/fileProvider.java
+/Users/tom/SiaTesting/SkyDrop/src/SkyDrop.Droid/obj/Debug/android/assets/Newtonsoft.Json.dll
