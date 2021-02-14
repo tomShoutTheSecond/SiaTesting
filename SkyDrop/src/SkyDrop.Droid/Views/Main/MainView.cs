@@ -57,7 +57,7 @@ namespace SkyDrop.Droid.Views.Main
             }
             catch (Exception ex)
             {
-                Console.WriteLine("" + ex);
+                System.Diagnostics.Debug.WriteLine("" + ex);
 
                 return false;
             }
@@ -75,12 +75,12 @@ namespace SkyDrop.Droid.Views.Main
                 //handle the selected file
                 var uri = data.Data;
                 string mimeType = ContentResolver.GetType(uri);
-                Console.WriteLine("mime type: ", mimeType);
+                System.Diagnostics.Debug.WriteLine("mime type: ", mimeType);
 
                 string extension = System.IO.Path.GetExtension(uri.Path);
-                Console.WriteLine("extension: ", extension);
+                System.Diagnostics.Debug.WriteLine("extension: ", extension);
 
-                Console.WriteLine("path: ", uri.Path);
+                System.Diagnostics.Debug.WriteLine("path: ", uri.Path);
 
                 var filename = AndroidUtil.GetFileName(this, uri);
 
@@ -104,7 +104,7 @@ namespace SkyDrop.Droid.Views.Main
             }
             catch (Exception e)
             {
-                Console.WriteLine("File upload failed: " + e);
+                System.Diagnostics.Debug.WriteLine("File upload failed: " + e);
             }
 
             return bytes;
