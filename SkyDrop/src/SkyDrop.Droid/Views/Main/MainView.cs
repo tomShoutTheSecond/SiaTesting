@@ -28,11 +28,11 @@ namespace SkyDrop.Droid.Views.Main
 
             await ViewModel.InitializeTask.Task;
 
-            ViewModel.SelectFileAsyncFunc = SelectFileCommand;
+            ViewModel.SelectFileAsyncFunc = SelectFile;
             ViewModel.FileTapCommand = new MvxCommand<SkyFile>(OpenFile);
         }
 
-        private async Task SelectFileCommand()
+        private async Task SelectFile()
         {
             if (!await CheckPermissions())
                 return;
@@ -86,12 +86,12 @@ namespace SkyDrop.Droid.Views.Main
 
                 Toast.MakeText(this, uri.Path, ToastLength.Long).Show();
 
-                var fileBytes = UploadFile(uri);
+                var fileBytes = ReadFile(uri);
                 await ViewModel.UploadFile(filename, fileBytes);
             }
         }
 
-        public byte[] UploadFile(Android.Net.Uri uri)
+        public byte[] ReadFile(Android.Net.Uri uri)
         {
             var inputStream = ContentResolver.OpenInputStream(uri);
 

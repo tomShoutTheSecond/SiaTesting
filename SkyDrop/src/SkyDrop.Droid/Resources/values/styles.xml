@@ -6,10 +6,10 @@
         <item name="windowActionBar">false</item>
         <item name="colorPrimary">@color/primaryColor</item>
         <item name="colorPrimaryDark">@color/primaryDarkColor</item>
-        <item name="colorAccent">@color/accentColor</item>
+        <item name="colorAccent">@color/midGrey</item>
         <item name="colorControlNormal">@color/primaryColor</item>
-        <item name="colorControlActivated">@color/accentColor</item>
-        <item name="colorControlHighlight">@color/accentColor</item>
+        <item name="colorControlActivated">@color/midGrey</item>
+        <item name="colorControlHighlight">@color/midGrey</item>
         <item name="windowActionModeOverlay">false</item>
     </style>
 

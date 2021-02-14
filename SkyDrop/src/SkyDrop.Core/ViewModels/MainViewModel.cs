@@ -16,8 +16,6 @@ namespace SkyDrop.Core.ViewModels.Main
     {
         public List<SkyFileDVM> SkyFiles { get; set; } = new List<SkyFileDVM>();
 
-        public SkyFile LastSkyFile { get; set; }
-
         public string SkylinksText { get; set; }
 
         public bool IsLoading { get; set; }
@@ -33,7 +31,7 @@ namespace SkyDrop.Core.ViewModels.Main
             get => _selectFileAsyncFunc ?? throw new ArgumentNullException(nameof(SelectFileAsyncFunc));
             set => _selectFileAsyncFunc = value;
         }
-        public IMvxAsyncCommand CopyLatestSkyLinkCommand { get; set; }
+
         public IMvxCommand FileTapCommand { get; set; }
 
 
@@ -46,18 +44,17 @@ namespace SkyDrop.Core.ViewModels.Main
             this.userDialogs = userDialogs;
 
             SelectFileCommand = new MvxAsyncCommand(async () => await SelectFileAsyncFunc());
-            CopyLatestSkyLinkCommand = new MvxAsyncCommand(async () => await CopyLastFileLinkToClipboard());
         }
 
-        private async Task CopyLastFileLinkToClipboard()
+        private async Task CopyFileLinkToClipboard(SkyFile skyFile)
         {
-            string lastUploadedSkyLink = LastSkyFile?.Skylink;
-            if (string.IsNullOrEmpty(lastUploadedSkyLink))
+            string skyLink = skyFile.Skylink;
+            if (string.IsNullOrEmpty(skyLink))
                 return;
 
-            await Xamarin.Essentials.Clipboard.SetTextAsync(lastUploadedSkyLink);
+            await Xamarin.Essentials.Clipboard.SetTextAsync(skyLink);
 
-            System.Diagnostics.Debug.WriteLine("Set clipboard text to " + lastUploadedSkyLink);
+            System.Diagnostics.Debug.WriteLine("Set clipboard text to " + skyLink);
             userDialogs.Toast("Copied SkyLink to clipboard");
         }
 
@@ -90,7 +87,8 @@ namespace SkyDrop.Core.ViewModels.Main
         {
             return new SkyFileDVM(skyFile,
                 new MvxCommand(() => SetSelectedFile(skyFile)),
-                new MvxCommand(() => FileTapCommand.Execute(skyFile)));
+                new MvxCommand(() => FileTapCommand.Execute(skyFile)),
+                new MvxAsyncCommand(() => CopyFileLinkToClipboard(skyFile)));
         }
 
         public async Task UploadFile(string filename, byte[] file)
@@ -114,8 +112,6 @@ namespace SkyDrop.Core.ViewModels.Main
 
             SkyFiles.Add(GetSkyFileDVM(skyFile));
             SkyFiles = new List<SkyFileDVM>(SkyFiles);
-
-            LastSkyFile = skyFile;
 
             storageService.SaveSkyFiles(skyFile);
 
