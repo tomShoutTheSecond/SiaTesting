@@ -86,22 +86,22 @@ namespace SkyDrop.Droid.Views.Main
 
             Console.WriteLine("path: ", uri.Path);
 
-            DumpImageMetaData(uri);
+            var filename = GetFileName(uri);
 
             Toast.MakeText(this, uri.Path, ToastLength.Long).Show();
 
             var fileBytes = UploadFile(uri);
-            await ViewModel.UploadFile("cool file.jpg", fileBytes);
+            await ViewModel.UploadFile(filename, fileBytes);
         }
 
-        private void DumpImageMetaData(Android.Net.Uri uri)
+        private string GetFileName(Android.Net.Uri uri)
         {
 
             // The query, because it only applies to a single document, returns only
             // one row. There's no need to filter, sort, or select fields,
             // because we want all fields for one document.
             Android.Database.ICursor cursor = ContentResolver.Query(uri, null, null, null, null, null);
-
+            var displayName = "";
             try
             {
                 // moveToFirst() returns false if the cursor has 0 rows. Very handy for
@@ -111,9 +111,10 @@ namespace SkyDrop.Droid.Views.Main
 
                     // Note it's called "Display Name". This is
                     // provider-specific, and might not necessarily be the file name.
-                    String displayName = cursor.GetString(
+                    displayName = cursor.GetString(
                             cursor.GetColumnIndex(OpenableColumns.DisplayName));
                     Console.WriteLine("Display Name: " + displayName);
+
 
                     int sizeIndex = cursor.GetColumnIndex(OpenableColumns.Size);
                     // If the size is unknown, the value stored is null. But because an
@@ -136,10 +137,18 @@ namespace SkyDrop.Droid.Views.Main
                     Console.WriteLine("Size: " + size);
                 }
             }
+            catch(Exception e)
+            {
+                return "error.jpg";
+            }
             finally
             {
                 cursor.Close();
+
             }
+
+            return displayName;
+
         }
 
         public byte[] UploadFile(Android.Net.Uri uri)
