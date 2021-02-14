@@ -1,15 +1,8 @@
 ﻿<Properties StartupConfiguration="{729B3DEE-1D24-47B7-8EEE-3D75F2090F0A}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="src/SkyDrop.Core/Services/ApiService.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="src/SkyDrop.Droid/Views/Main/MainView.cs">
     <Files>
-      <File FileName="src/SkyDrop.Core/ViewModels/Main/MainViewModel.cs" Line="18" Column="29" />
-      <File FileName="src/SkyDrop.Droid/Resources/layout/layout_toolbar.axml" />
-      <File FileName="src/SkyDrop.Droid/Resources/layout/MainView.axml" Line="23" Column="23" />
-      <File FileName="src/SkyDrop.Core/Services/ApiService.cs" Line="35" Column="21" />
-      <File FileName="src/SkyDrop.Droid/Properties/AndroidManifest.xml" />
-      <File FileName="src/SkyDrop.Droid/Views/Main/MainView.cs" Line="84" Column="29" />
-      <File FileName="src/SkyDrop.Droid/Views/BaseActivity.cs" Line="35" Column="10" />
-      <File FileName="src/SkyDrop.Droid/MainApplication.cs" Line="1" Column="1" />
-      <File FileName="src/SkyDrop.Core/DataModels/SkyFile.cs" Line="8" Column="13" />
+      <File FileName="src/SkyDrop.Core/ViewModels/Main/MainViewModel.cs" Line="27" Column="59" />
+      <File FileName="src/SkyDrop.Droid/Views/Main/MainView.cs" Line="34" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -17,35 +10,27 @@
           <Node name="SkyDrop" expanded="True">
             <Node name="SkyDrop.Core" expanded="True">
               <Node name="Dependencies" expanded="True" />
-              <Node name="Services" expanded="True">
-                <Node name="ApiService.cs" selected="True" />
-              </Node>
-              <Node name="ViewModels" expanded="True" />
-            </Node>
-            <Node name="SkyDrop.Droid" expanded="True">
-              <Node name="References" expanded="True" />
-              <Node name="Packages" expanded="True" />
-              <Node name="Properties" expanded="True" />
-              <Node name="Resources" expanded="True">
-                <Node name="layout" expanded="True" />
-              </Node>
-              <Node name="Views" expanded="True">
+              <Node name="ViewModels" expanded="True">
                 <Node name="Main" expanded="True" />
               </Node>
             </Node>
-            <Node name="SkyDrop.iOS" expanded="True" />
+            <Node name="SkyDrop.Droid" expanded="True">
+              <Node name="Views" expanded="True">
+                <Node name="Main" expanded="True">
+                  <Node name="MainView.cs" selected="True" />
+                </Node>
+              </Node>
+            </Node>
           </Node>
-        </State>
-      </Pad>
-      <Pad Id="MonoDevelop.Debugger.WatchPad">
-        <State>
-          <Value>ViewModel</Value>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.ItemProperties.SkyDrop.Droid AndroidDesignerPreferredTheme="AppTheme" AndroidDesignerPreferredDevice="Nexus 4" PreferredExecutionTarget="Android.5200b5c9eaec6437" />
+  <MonoDevelop.Ide.ItemProperties.SkyDrop.Droid AndroidDesignerPreferredTheme="AppTheme" AndroidDesignerPreferredDevice="Nexus 4" PreferredExecutionTarget="Android.b902b509" />
+  <DisabledProjects>
+    <String>src/SkyDrop.iOS/SkyDrop.iOS.csproj</String>
+  </DisabledProjects>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />

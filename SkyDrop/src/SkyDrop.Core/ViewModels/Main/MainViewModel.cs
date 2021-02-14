@@ -24,8 +24,21 @@ namespace SkyDrop.Core.ViewModels.Main
         private IApiService apiService;
         private IUserDialogs crossUiService;
 
-        public IMvxCommand SelectFileCommand { get; set; }
-        public IMvxCommand CopyLatestSkyLinkCommand { get; set; }
+        private Func<Task> _selectFileAsyncFunc;
+        public Func<Task> SelectFileAsyncFunc
+        {
+            get
+            {
+                return _selectFileAsyncFunc ?? throw new ArgumentNullException(nameof(SelectFileAsyncFunc));
+            }
+            set
+            {
+                _selectFileAsyncFunc = value;
+            }
+        }
+
+        public IMvxAsyncCommand SelectFileCommand { get; set; }
+        public IMvxAsyncCommand CopyLatestSkyLinkCommand { get; set; }
 
         public MainViewModel(IApiService apiService, IUserDialogs crossUiService)
         {
@@ -33,7 +46,9 @@ namespace SkyDrop.Core.ViewModels.Main
 
             Title = "Upload";
 
-            CopyLatestSkyLinkCommand = new MvxAsyncCommand(CopyLastSkylink);
+            CopyLatestSkyLinkCommand = new MvxAsyncCommand(async() => await CopyLastSkylink());
+            SelectFileCommand = new MvxAsyncCommand(async () => await SelectFileAsyncFunc());
+            ;
 
             this.apiService = apiService;
             this.crossUiService = crossUiService;

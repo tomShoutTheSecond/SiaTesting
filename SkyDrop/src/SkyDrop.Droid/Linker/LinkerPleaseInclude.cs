@@ -64,7 +64,27 @@ namespace SkyDrop.Droid.Linker
 
         public void Include(ICommand command)
         {
-            command.CanExecuteChanged += (s, e) => { if (command.CanExecute(null)) command.Execute(null); };
+            _ = command;
+        }
+
+        public void Include<T>(MvxAsyncCommand<T> command)
+        {
+            _ = command;
+        }
+
+        public void Include(MvxAsyncCommand command)
+        {
+            _ = command;
+        }
+
+        public void Include(MvxCommand command)
+        {
+            _ = command;
+        }
+
+        public void Include(IMvxAsyncCommand command)
+        {
+            _ = command;
         }
 
         public void Include(INotifyCollectionChanged changed)
@@ -146,6 +166,22 @@ namespace SkyDrop.Droid.Linker
         public void Include(MvxChildViewModelCache cache)
         {
             _ = new MvxChildViewModelCache();
+        }
+
+        public void Include(MvvmCross.Plugin.MvxPluginManager p)
+        {
+            var _ = p;
+        }
+
+        public void Include(MvvmCross.Plugin.MvxPluginAttribute p)
+        {
+            var _ = p;
+        }
+
+
+        public void Include(MvvmCross.Plugin.IMvxPlugin p)
+        {
+            var _ = p;
         }
     }
 }

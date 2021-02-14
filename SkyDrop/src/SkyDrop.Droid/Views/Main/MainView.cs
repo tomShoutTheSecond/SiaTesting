@@ -29,9 +29,9 @@ namespace SkyDrop.Droid.Views.Main
 
             base.OnCreate(bundle);
 
-            ViewModel.SelectFileCommand = new MvxAsyncCommand(SelectFileCommand);
-
             await ViewModel.InitializeTask.Task;
+
+            ViewModel.SelectFileAsyncFunc = SelectFileCommand;
 
             Platform.Init(this, bundle);
         }
@@ -52,12 +52,12 @@ namespace SkyDrop.Droid.Views.Main
             {
                 var status = await Permissions.CheckStatusAsync<Permissions.StorageRead>();
 
-                if (status != Xamarin.Essentials.PermissionStatus.Granted)
+                if (status != PermissionStatus.Granted)
                 {
                     status = await Permissions.RequestAsync<Permissions.StorageRead>();
                 }
 
-                return status == Xamarin.Essentials.PermissionStatus.Granted;
+                return status == PermissionStatus.Granted;
             }
             catch (Exception ex)
             {
