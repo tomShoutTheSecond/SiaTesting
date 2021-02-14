@@ -102,3 +102,16 @@ dist
 
 # TernJS port file
 .tern-port
+
+
+# Started editing here
+
+# Xamarin / VS
+
+[Oo]bj/
+[Bb]in/
+packages/
+TestResults/
+
+# Autosave files
+*~
