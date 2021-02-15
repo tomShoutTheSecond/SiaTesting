@@ -129,7 +129,13 @@ namespace SkyDrop.Core.ViewModels.Main
 
             foreach (var stagedFile in StagedFiles)
             {
+                stagedFile.IsLoading = true;
+                StagedFiles = new List<StagedFileDVM>(StagedFiles);
+                _ = RaisePropertyChanged(() => StagedFiles);
+
                 await UploadFile(stagedFile.StagedFile);
+
+                stagedFile.IsLoading = false;
                 StagedFiles = new List<StagedFileDVM>(StagedFiles.Where(f => f.StagedFile.Filename != stagedFile.StagedFile.Filename));
                 _ = RaisePropertyChanged(() => StagedFiles);
             }
@@ -148,7 +154,7 @@ namespace SkyDrop.Core.ViewModels.Main
                 var existingFile = SkyFiles.FirstOrDefault(s => s.SkyFile.Skylink == skyFile.Skylink);
                 if (existingFile != null)
                 {
-                    var message = "FILE ALREADY UPLOADED!";
+                    var message = "File already uploaded";
                     Log.Trace(message);
                     userDialogs.Toast(message);
 

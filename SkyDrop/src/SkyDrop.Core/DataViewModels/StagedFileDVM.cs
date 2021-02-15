@@ -21,5 +21,6 @@ namespace SkyDrop.Core.DataViewModels
         public StagedFile StagedFile { get; set; }
 
         public bool IsSelected { get; set; }
+        public bool IsLoading { get; set; }
     }
 }
