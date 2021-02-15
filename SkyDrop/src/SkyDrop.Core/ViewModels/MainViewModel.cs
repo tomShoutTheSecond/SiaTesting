@@ -108,30 +108,40 @@ namespace SkyDrop.Core.ViewModels.Main
             IsLoading = true;
             _ = RaisePropertyChanged(() => IsLoading);
 
-            var skyFile = await apiService.UploadFile(filename, file);
-            Log.Trace("UPLOAD COMPLETE: " + skyFile.Skylink);
-
-            var existingFile = SkyFiles.FirstOrDefault(s => s.SkyFile.Skylink == skyFile.Skylink);
-            if (existingFile != null)
+            try
             {
-                var message = "FILE ALREADY UPLOADED!";
-                Log.Trace(message);
-                userDialogs.Toast(message);
-                IsLoading = false;
-                _ = RaisePropertyChanged(() => IsLoading);
-                return;
+                var skyFile = await apiService.UploadFile(filename, file);
+                Log.Trace("UPLOAD COMPLETE: " + skyFile.Skylink);
+
+                var existingFile = SkyFiles.FirstOrDefault(s => s.SkyFile.Skylink == skyFile.Skylink);
+                if (existingFile != null)
+                {
+                    var message = "FILE ALREADY UPLOADED!";
+                    Log.Trace(message);
+                    userDialogs.Toast(message);
+                    IsLoading = false;
+                    _ = RaisePropertyChanged(() => IsLoading);
+                    return;
+                }
+
+                SkyFiles.Add(GetSkyFileDVM(skyFile));
+                SkyFiles = new List<SkyFileDVM>(SkyFiles);
+
+                storageService.SaveSkyFiles(skyFile);
+
+                SkylinksText = GetSkyLinksText();
             }
+            catch(Exception e)
+            {
+                Log.Exception(e);
+                userDialogs.Toast("File upload failed");
+            }
+            finally
+            {
+                IsLoading = false;
 
-            SkyFiles.Add(GetSkyFileDVM(skyFile));
-            SkyFiles = new List<SkyFileDVM>(SkyFiles);
-
-            storageService.SaveSkyFiles(skyFile);
-
-            SkylinksText = GetSkyLinksText();
-
-            IsLoading = false;
-
-            _ = RaiseAllPropertiesChanged();
+                _ = RaiseAllPropertiesChanged();
+            }
         }
 
         private void SetSelectedFile(SkyFile selectedFile)
