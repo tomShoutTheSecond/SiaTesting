@@ -9,8 +9,8 @@ namespace SkyDrop.Core.Services
     // private T _instance;
     // public T Instance => _instance ??= ResolveSingleton<T>();
 
-    // Due to how Mvx.IocProvider works, it is necessary before trying to access services from SingletonService,
-    // it must have been initialized via dependency injection in a VM's constructor, or else you will cause runtime errors
+    // Due to how Mvx.IocProvider works, it is necessary before trying to access services from SingletonService, to make sure that
+    // the service has already been initialized via dependency injection in a VM's constructor, or else you will get runtime errors.
 
     public class SingletonService : ISingletonService
     {
