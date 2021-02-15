@@ -14,22 +14,23 @@ namespace SkyDrop.Core.Services
         {
             var url = "https://siasky.net/skynet/skyfile";
 
-            var httpClient = new HttpClient();
-            var form = new MultipartFormDataContent();
+            using (var httpClient = new HttpClient())
+            {
+                var form = new MultipartFormDataContent();
 
-            form.Add(new ByteArrayContent(file), "file", filename);
+                form.Add(new ByteArrayContent(file), "file", filename);
 
-            var response = await httpClient.PostAsync(url, form);
+                var response = await httpClient.PostAsync(url, form);
 
-            response.EnsureSuccessStatusCode();
-            httpClient.Dispose();
+                response.EnsureSuccessStatusCode();
 
-            var responseString = await response.Content.ReadAsStringAsync();
-            var skyfile = JsonConvert.DeserializeObject<SkyFile>(responseString);
-            skyfile.Filename = filename;
-            skyfile.Skylink = $"https://siasky.net/{skyfile.Skylink}";
+                var responseString = await response.Content.ReadAsStringAsync();
+                var skyfile = JsonConvert.DeserializeObject<SkyFile>(responseString);
+                skyfile.Filename = filename;
+                skyfile.Skylink = $"https://siasky.net/{skyfile.Skylink}";
 
-            return skyfile;
+                return skyfile;
+            }
         }
     }
 

@@ -12,6 +12,14 @@ namespace SkyDrop.Droid.Helper
         /// </summary>
         public static string GetFileName(Context context, Android.Net.Uri uri)
         {
+            if (uri.LastPathSegment.Contains("."))
+            {
+                //this is a "file"
+                return uri.LastPathSegment;
+            }
+
+            //this is an "image"
+
             // The query, because it only applies to a single document, returns only
             // one row. There's no need to filter, sort, or select fields,
             // because we want all fields for one document.
@@ -48,6 +56,10 @@ namespace SkyDrop.Droid.Helper
                     }
                     Debug.WriteLine("Size: " + size);
                 }
+                else
+                {
+                    return "NONAME";
+                }
             }
             catch (Exception e)
             {
@@ -55,7 +67,8 @@ namespace SkyDrop.Droid.Helper
             }
             finally
             {
-                cursor.Close();
+                if (cursor != null)
+                    cursor.Close();
             }
 
             return displayName;

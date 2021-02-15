@@ -29,17 +29,53 @@ namespace SkyDrop.Droid.Views.Main
             await ViewModel.InitializeTask.Task;
 
             ViewModel.SelectFileAsyncFunc = SelectFile;
+            ViewModel.SelectImageAsyncFunc = SelectImage;
             ViewModel.FileTapCommand = new MvxCommand<SkyFile>(OpenFile);
         }
+        
+        private async Task SelectImage()
+        {
+            if (!await CheckPermissions())
+                return;
 
+            var intent = new Intent(Intent.ActionGetContent);
+            intent.SetType("image/*");
+            StartActivityForResult(intent, pickFileRequestCode);
+        }
+        
         private async Task SelectFile()
         {
             if (!await CheckPermissions())
                 return;
 
             var intent = new Intent(Intent.ActionGetContent);
-            intent.SetType("image/png, image/jpeg");
-            StartActivityForResult(intent, pickFileRequestCode);
+            intent.SetType("file/*");
+            intent.AddCategory(Intent.CategoryOpenable);
+
+            // special intent for Samsung file manager
+            Intent sIntent = new Intent("com.sec.android.app.myfiles.PICK_DATA");
+            sIntent.AddCategory(Intent.CategoryDefault);
+
+            Intent chooserIntent;
+            if (PackageManager.ResolveActivity(sIntent, 0) != null)
+            {
+                // it is device with Samsung file manager
+                chooserIntent = Intent.CreateChooser(sIntent, "Open file");
+                chooserIntent.PutExtra(Intent.ExtraInitialIntents, new Intent[] { intent });
+            }
+            else
+            {
+                chooserIntent = Intent.CreateChooser(intent, "Open file");
+            }
+
+            try
+            {
+                StartActivityForResult(chooserIntent, pickFileRequestCode);
+            }
+            catch (Android.Content.ActivityNotFoundException ex)
+            {
+                Toast.MakeText(this, "No suitable File Manager was found", ToastLength.Short).Show();
+            }
         }
 
         private async Task<bool> CheckPermissions()
@@ -86,12 +122,12 @@ namespace SkyDrop.Droid.Views.Main
 
                 Toast.MakeText(this, uri.Path, ToastLength.Long).Show();
 
-                var fileBytes = ReadFile(uri);
+                var fileBytes = await ReadFile(uri);
                 await ViewModel.UploadFile(filename, fileBytes);
             }
         }
 
-        public byte[] ReadFile(Android.Net.Uri uri)
+        public async Task<byte[]> ReadFile(Android.Net.Uri uri)
         {
             var inputStream = ContentResolver.OpenInputStream(uri);
 
@@ -99,7 +135,7 @@ namespace SkyDrop.Droid.Views.Main
             try
             {
                 var buffer = new Java.IO.BufferedInputStream(inputStream);
-                buffer.Read(bytes, 0, bytes.Length);
+                await buffer.ReadAsync(bytes);//.Read(bytes, 0, bytes.Length);
                 buffer.Close();
             }
             catch (Exception e)

@@ -25,6 +25,9 @@ namespace SkyDrop.Core.ViewModels.Main
         private IUserDialogs userDialogs;
 
         public IMvxAsyncCommand SelectFileCommand { get; set; }
+        public IMvxCommand SelectImageCommand { get; set; }
+        public IMvxCommand FileTapCommand { get; set; }
+
         private Func<Task> _selectFileAsyncFunc;
         public Func<Task> SelectFileAsyncFunc
         {
@@ -32,8 +35,12 @@ namespace SkyDrop.Core.ViewModels.Main
             set => _selectFileAsyncFunc = value;
         }
 
-        public IMvxCommand FileTapCommand { get; set; }
-
+        private Func<Task> _selectImageAsyncFunc;
+        public Func<Task> SelectImageAsyncFunc
+        {
+            get => _selectImageAsyncFunc ?? throw new ArgumentNullException(nameof(SelectImageAsyncFunc));
+            set => _selectImageAsyncFunc = value;
+        }
 
         public MainViewModel(IApiService apiService, IStorageService storageService, IUserDialogs userDialogs)
         {
@@ -44,6 +51,7 @@ namespace SkyDrop.Core.ViewModels.Main
             this.userDialogs = userDialogs;
 
             SelectFileCommand = new MvxAsyncCommand(async () => await SelectFileAsyncFunc());
+            SelectImageCommand = new MvxAsyncCommand(async () => await SelectImageAsyncFunc());
         }
 
         private async Task CopyFileLinkToClipboard(SkyFile skyFile)
