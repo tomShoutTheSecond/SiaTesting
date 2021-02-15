@@ -2,6 +2,7 @@
 using MvvmCross;
 using MvvmCross.IoC;
 using MvvmCross.ViewModels;
+using SkyDrop.Core.Services;
 using SkyDrop.Core.ViewModels.Main;
 
 namespace SkyDrop.Core
@@ -14,6 +15,8 @@ namespace SkyDrop.Core
                 .EndingWith("Service")
                 .AsInterfaces()
                 .RegisterAsLazySingleton();
+
+            Mvx.IoCProvider.LazyConstructAndRegisterSingleton<ILog>(() => new SkyLogger());
 
             RegisterAppStart<MainViewModel>();
         }

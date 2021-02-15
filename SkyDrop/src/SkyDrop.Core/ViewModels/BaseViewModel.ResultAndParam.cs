@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using MvvmCross.ViewModels;
+using SkyDrop.Core.Services;
 
 namespace SkyDrop.Core.ViewModels
 {
@@ -9,6 +10,10 @@ namespace SkyDrop.Core.ViewModels
         where TParameter : notnull
         where TResult : notnull
     {
+        protected BaseViewModel(ISingletonService singletonService) : base(singletonService)
+        {
+        }
+
         public abstract void Prepare(TParameter parameter);
     }
 }

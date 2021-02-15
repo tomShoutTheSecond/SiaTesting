@@ -22,11 +22,11 @@ namespace SkyDrop.Droid.Views.Main
 
         protected override async void OnCreate(Bundle bundle)
         {
-            System.Diagnostics.Debug.WriteLine("MainView OnCreate()");
-
             base.OnCreate(bundle);
 
             await ViewModel.InitializeTask.Task;
+
+            Log.Trace("MainView OnCreate()");
 
             ViewModel.SelectFileAsyncFunc = SelectFile;
             ViewModel.SelectImageAsyncFunc = SelectImage;
@@ -74,6 +74,7 @@ namespace SkyDrop.Droid.Views.Main
             }
             catch (Android.Content.ActivityNotFoundException ex)
             {
+                Log.Exception(ex);
                 Toast.MakeText(this, "No suitable File Manager was found", ToastLength.Short).Show();
             }
         }
@@ -93,7 +94,7 @@ namespace SkyDrop.Droid.Views.Main
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine("" + ex);
+                Log.Exception(ex);
 
                 return false;
             }
@@ -111,12 +112,12 @@ namespace SkyDrop.Droid.Views.Main
                 //handle the selected file
                 var uri = data.Data;
                 string mimeType = ContentResolver.GetType(uri);
-                System.Diagnostics.Debug.WriteLine("mime type: ", mimeType);
+                Log.Trace("mime type: " + mimeType);
 
                 string extension = System.IO.Path.GetExtension(uri.Path);
-                System.Diagnostics.Debug.WriteLine("extension: ", extension);
+                Log.Trace("extension: " + extension);
 
-                System.Diagnostics.Debug.WriteLine("path: ", uri.Path);
+                Log.Trace("path: " + uri.Path);
 
                 var filename = AndroidUtil.GetFileName(this, uri);
 
@@ -140,7 +141,8 @@ namespace SkyDrop.Droid.Views.Main
             }
             catch (Exception e)
             {
-                System.Diagnostics.Debug.WriteLine("File upload failed: " + e);
+                Log.Trace("Failed to read file");
+                Log.Exception(e);
             }
 
             return bytes;

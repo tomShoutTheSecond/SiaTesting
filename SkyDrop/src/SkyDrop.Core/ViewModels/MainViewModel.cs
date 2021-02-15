@@ -20,9 +20,9 @@ namespace SkyDrop.Core.ViewModels.Main
 
         public bool IsLoading { get; set; }
 
-        private IApiService apiService;
-        private IStorageService storageService;
-        private IUserDialogs userDialogs;
+        private readonly IApiService apiService;
+        private readonly IStorageService storageService;
+        private readonly IUserDialogs userDialogs;
 
         public IMvxAsyncCommand SelectFileCommand { get; set; }
         public IMvxCommand SelectImageCommand { get; set; }
@@ -42,7 +42,11 @@ namespace SkyDrop.Core.ViewModels.Main
             set => _selectImageAsyncFunc = value;
         }
 
-        public MainViewModel(IApiService apiService, IStorageService storageService, IUserDialogs userDialogs)
+        public MainViewModel(ISingletonService singletonService,
+                             IApiService apiService,
+                             IStorageService storageService,
+                             IUserDialogs userDialogs,
+                             ILog log) : base(singletonService)
         {
             Title = "Upload";
 
@@ -62,7 +66,7 @@ namespace SkyDrop.Core.ViewModels.Main
 
             await Xamarin.Essentials.Clipboard.SetTextAsync(skyLink);
 
-            System.Diagnostics.Debug.WriteLine("Set clipboard text to " + skyLink);
+            Log.Trace("Set clipboard text to " + skyLink);
             userDialogs.Toast("Copied SkyLink to clipboard");
         }
 
@@ -105,13 +109,13 @@ namespace SkyDrop.Core.ViewModels.Main
             _ = RaisePropertyChanged(() => IsLoading);
 
             var skyFile = await apiService.UploadFile(filename, file);
-            System.Diagnostics.Debug.WriteLine("UPLOAD COMPLETE: " + skyFile.Skylink);
+            Log.Trace("UPLOAD COMPLETE: " + skyFile.Skylink);
 
             var existingFile = SkyFiles.FirstOrDefault(s => s.SkyFile.Skylink == skyFile.Skylink);
             if (existingFile != null)
             {
                 var message = "FILE ALREADY UPLOADED!";
-                System.Diagnostics.Debug.WriteLine(message);
+                Log.Trace(message);
                 userDialogs.Toast(message);
                 IsLoading = false;
                 _ = RaisePropertyChanged(() => IsLoading);
