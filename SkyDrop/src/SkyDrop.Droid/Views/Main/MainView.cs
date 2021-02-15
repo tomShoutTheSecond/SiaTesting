@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
+using Android.Graphics;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
@@ -31,6 +32,9 @@ namespace SkyDrop.Droid.Views.Main
             ViewModel.SelectFileAsyncFunc = SelectFile;
             ViewModel.SelectImageAsyncFunc = SelectImage;
             ViewModel.FileTapCommand = new MvxCommand<SkyFile>(OpenFile);
+
+            var progressBar = FindViewById<ProgressBar>(Resource.Id.ProgressBar);
+            progressBar.IndeterminateDrawable.SetColorFilter(Color.White, PorterDuff.Mode.SrcIn);
         }
         
         private async Task SelectImage()
@@ -124,7 +128,7 @@ namespace SkyDrop.Droid.Views.Main
                 Toast.MakeText(this, uri.Path, ToastLength.Long).Show();
 
                 var fileBytes = await ReadFile(uri);
-                await ViewModel.UploadFile(filename, fileBytes);
+                ViewModel.StageFile(new StagedFile { Filename = filename, Data = fileBytes });
             }
         }
 

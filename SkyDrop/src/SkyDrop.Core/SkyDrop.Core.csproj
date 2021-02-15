@@ -16,8 +16,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Services\" />
-    <Folder Include="Data Transfer Models\" />
     <Folder Include="DataModels\" />
     <Folder Include="DataViewModels\" />
+    <Folder Include="Utility\" />
   </ItemGroup>
 </Project>

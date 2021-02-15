@@ -12,8 +12,7 @@
         android:layout_height="wrap_content"
         app:cardCornerRadius="8dp"
         app:cardElevation="1dp"
-        app:cardBackgroundColor="@color/midGrey"
-        app:MvxBind="Click TapCommand">
+        app:MvxBind="Click TapCommand; CardBackgroundColor FillColor">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -63,6 +62,13 @@
                         android:orientation="vertical"
                         android:src="@drawable/ic_link"
                         app:MvxBind="Click CopySkyLinkCommand"/>
+                    <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_margin="8dp"
+                        android:orientation="vertical"
+                        android:src="@drawable/ic_delete"
+                        app:MvxBind="Click DeleteCommand"/>
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

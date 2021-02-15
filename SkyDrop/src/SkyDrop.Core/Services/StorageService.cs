@@ -23,6 +23,24 @@ namespace SkyDrop.Core.Services
                 realm.Add(skyFiles);
             });
         }
+
+        public void DeleteSkyFile(SkyFile skyFile)
+        {
+            var realm = Realm.GetInstance();
+
+            //var skyFiles = LoadSkyFiles();
+            realm.Write(() =>
+            {
+                /*
+                foreach (var file in skyFiles)
+                {
+                    if(file.Skylink == skyFile.Skylink)
+                        realm.Remove(file);
+                }
+                */
+                realm.Remove(skyFile);
+            });
+        }
     }
 
     public interface IStorageService
@@ -30,5 +48,7 @@ namespace SkyDrop.Core.Services
         List<SkyFile> LoadSkyFiles();
 
         void SaveSkyFiles(params SkyFile[] skyFile);
+
+        void DeleteSkyFile(SkyFile skyFile);
     }
 }
