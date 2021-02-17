@@ -10,10 +10,7 @@ namespace SkyDrop
         {
         }
 
-
-        public void _TraceInternal(string message) { }
-
-        public void Exception (Exception exception)
+        public void Exception(Exception exception)
         {
             this.Trace($"[{nameof(SkyLogger)}] Logging exception");
 
@@ -24,12 +21,6 @@ namespace SkyDrop
 
     public interface ILog
     {
-        /// <summary>
-        /// _TraceInternal() should not be used, please use the Trace() extension from ILogExtensions below.
-        /// </summary>
-        [Obsolete]
-        public void _TraceInternal(string message);
-
         public void Exception(Exception exception);
     }
 
@@ -41,7 +32,7 @@ namespace SkyDrop
         {
             // Disable warning for using internal logging message - this is the one place it's ok to use
 #pragma warning disable 612
-            Console.WriteLine(($"[{nameof(SkyLogger)}] " + message));
+            Debug.WriteLine(($"[{nameof(SkyLogger)}] " + message));
 #pragma warning restore 612
         }
     }
