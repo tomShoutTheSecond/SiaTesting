@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -105,7 +104,7 @@ namespace SkyDrop.Core.ViewModels.Main
                 new MvxCommand(() => FileTapCommand.Execute(skyFile)),
                 new MvxAsyncCommand(() => CopyFileLinkToClipboard(skyFile)),
                 new MvxCommand(() => DeleteSkyFileFromList(skyFile)))
-                { IsNew = isNew };
+            { IsNew = isNew };
         }
 
         public void StageFile(StagedFile stagedFile)
@@ -176,7 +175,7 @@ namespace SkyDrop.Core.ViewModels.Main
 
                 SkylinksText = GetSkyLinksText();
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Log.Exception(e);
                 userDialogs.Toast("File upload failed");
@@ -187,7 +186,7 @@ namespace SkyDrop.Core.ViewModels.Main
         {
             var selectedFileDVM = SkyFiles.FirstOrDefault(s => s.SkyFile.Skylink == selectedFile.Skylink);
 
-            foreach(var skyFile in SkyFiles)
+            foreach (var skyFile in SkyFiles)
             {
                 skyFile.IsSelected = false;
             }

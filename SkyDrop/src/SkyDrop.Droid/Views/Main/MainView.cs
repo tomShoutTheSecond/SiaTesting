@@ -36,7 +36,7 @@ namespace SkyDrop.Droid.Views.Main
             var progressBar = FindViewById<ProgressBar>(Resource.Id.ProgressBar);
             progressBar.IndeterminateDrawable.SetColorFilter(Color.White, PorterDuff.Mode.SrcIn);
         }
-        
+
         private async Task SelectImage()
         {
             if (!await CheckPermissions())
@@ -46,40 +46,47 @@ namespace SkyDrop.Droid.Views.Main
             intent.SetType("image/*");
             StartActivityForResult(intent, pickFileRequestCode);
         }
-        
+
         private async Task SelectFile()
         {
-            if (!await CheckPermissions())
-                return;
-
-            var intent = new Intent(Intent.ActionGetContent);
-            intent.SetType("file/*");
-            intent.AddCategory(Intent.CategoryOpenable);
-
-            // special intent for Samsung file manager
-            Intent sIntent = new Intent("com.sec.android.app.myfiles.PICK_DATA");
-            sIntent.AddCategory(Intent.CategoryDefault);
-
-            Intent chooserIntent;
-            if (PackageManager.ResolveActivity(sIntent, 0) != null)
-            {
-                // it is device with Samsung file manager
-                chooserIntent = Intent.CreateChooser(sIntent, "Open file");
-                chooserIntent.PutExtra(Intent.ExtraInitialIntents, new Intent[] { intent });
-            }
-            else
-            {
-                chooserIntent = Intent.CreateChooser(intent, "Open file");
-            }
-
             try
             {
-                StartActivityForResult(chooserIntent, pickFileRequestCode);
+                if (!await CheckPermissions())
+                    return;
+
+                var intent = new Intent(Intent.ActionGetContent);
+                intent.SetType("file/*");
+                intent.AddCategory(Intent.CategoryOpenable);
+
+                // special intent for Samsung file manager
+                Intent sIntent = new Intent("com.sec.android.app.myfiles.PICK_DATA");
+                sIntent.AddCategory(Intent.CategoryDefault);
+
+                Intent chooserIntent;
+                if (PackageManager.ResolveActivity(sIntent, 0) != null)
+                {
+                    // it is device with Samsung file manager
+                    chooserIntent = Intent.CreateChooser(sIntent, "Open file");
+                    chooserIntent.PutExtra(Intent.ExtraInitialIntents, new Intent[] { intent });
+                }
+                else
+                {
+                    chooserIntent = Intent.CreateChooser(intent, "Open file");
+                }
+
+                try
+                {
+                    StartActivityForResult(chooserIntent, pickFileRequestCode);
+                }
+                catch (Android.Content.ActivityNotFoundException ex)
+                {
+                    Log.Exception(ex);
+                    Toast.MakeText(this, "No suitable File Manager was found", ToastLength.Short).Show();
+                }
             }
-            catch (Android.Content.ActivityNotFoundException ex)
+            catch (Exception ex)
             {
                 Log.Exception(ex);
-                Toast.MakeText(this, "No suitable File Manager was found", ToastLength.Short).Show();
             }
         }
 
@@ -98,6 +105,7 @@ namespace SkyDrop.Droid.Views.Main
             }
             catch (Exception ex)
             {
+                Log.Error("Permission not granted");
                 Log.Exception(ex);
 
                 return false;
@@ -106,30 +114,42 @@ namespace SkyDrop.Droid.Views.Main
 
         protected override async void OnActivityResult(int requestCode, Result resultCode, Intent data)
         {
-            base.OnActivityResult(requestCode, resultCode, data);
-
-            if(requestCode == pickFileRequestCode)
+            try
             {
-                if (data == null)
-                    return;
+                if (requestCode == pickFileRequestCode)
+                {
+                    if (data == null)
+                        return;
 
-                //handle the selected file
-                var uri = data.Data;
-                string mimeType = ContentResolver.GetType(uri);
-                Log.Trace("mime type: " + mimeType);
-
-                string extension = System.IO.Path.GetExtension(uri.Path);
-                Log.Trace("extension: " + extension);
-
-                Log.Trace("path: " + uri.Path);
-
-                var filename = AndroidUtil.GetFileName(this, uri);
-
-                Toast.MakeText(this, uri.Path, ToastLength.Long).Show();
-
-                var fileBytes = await ReadFile(uri);
-                ViewModel.StageFile(new StagedFile { Filename = filename, Data = fileBytes });
+                    await HandlePickedFile(data);
+                }
             }
+            catch (Exception ex)
+            {
+                Log.Exception(ex);
+            }
+
+            base.OnActivityResult(requestCode, resultCode, data);
+        }
+
+        private async Task HandlePickedFile(Intent data)
+        {
+            //handle the selected file
+            var uri = data.Data;
+            string mimeType = ContentResolver.GetType(uri);
+            Log.Trace("mime type: " + mimeType);
+
+            string extension = System.IO.Path.GetExtension(uri.Path);
+            Log.Trace("extension: " + extension);
+
+            Log.Trace("path: " + uri.Path);
+
+            var filename = AndroidUtil.GetFileName(this, uri);
+
+            Toast.MakeText(this, uri.Path, ToastLength.Long).Show();
+
+            var fileBytes = await ReadFile(uri);
+            ViewModel.StageFile(new StagedFile { Filename = filename, Data = fileBytes });
         }
 
         public async Task<byte[]> ReadFile(Android.Net.Uri uri)

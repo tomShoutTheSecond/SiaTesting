@@ -20,11 +20,11 @@ namespace SkyDrop.Core.Services
 
                 form.Add(new ByteArrayContent(file), "file", filename);
 
-                var response = await httpClient.PostAsync(url, form);
+                var response = await httpClient.PostAsync(url, form).ConfigureAwait(false);
 
                 response.EnsureSuccessStatusCode();
 
-                var responseString = await response.Content.ReadAsStringAsync();
+                var responseString = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
                 var skyfile = JsonConvert.DeserializeObject<SkyFile>(responseString);
                 skyfile.Filename = filename;
                 skyfile.Skylink = $"https://siasky.net/{skyfile.Skylink}";

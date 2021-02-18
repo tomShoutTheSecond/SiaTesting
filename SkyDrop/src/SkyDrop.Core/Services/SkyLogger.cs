@@ -1,39 +1,84 @@
 using System;
 using System.Diagnostics;
+using System.IO;
+using System.Runtime.CompilerServices;
+using FFImageLoading.Helpers;
+using SkyDrop.Core.Services;
 
 // Exposing SkyLogger and ILog to the entire namespace, because it is using for app output traces
 namespace SkyDrop
 {
-    public class SkyLogger : ILog
+    public class SkyLogger : ILog, IMiniLogger
     {
-        public SkyLogger()
+        // IMiniLogger methods for FFImageLoading logging
+        public void Debug(string message) => Print(message);
+
+
+        // SkyLogger
+
+        public void Error(string errorMessage, Exception ex)
         {
+            Error(errorMessage);
+            Exception(ex);
         }
 
-        public void Exception(Exception exception)
-        {
-            this.Trace($"[{nameof(SkyLogger)}] Logging exception");
+        public void Error(string errorMessage) => Print(errorMessage);
 
-            this.Trace(exception.Message);
-            this.Trace(exception.StackTrace);
+        protected long exceptionCount = 0;
+
+        public void Exception(System.Exception ex)
+        {
+            if (ex == null)
+            {
+                Error("ex == null");
+                return;
+            }
+
+            exceptionCount++;
+
+            PrintError($"Encoutered exception no# {exceptionCount}");
+
+            PrintExceptionInfo(ex, isInnerException: false);
         }
-    }
 
-    public interface ILog
-    {
-        public void Exception(Exception exception);
-    }
-
-    // Workaround for using the System.Diagnostics.Conditional attribute on ILog instance, from https://stackoverflow.com/a/39137495/9436321
-    public static class ILogExtensions
-    {
-        [Conditional("DEBUG")]
-        public static void Trace<T>(this T t, string message) where T : ILog
+        protected void PrintExceptionInfo(System.Exception ex, bool isInnerException)
         {
-            // Disable warning for using internal logging message - this is the one place it's ok to use
-#pragma warning disable 612
-            Debug.WriteLine(($"[{nameof(SkyLogger)}] " + message));
-#pragma warning restore 612
+            if (isInnerException)
+            {
+                PrintError("Logging exception - the inner exception");
+            }
+
+            PrintError(ex);
+
+            if (ex.InnerException != null)
+                PrintExceptionInfo(ex.InnerException, isInnerException: true);
+        }
+
+        private void PrintError(string message, bool printIf = true)
+        {
+            Print("[ERROR] " + message, printIf);
+        }
+
+
+        private void PrintError(object value, bool printIf = true)
+        {
+            PrintError(value.ToString(), printIf);
+        }
+
+        private void Print(string message,
+            [CallerMemberName] string member = "",
+            [CallerFilePath] string sourceFilePath = "",
+            [CallerLineNumber] int sourceLineNumber = 0)
+        {
+            // can improve message?
+            var fileName = Path.GetFileName(sourceFilePath);
+
+            Trace.WriteLine($"{fileName}:{sourceLineNumber} {message}");
+        }
+
+        private void Print(object value, bool printIf = true)
+        {
+            Print(value.ToString(), printIf);
         }
     }
 }
