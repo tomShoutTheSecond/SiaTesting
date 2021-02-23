@@ -20,6 +20,8 @@ namespace SkyDrop.Core.ViewModels.Main
 
         public bool IsLoading { get; set; }
 
+        private string barcodeMessage;
+
         private readonly IApiService apiService;
         private readonly IStorageService storageService;
         private readonly IUserDialogs userDialogs;
@@ -67,7 +69,7 @@ namespace SkyDrop.Core.ViewModels.Main
 
         private async Task ScanBarcode()
         {
-            await barcodeService.ScanBarcode();
+            barcodeMessage = await barcodeService.ScanBarcode();
         }
 
         public override async Task Initialize()
@@ -75,6 +77,14 @@ namespace SkyDrop.Core.ViewModels.Main
             await base.Initialize();
 
             LoadSkyFiles();
+        }
+
+        public override void ViewAppeared()
+        {
+            base.ViewAppeared();
+
+            if (!string.IsNullOrEmpty(barcodeMessage))
+                userDialogs.Toast(barcodeMessage, new TimeSpan(0, 0, 10));
         }
 
         private void LoadSkyFiles()

@@ -1,4 +1,3 @@
-using System;
 using System.Threading.Tasks;
 using ZXing.Mobile;
 
@@ -13,20 +12,19 @@ namespace SkyDrop.Core.Services
             this.log = log;
         }
 
-        public async Task ScanBarcode()
+        public async Task<string> ScanBarcode()
         {
             var scanner = new MobileBarcodeScanner();
             var result = await scanner.Scan();
 
-            if (result != null)
-                log.Trace("Scanned Barcode: " + result.Text);
-            else
-                log.Trace("Scanned NULL Barcode");
+            var message = result == null ? "Scanned NULL Barcode" : "Scanned Barcode: " + result.Text;
+            log.Trace(message);
+            return message;
         }
     }
 
     public interface IBarcodeService
     {
-        Task ScanBarcode();
+        Task<string> ScanBarcode();
     }
 }
