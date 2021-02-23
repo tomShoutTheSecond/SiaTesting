@@ -23,11 +23,13 @@ namespace SkyDrop.Core.ViewModels.Main
         private readonly IApiService apiService;
         private readonly IStorageService storageService;
         private readonly IUserDialogs userDialogs;
+        private readonly IBarcodeService barcodeService;
 
         public IMvxAsyncCommand SelectFileCommand { get; set; }
         public IMvxCommand SelectImageCommand { get; set; }
         public IMvxCommand FileTapCommand { get; set; }
         public IMvxCommand UploadCommand { get; set; }
+        public IMvxCommand ScanBarcodeCommand { get; set; }
 
         private Func<Task> _selectFileAsyncFunc;
         public Func<Task> SelectFileAsyncFunc
@@ -47,6 +49,7 @@ namespace SkyDrop.Core.ViewModels.Main
                              IApiService apiService,
                              IStorageService storageService,
                              IUserDialogs userDialogs,
+                             IBarcodeService barcodeService,
                              ILog log) : base(singletonService)
         {
             Title = "Upload";
@@ -54,22 +57,17 @@ namespace SkyDrop.Core.ViewModels.Main
             this.apiService = apiService;
             this.storageService = storageService;
             this.userDialogs = userDialogs;
+            this.barcodeService = barcodeService;
 
             SelectFileCommand = new MvxAsyncCommand(async () => await SelectFileAsyncFunc());
             SelectImageCommand = new MvxAsyncCommand(async () => await SelectImageAsyncFunc());
             UploadCommand = new MvxAsyncCommand(UploadStagedFiles);
+            ScanBarcodeCommand = new MvxAsyncCommand(ScanBarcode);
         }
 
-        private async Task CopyFileLinkToClipboard(SkyFile skyFile)
+        private async Task ScanBarcode()
         {
-            string skyLink = skyFile.Skylink;
-            if (string.IsNullOrEmpty(skyLink))
-                return;
-
-            await Xamarin.Essentials.Clipboard.SetTextAsync(skyLink);
-
-            Log.Trace("Set clipboard text to " + skyLink);
-            userDialogs.Toast("Copied SkyLink to clipboard");
+            await barcodeService.ScanBarcode();
         }
 
         public override async Task Initialize()
@@ -119,6 +117,18 @@ namespace SkyDrop.Core.ViewModels.Main
             SkyFiles = new List<SkyFileDVM>(SkyFiles.Where(f => f.SkyFile.Skylink != file.Skylink));
             _ = RaisePropertyChanged(() => SkyFiles);
             storageService.DeleteSkyFile(file);
+        }
+
+        private async Task CopyFileLinkToClipboard(SkyFile skyFile)
+        {
+            string skyLink = skyFile.Skylink;
+            if (string.IsNullOrEmpty(skyLink))
+                return;
+
+            await Xamarin.Essentials.Clipboard.SetTextAsync(skyLink);
+
+            Log.Trace("Set clipboard text to " + skyLink);
+            userDialogs.Toast("Copied SkyLink to clipboard");
         }
 
         private async Task UploadStagedFiles()
