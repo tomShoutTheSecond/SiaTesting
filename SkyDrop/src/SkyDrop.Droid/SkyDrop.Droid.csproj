@@ -77,6 +77,7 @@
     <Compile Include="Helper\AndroidUtil.cs" />
     <Compile Include="Bindings\CardBackgroundColorBinding.cs" />
     <Compile Include="Views\Main\BarcodeView.cs" />
+    <Compile Include="Views\Main\DropView.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MvvmCross">
@@ -149,6 +150,10 @@
       <Generator></Generator>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\BarcodeView.axml">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\DropView.axml">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
