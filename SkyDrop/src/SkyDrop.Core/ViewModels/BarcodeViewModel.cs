@@ -18,7 +18,17 @@ namespace SkyDrop.Core.ViewModels.Main
         private readonly IUserDialogs userDialogs;
         private readonly IBarcodeService barcodeService;
 
+        private string barcodeMessage;
+
         public IMvxCommand GenerateBarcodeCommand { get; set; }
+        public IMvxCommand ScanBarcodeCommand { get; set; }
+
+        private Func<Task> _generateBarcodeAsyncFunc;
+        public Func<Task> GenerateBarcodeAsyncFunc
+        {
+            get => _generateBarcodeAsyncFunc ?? throw new ArgumentNullException(nameof(GenerateBarcodeAsyncFunc));
+            set => _generateBarcodeAsyncFunc = value;
+        }
 
         public BarcodeViewModel(ISingletonService singletonService,
                              IApiService apiService,
@@ -34,13 +44,21 @@ namespace SkyDrop.Core.ViewModels.Main
             this.userDialogs = userDialogs;
             this.barcodeService = barcodeService;
 
-            GenerateBarcodeCommand = new MvxCommand(GenerateBarcode);
+            GenerateBarcodeCommand = new MvxAsyncCommand(async () => await GenerateBarcodeAsyncFunc());
+            ScanBarcodeCommand = new MvxAsyncCommand(ScanBarcode);
         }
 
-        private void GenerateBarcode()
+        private async Task ScanBarcode()
         {
-
+            barcodeMessage = await barcodeService.ScanBarcode();
         }
 
+        public override void ViewAppeared()
+        {
+            base.ViewAppeared();
+
+            if (!string.IsNullOrEmpty(barcodeMessage))
+                userDialogs.Toast(barcodeMessage, new TimeSpan(0, 0, 10));
+        }
     }
 }

@@ -37,7 +37,8 @@ namespace SkyDrop.Droid.Views.Main
             ViewModel.FileTapCommand = new MvxCommand<SkyFile>(OpenFile);
 
             var progressBar = FindViewById<ProgressBar>(Resource.Id.ProgressBar);
-            progressBar.IndeterminateDrawable.SetColorFilter(Color.White, PorterDuff.Mode.SrcIn);
+            if(progressBar != null)
+                progressBar.IndeterminateDrawable.SetColorFilter(Color.White, PorterDuff.Mode.SrcIn);
         }
 
         private async Task SelectImage()

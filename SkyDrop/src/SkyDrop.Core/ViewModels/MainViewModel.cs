@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Acr.UserDialogs;
 using MvvmCross.Commands;
+using MvvmCross.Navigation;
 using SkyDrop.Core.DataModels;
 using SkyDrop.Core.DataViewModels;
 using SkyDrop.Core.Services;
@@ -20,18 +21,16 @@ namespace SkyDrop.Core.ViewModels.Main
 
         public bool IsLoading { get; set; }
 
-        private string barcodeMessage;
-
         private readonly IApiService apiService;
         private readonly IStorageService storageService;
         private readonly IUserDialogs userDialogs;
-        private readonly IBarcodeService barcodeService;
+        private readonly IMvxNavigationService navigationService;
 
         public IMvxAsyncCommand SelectFileCommand { get; set; }
         public IMvxCommand SelectImageCommand { get; set; }
         public IMvxCommand FileTapCommand { get; set; }
         public IMvxCommand UploadCommand { get; set; }
-        public IMvxCommand ScanBarcodeCommand { get; set; }
+        public IMvxCommand NavBarcodeCommand { get; set; }
 
         private Func<Task> _selectFileAsyncFunc;
         public Func<Task> SelectFileAsyncFunc
@@ -51,7 +50,7 @@ namespace SkyDrop.Core.ViewModels.Main
                              IApiService apiService,
                              IStorageService storageService,
                              IUserDialogs userDialogs,
-                             IBarcodeService barcodeService,
+                             IMvxNavigationService navigationService,
                              ILog log) : base(singletonService)
         {
             Title = "Upload";
@@ -59,17 +58,17 @@ namespace SkyDrop.Core.ViewModels.Main
             this.apiService = apiService;
             this.storageService = storageService;
             this.userDialogs = userDialogs;
-            this.barcodeService = barcodeService;
+            this.navigationService = navigationService;
 
             SelectFileCommand = new MvxAsyncCommand(async () => await SelectFileAsyncFunc());
             SelectImageCommand = new MvxAsyncCommand(async () => await SelectImageAsyncFunc());
             UploadCommand = new MvxAsyncCommand(UploadStagedFiles);
-            ScanBarcodeCommand = new MvxAsyncCommand(ScanBarcode);
+            NavBarcodeCommand = new MvxAsyncCommand(NavToBarcode);
         }
 
-        private async Task ScanBarcode()
+        private async Task NavToBarcode()
         {
-            barcodeMessage = await barcodeService.ScanBarcode();
+            await navigationService.Navigate<BarcodeViewModel>();
         }
 
         public override async Task Initialize()
@@ -77,14 +76,6 @@ namespace SkyDrop.Core.ViewModels.Main
             await base.Initialize();
 
             LoadSkyFiles();
-        }
-
-        public override void ViewAppeared()
-        {
-            base.ViewAppeared();
-
-            if (!string.IsNullOrEmpty(barcodeMessage))
-                userDialogs.Toast(barcodeMessage, new TimeSpan(0, 0, 10));
         }
 
         private void LoadSkyFiles()

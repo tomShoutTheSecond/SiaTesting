@@ -22,7 +22,7 @@
         <Button
             android:layout_width="32dp"
             android:layout_height="32dp"
-            android:text="HELLO"
-            app:MvxBind="Click ScanBarcodeCommand"/>
+            android:text="Q"
+            app:MvxBind="Click NavBarcodeCommand"/>
     </androidx.appcompat.widget.Toolbar>
 </com.google.android.material.appbar.AppBarLayout>

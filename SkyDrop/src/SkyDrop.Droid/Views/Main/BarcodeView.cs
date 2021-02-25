@@ -29,39 +29,43 @@ namespace SkyDrop.Droid.Views.Main
             await ViewModel.InitializeTask.Task;
 
             Log.Trace("BarcodeView OnCreate()");
+
+            ViewModel.GenerateBarcodeAsyncFunc = ShowBarcode;
         }
 
-        private void ShowBarcode()
+        private async Task ShowBarcode()
         {
             var imageView = FindViewById<ImageView>(Resource.Id.BarcodeImage);
-            var bitmap = EncodeBarcode("panchos", imageView.Width, imageView.Height);
+            var bitmap = await EncodeBarcode("panchos", imageView.Width, imageView.Height);
             imageView.SetImageBitmap(bitmap);
         }
 
-        private Bitmap EncodeBarcode(String text, int width, int height)
+        private Task<Bitmap> EncodeBarcode(string text, int width, int height)
         {
-            QRCodeWriter writer = new QRCodeWriter();
-            BitMatrix matrix = null;
-
-            try
+            return Task.Run(() =>
             {
-                matrix = writer.encode(text, BarcodeFormat.QR_CODE, width, height);
-            }
-            catch (WriterException ex)
-            {
-                //
-            }
-
-            Bitmap bmp = Bitmap.CreateBitmap(width, height, Bitmap.Config.Rgb565);
-            for (int x = 0; x < width; x++)
-            {
-                for (int y = 0; y < height; y++)
+                try
                 {
-                    bmp.SetPixel(x, y, GetBit(matrix, x, y) ? Color.Black : Color.White);
-                }
-            }
+                    var writer = new QRCodeWriter();
+                    var matrix = writer.encode(text, BarcodeFormat.QR_CODE, width, height);
 
-            return bmp;
+                    var bitmap = Bitmap.CreateBitmap(width, height, Bitmap.Config.Rgb565);
+                    for (int x = 0; x < width; x++)
+                    {
+                        for (int y = 0; y < height; y++)
+                        {
+                            bitmap.SetPixel(x, y, GetBit(matrix, x, y) ? Color.Black : Color.White);
+                        }
+                    }
+
+                    return bitmap;
+                }
+                catch (WriterException ex)
+                {
+                    ViewModel.Log.Exception(ex);
+                    return null;
+                }
+            });
         }
 
         private bool GetBit(BitMatrix matrix, int x, int y)
