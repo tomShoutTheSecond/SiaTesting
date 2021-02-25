@@ -1,12 +1,22 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Threading.Tasks;
+using Android.App;
 using Android.Content;
 using Android.Provider;
+using Android.Widget;
+using MvvmCross;
+using SkyDrop.Core.DataModels;
+using SkyDrop.Core.Services;
+using Xamarin.Essentials;
 
 namespace SkyDrop.Droid.Helper
 {
     public static class AndroidUtil
     {
+        public const int PickFileRequestCode = 100;
+        private static readonly ILog log = Mvx.IoCProvider.Resolve<ILog>();
+
         /// <summary>
         /// Get the filename for a local file on Android
         /// </summary>
@@ -72,6 +82,135 @@ namespace SkyDrop.Droid.Helper
             }
 
             return displayName;
+        }
+
+        public static async Task SelectImage(Activity context)
+        {
+            if (!await CheckPermissions())
+                return;
+
+            var intent = new Intent(Intent.ActionGetContent);
+            intent.SetType("image/*");
+            context.StartActivityForResult(intent, AndroidUtil.PickFileRequestCode);
+        }
+
+        public static async Task SelectFile(Activity context)
+        {
+            try
+            {
+                if (!await CheckPermissions())
+                    return;
+
+                var intent = new Intent(Intent.ActionGetContent);
+                intent.SetType("file/*");
+                intent.AddCategory(Intent.CategoryOpenable);
+
+                // special intent for Samsung file manager
+                Intent sIntent = new Intent("com.sec.android.app.myfiles.PICK_DATA");
+                sIntent.AddCategory(Intent.CategoryDefault);
+
+                Intent chooserIntent;
+                if (context.PackageManager.ResolveActivity(sIntent, 0) != null)
+                {
+                    // it is device with Samsung file manager
+                    chooserIntent = Intent.CreateChooser(sIntent, "Open file");
+                    chooserIntent.PutExtra(Intent.ExtraInitialIntents, new Intent[] { intent });
+                }
+                else
+                {
+                    chooserIntent = Intent.CreateChooser(intent, "Open file");
+                }
+
+                try
+                {
+                    context.StartActivityForResult(chooserIntent, PickFileRequestCode);
+                }
+                catch (Android.Content.ActivityNotFoundException ex)
+                {
+                    log.Exception(ex);
+                    Toast.MakeText(context, "No suitable File Manager was found", ToastLength.Short).Show();
+                }
+            }
+            catch (Exception ex)
+            {
+                log.Exception(ex);
+            }
+        }
+
+        public static async Task<StagedFile> HandlePickedFile(Activity context, Intent data)
+        {
+            //handle the selected file
+            var uri = data.Data;
+            string mimeType = context.ContentResolver.GetType(uri);
+            log.Trace("mime type: " + mimeType);
+
+            string extension = System.IO.Path.GetExtension(uri.Path);
+            log.Trace("extension: " + extension);
+
+            log.Trace("path: " + uri.Path);
+
+            var filename = GetFileName(context, uri);
+
+            Toast.MakeText(context, uri.Path, ToastLength.Long).Show();
+
+            var fileBytes = await ReadFile(context, uri);
+            return new StagedFile
+            {
+                Filename = filename,
+                Data = fileBytes
+            };
+        }
+
+        public static async Task<byte[]> ReadFile(Activity context, Android.Net.Uri uri)
+        {
+            var inputStream = context.ContentResolver.OpenInputStream(uri);
+
+            byte[] bytes = new byte[inputStream.Length];
+            try
+            {
+                var buffer = new Java.IO.BufferedInputStream(inputStream);
+                await buffer.ReadAsync(bytes);
+                buffer.Close();
+            }
+            catch (Exception e)
+            {
+                log.Trace("Failed to read file");
+                log.Exception(e);
+            }
+
+            return bytes;
+        }
+
+        public static void OpenFileInBrowser(Activity context, SkyFile file)
+        {
+            Toast.MakeText(context, $"Opening file {file.Filename}", ToastLength.Long).Show();
+
+            var browserIntent = new Intent(Intent.ActionView, Android.Net.Uri.Parse(file.Skylink));
+            context.StartActivity(browserIntent);
+        }
+
+
+
+        private static async Task<bool> CheckPermissions()
+        {
+            try
+            {
+                var status = await Permissions.CheckStatusAsync<Permissions.StorageRead>();
+
+                if (status != PermissionStatus.Granted)
+                {
+                    status = await Permissions.RequestAsync<Permissions.StorageRead>();
+                }
+
+                return status == PermissionStatus.Granted;
+            }
+            catch (Exception ex)
+            {
+                log.Error("Permission not granted");
+                log.Exception(ex);
+
+                return false;
+            }
         }
     }
 }

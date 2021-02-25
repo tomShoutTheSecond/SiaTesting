@@ -22,8 +22,6 @@ namespace SkyDrop.Droid.Views.Main
     {
         protected override int ActivityLayoutId => Resource.Layout.DropView;
 
-        private const int pickFileRequestCode = 100;
-
         protected override async void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
@@ -31,6 +29,8 @@ namespace SkyDrop.Droid.Views.Main
             await ViewModel.InitializeTask.Task;
 
             Log.Trace("DropView OnCreate()");
+
+            ViewModel.OpenFileCommand = new MvxCommand<SkyFile>(skyFile => AndroidUtil.OpenFileInBrowser(this, skyFile));
         }
     }
 }

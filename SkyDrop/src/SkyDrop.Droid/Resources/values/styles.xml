@@ -25,4 +25,5 @@
     <!-- Default Splash Screen theme applied if no resource style overrides for specific API level -->
     <style name="AppTheme.Splash" parent="AppTheme.Splash.Base">
     </style>
+
 </resources>
