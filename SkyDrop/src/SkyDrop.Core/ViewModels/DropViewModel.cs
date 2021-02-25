@@ -26,6 +26,7 @@ namespace SkyDrop.Core.ViewModels.Main
         public IMvxCommand<SkyFile> OpenFileCommand { get; set; }
 
         private StagedFile stagedFile { get; set; }
+        private string errorMessage;
 
         private Func<Task> _selectFileAsyncFunc;
         public Func<Task> SelectFileAsyncFunc
@@ -57,16 +58,24 @@ namespace SkyDrop.Core.ViewModels.Main
             this.navigationService = navigationService;
             this.barcodeService = barcodeService;
 
-            SendCommand = new MvxAsyncCommand(StartSend);
-            ReceiveCommand = new MvxAsyncCommand(StartReceive);
+            SendCommand = new MvxAsyncCommand(SendFile);
+            ReceiveCommand = new MvxAsyncCommand(ReceiveFile);
         }
 
-        private async Task StartSend()
+        public override void ViewAppeared()
         {
+            base.ViewAppeared();
 
+            //show error message after the qr code scanner view has closed to avoid exception
+            if (!string.IsNullOrEmpty(errorMessage))
+                userDialogs.Toast(errorMessage);
         }
 
-        private async Task StartReceive()
+        private async Task SendFile()
+        {
+        }
+
+        private async Task ReceiveFile()
         {
             try
             {
@@ -81,7 +90,14 @@ namespace SkyDrop.Core.ViewModels.Main
                 //open the file in browser
                 OpenFileCommand.Execute(skyFile);
             }
-            catch(Exception e)
+            catch(JsonException e)
+            {
+                Log.Exception(e);
+
+                //show error message after the qr code scanner view has closed to avoid exception
+                errorMessage = "Error: Invalid QR code";
+            }
+            catch (Exception e)
             {
                 Log.Exception(e);
             }

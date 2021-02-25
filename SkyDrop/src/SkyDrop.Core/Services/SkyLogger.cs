@@ -36,9 +36,12 @@ namespace SkyDrop
 
             exceptionCount++;
 
+            //TODO: had to comment this out because it was crashing the qr code scanner in DropViewModel, not sure whats up
+            /*
             PrintError($"Encoutered exception no# {exceptionCount}");
 
             PrintExceptionInfo(ex, isInnerException: false);
+            */
         }
 
         protected void PrintExceptionInfo(System.Exception ex, bool isInnerException)
