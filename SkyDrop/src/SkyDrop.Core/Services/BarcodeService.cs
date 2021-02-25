@@ -1,5 +1,8 @@
 using System.Threading.Tasks;
+using ZXing;
+using ZXing.Common;
 using ZXing.Mobile;
+using ZXing.QrCode;
 
 namespace SkyDrop.Core.Services
 {
@@ -21,10 +24,19 @@ namespace SkyDrop.Core.Services
             log.Trace(message);
             return message;
         }
+
+        public BitMatrix GenerateBarcode(string text, int width, int height)
+        {
+            var writer = new MultiFormatWriter();
+            var matrix = writer.encode(text, BarcodeFormat.QR_CODE, width, height);
+            return matrix;
+        }
     }
 
     public interface IBarcodeService
     {
         Task<string> ScanBarcode();
+
+        BitMatrix GenerateBarcode(string text, int width, int height);
     }
 }

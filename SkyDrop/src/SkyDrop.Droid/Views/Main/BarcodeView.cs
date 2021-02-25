@@ -46,9 +46,7 @@ namespace SkyDrop.Droid.Views.Main
             {
                 try
                 {
-                    var writer = new QRCodeWriter();
-                    var matrix = writer.encode(text, BarcodeFormat.QR_CODE, width, height);
-
+                    var matrix = ViewModel.GenerateBarcode(text, width, height);
                     var bitmap = Bitmap.CreateBitmap(width, height, Bitmap.Config.Rgb565);
                     for (int x = 0; x < width; x++)
                     {

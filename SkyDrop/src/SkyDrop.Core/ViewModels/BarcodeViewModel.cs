@@ -8,6 +8,7 @@ using MvvmCross.Commands;
 using SkyDrop.Core.DataModels;
 using SkyDrop.Core.DataViewModels;
 using SkyDrop.Core.Services;
+using ZXing.Common;
 
 namespace SkyDrop.Core.ViewModels.Main
 {
@@ -51,6 +52,11 @@ namespace SkyDrop.Core.ViewModels.Main
         private async Task ScanBarcode()
         {
             barcodeMessage = await barcodeService.ScanBarcode();
+        }
+
+        public BitMatrix GenerateBarcode(string text, int width, int height)
+        {
+            return barcodeService.GenerateBarcode(text, width, height);
         }
 
         public override void ViewAppeared()
