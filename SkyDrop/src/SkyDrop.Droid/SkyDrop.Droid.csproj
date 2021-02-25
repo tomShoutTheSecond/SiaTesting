@@ -76,6 +76,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Helper\AndroidUtil.cs" />
     <Compile Include="Bindings\CardBackgroundColorBinding.cs" />
+    <Compile Include="Views\Main\BarcodeView.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MvvmCross">
@@ -144,6 +145,10 @@
       <Generator></Generator>
     </AndroidResource>
     <AndroidResource Include="Resources\drawable\ic_delete.xml">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\BarcodeView.axml">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>

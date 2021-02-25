@@ -11,6 +11,9 @@ using SkyDrop.Core.DataModels;
 using SkyDrop.Core.ViewModels.Main;
 using SkyDrop.Droid.Helper;
 using Xamarin.Essentials;
+using ZXing;
+using ZXing.Common;
+using ZXing.QrCode;
 
 namespace SkyDrop.Droid.Views.Main
 {
@@ -112,7 +115,7 @@ namespace SkyDrop.Droid.Views.Main
             }
         }
 
-        protected override async void OnActivityResult(int requestCode, Result resultCode, Intent data)
+        protected override async void OnActivityResult(int requestCode, Android.App.Result resultCode, Intent data)
         {
             try
             {
@@ -160,7 +163,7 @@ namespace SkyDrop.Droid.Views.Main
             try
             {
                 var buffer = new Java.IO.BufferedInputStream(inputStream);
-                await buffer.ReadAsync(bytes);//.Read(bytes, 0, bytes.Length);
+                await buffer.ReadAsync(bytes);
                 buffer.Close();
             }
             catch (Exception e)
@@ -178,6 +181,69 @@ namespace SkyDrop.Droid.Views.Main
 
             var browserIntent = new Intent(Intent.ActionView, Android.Net.Uri.Parse(file.Skylink));
             StartActivity(browserIntent);
+        }
+        /*
+        private void smash()
+        {
+            String text = ""; // Whatever you need to encode in the QR code
+            MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
+            try
+            {
+                var bitMatrix = multiFormatWriter.encode(text, BarcodeFormat.QR_CODE, 200, 200);
+
+                bitMatrix.t
+
+                ZXing.Client.
+
+                MatrixToImageWriter.writeToStream(bitMatrix, "PNG", os)
+
+                //var barcodeEncoder = new BarcodeWriter<byte[]>();
+                //Bitmap bitmap = barcodeEncoder.//.CreateBitmap(bitMatrix);
+                //imageView.setImageBitmap(bitmap);
+            }
+            catch (WriterException e)
+            {
+                e.printStackTrace();
+            }
+        }*/
+
+        private void ShowBarcode()
+        {
+            var imageView = FindViewById<ImageView>(Resource.Id.BarcodeImage);
+            var bitmap = EncodeBarcode("panchos", imageView.Width, imageView.Height);
+            imageView.SetImageBitmap(bitmap);
+        }
+
+        private Bitmap EncodeBarcode(String text, int width, int height)
+        {
+            QRCodeWriter writer = new QRCodeWriter();
+            BitMatrix matrix = null;
+
+            try
+            {
+                matrix = writer.encode(text, BarcodeFormat.QR_CODE, width, height);
+            }
+            catch (WriterException ex)
+            {
+                //
+            }
+
+            Bitmap bmp = Bitmap.CreateBitmap(width, height, Bitmap.Config.Rgb565);
+            for (int x = 0; x < width; x++)
+            {
+                for (int y = 0; y < height; y++)
+                {
+                    bmp.SetPixel(x, y, GetBit(matrix, x, y) ? Color.Black : Color.White);
+                }
+            }
+
+            return bmp;
+        }
+
+        private bool GetBit(BitMatrix matrix, int x, int y)
+        {
+            var row = matrix.getRow(y, null);
+            return row[x];
         }
     }
 }
