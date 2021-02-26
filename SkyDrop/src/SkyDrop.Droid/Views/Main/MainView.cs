@@ -22,7 +22,6 @@ namespace SkyDrop.Droid.Views.Main
     {
         protected override int ActivityLayoutId => Resource.Layout.MainView;
 
-
         protected override async void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);

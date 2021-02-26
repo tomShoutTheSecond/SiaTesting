@@ -30,7 +30,44 @@ namespace SkyDrop.Droid.Views.Main
 
             Log.Trace("DropView OnCreate()");
 
+            ViewModel.SelectFileAsyncFunc = async () => await AndroidUtil.SelectFile(this);
+            ViewModel.SelectImageAsyncFunc = async () => await AndroidUtil.SelectImage(this);
             ViewModel.OpenFileCommand = new MvxCommand<SkyFile>(skyFile => AndroidUtil.OpenFileInBrowser(this, skyFile));
+            ViewModel.GenerateBarcodeAsyncFunc = ShowBarcode;
+        }
+
+        protected override async void OnActivityResult(int requestCode, Android.App.Result resultCode, Intent data)
+        {
+            try
+            {
+                if (requestCode == AndroidUtil.PickFileRequestCode)
+                {
+                    if (data == null)
+                        return;
+
+                    await HandlePickedFile(data);
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Exception(ex);
+            }
+
+            base.OnActivityResult(requestCode, resultCode, data);
+        }
+
+        private async Task HandlePickedFile(Intent data)
+        {
+            var stagedFile = await AndroidUtil.HandlePickedFile(this, data);
+            ViewModel.StageFile(stagedFile);
+        }
+
+        public async Task ShowBarcode()
+        {
+            var imageView = FindViewById<ImageView>(Resource.Id.BarcodeImage);
+            var matrix = ViewModel.GenerateBarcode(ViewModel.SkyFileJson, imageView.Width, imageView.Height);
+            var bitmap = await AndroidUtil.EncodeBarcode(matrix, imageView.Width, imageView.Height);
+            imageView.SetImageBitmap(bitmap);
         }
     }
 }

@@ -10,6 +10,7 @@ using Newtonsoft.Json;
 using SkyDrop.Core.DataModels;
 using SkyDrop.Core.DataViewModels;
 using SkyDrop.Core.Services;
+using ZXing.Common;
 
 namespace SkyDrop.Core.ViewModels.Main
 {
@@ -24,6 +25,9 @@ namespace SkyDrop.Core.ViewModels.Main
         public IMvxCommand SendCommand { get; set; }
         public IMvxCommand ReceiveCommand { get; set; }
         public IMvxCommand<SkyFile> OpenFileCommand { get; set; }
+
+        public string SkyFileJson { get; set; }
+        public bool IsLoading { get; set; }
 
         private StagedFile stagedFile { get; set; }
         private string errorMessage;
@@ -42,6 +46,13 @@ namespace SkyDrop.Core.ViewModels.Main
             set => _selectImageAsyncFunc = value;
         }
 
+        private Func<Task> _generateBarcodeAsyncFunc;
+        public Func<Task> GenerateBarcodeAsyncFunc
+        {
+            get => _generateBarcodeAsyncFunc ?? throw new ArgumentNullException(nameof(GenerateBarcodeAsyncFunc));
+            set => _generateBarcodeAsyncFunc = value;
+        }
+
         public DropViewModel(ISingletonService singletonService,
                              IApiService apiService,
                              IStorageService storageService,
@@ -58,7 +69,7 @@ namespace SkyDrop.Core.ViewModels.Main
             this.navigationService = navigationService;
             this.barcodeService = barcodeService;
 
-            SendCommand = new MvxAsyncCommand(SendFile);
+            SendCommand = new MvxAsyncCommand(StartSendFile);
             ReceiveCommand = new MvxAsyncCommand(ReceiveFile);
         }
 
@@ -68,11 +79,49 @@ namespace SkyDrop.Core.ViewModels.Main
 
             //show error message after the qr code scanner view has closed to avoid exception
             if (!string.IsNullOrEmpty(errorMessage))
+            {
                 userDialogs.Toast(errorMessage);
+                errorMessage = null;
+            }
         }
 
-        private async Task SendFile()
+        private async Task StartSendFile()
         {
+            var file = "Select File";
+            var image = "Select Image";
+            var fileType = await userDialogs.ActionSheetAsync("", "cancel", "", null, file, image);
+            if (fileType == file)
+            {
+                await SelectFileAsyncFunc();
+            }
+            else
+            {
+                await SelectImageAsyncFunc();
+            }
+        }
+
+        private async Task FinishSendFile()
+        {
+            try
+            {
+                IsLoading = true;
+                _ = RaisePropertyChanged(() => IsLoading);
+
+                var skyFile = await UploadFile();
+
+                //show QR code
+                SkyFileJson = JsonConvert.SerializeObject(skyFile);
+                await GenerateBarcodeAsyncFunc();
+            }
+            catch(Exception e)
+            {
+                Log.Exception(e);
+            }
+            finally
+            {
+                IsLoading = false;
+                _ = RaisePropertyChanged(() => IsLoading);
+            }
         }
 
         private async Task ReceiveFile()
@@ -96,6 +145,7 @@ namespace SkyDrop.Core.ViewModels.Main
 
                 //show error message after the qr code scanner view has closed to avoid exception
                 errorMessage = "Error: Invalid QR code";
+                Log.Error(errorMessage);
             }
             catch (Exception e)
             {
@@ -103,13 +153,22 @@ namespace SkyDrop.Core.ViewModels.Main
             }
         }
 
-        private async Task UploadFile()
+        public void StageFile(StagedFile stagedFile)
+        {
+            this.stagedFile = stagedFile;
+
+            FinishSendFile();
+        }
+
+        private async Task<SkyFile> UploadFile()
         {
             var skyFile = await apiService.UploadFile(stagedFile.Filename, stagedFile.Data);
-            var skyFileJson = JsonConvert.SerializeObject(skyFile);
+            return skyFile;
+        }
 
-            var barcode = barcodeService.GenerateBarcode(skyFileJson, 200, 200);
-
+        public BitMatrix GenerateBarcode(string text, int width, int height)
+        {
+            return barcodeService.GenerateBarcode(text, width, height);
         }
     }
 }

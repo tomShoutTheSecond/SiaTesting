@@ -38,6 +38,17 @@
                     android:gravity="center_horizontal"
                     android:text="SEND"/>
             </LinearLayout>
+            <ImageView
+                android:id="@+id/BarcodeImage"
+                android:layout_width="128dp"
+                android:layout_height="128dp"
+                android:layout_marginBottom="16dp"
+                android:layout_gravity="center"/>
+            <ProgressBar
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_gravity="center"
+                app:MvxBind="Visibility Visibility(IsLoading)"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

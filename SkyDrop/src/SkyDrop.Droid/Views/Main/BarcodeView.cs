@@ -33,43 +33,12 @@ namespace SkyDrop.Droid.Views.Main
             ViewModel.GenerateBarcodeAsyncFunc = ShowBarcode;
         }
 
-        private async Task ShowBarcode()
+        public async Task ShowBarcode()
         {
             var imageView = FindViewById<ImageView>(Resource.Id.BarcodeImage);
-            var bitmap = await EncodeBarcode("panchos", imageView.Width, imageView.Height);
+            var matrix = ViewModel.GenerateBarcode("panchos", imageView.Width, imageView.Height);
+            var bitmap = await AndroidUtil.EncodeBarcode(matrix, imageView.Width, imageView.Height);
             imageView.SetImageBitmap(bitmap);
-        }
-
-        private Task<Bitmap> EncodeBarcode(string text, int width, int height)
-        {
-            return Task.Run(() =>
-            {
-                try
-                {
-                    var matrix = ViewModel.GenerateBarcode(text, width, height);
-                    var bitmap = Bitmap.CreateBitmap(width, height, Bitmap.Config.Rgb565);
-                    for (int x = 0; x < width; x++)
-                    {
-                        for (int y = 0; y < height; y++)
-                        {
-                            bitmap.SetPixel(x, y, GetBit(matrix, x, y) ? Color.Black : Color.White);
-                        }
-                    }
-
-                    return bitmap;
-                }
-                catch (WriterException ex)
-                {
-                    ViewModel.Log.Exception(ex);
-                    return null;
-                }
-            });
-        }
-
-        private bool GetBit(BitMatrix matrix, int x, int y)
-        {
-            var row = matrix.getRow(y, null);
-            return row[x];
         }
     }
 }

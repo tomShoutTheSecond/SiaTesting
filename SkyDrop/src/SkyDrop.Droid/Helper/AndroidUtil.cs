@@ -3,12 +3,15 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
+using Android.Graphics;
 using Android.Provider;
 using Android.Widget;
 using MvvmCross;
 using SkyDrop.Core.DataModels;
 using SkyDrop.Core.Services;
 using Xamarin.Essentials;
+using ZXing;
+using ZXing.Common;
 
 namespace SkyDrop.Droid.Helper
 {
@@ -189,8 +192,6 @@ namespace SkyDrop.Droid.Helper
             context.StartActivity(browserIntent);
         }
 
-
-
         private static async Task<bool> CheckPermissions()
         {
             try
@@ -211,6 +212,37 @@ namespace SkyDrop.Droid.Helper
 
                 return false;
             }
+        }
+
+        public static Task<Bitmap> EncodeBarcode(BitMatrix matrix, int width, int height)
+        {
+            return Task.Run(() =>
+            {
+                try
+                {
+                    var bitmap = Bitmap.CreateBitmap(width, height, Bitmap.Config.Rgb565);
+                    for (int x = 0; x < width; x++)
+                    {
+                        for (int y = 0; y < height; y++)
+                        {
+                            bitmap.SetPixel(x, y, GetBit(matrix, x, y) ? Color.Black : Color.White);
+                        }
+                    }
+
+                    return bitmap;
+                }
+                catch (WriterException ex)
+                {
+                    log.Exception(ex);
+                    return null;
+                }
+            });
+        }
+
+        public static bool GetBit(BitMatrix matrix, int x, int y)
+        {
+            var row = matrix.getRow(y, null);
+            return row[x];
         }
     }
 }
