@@ -1,12 +1,20 @@
 using System;
+using System.Runtime.CompilerServices;
+
 namespace SkyDrop.Core.Services
 {
     public interface ILog
     {
-        public void Exception(Exception exception);
+        public void Exception(Exception exception,
+            [CallerFilePath] string sourceFilePath = "",
+            [CallerLineNumber] int sourceLineNumber = 0);
 
-        void Error(string errorMessage, System.Exception ex);
+        void Error(string errorMessage, Exception ex,
+            [CallerFilePath] string sourceFilePath = "",
+            [CallerLineNumber] int sourceLineNumber = 0);
 
-        void Error(string errorMessage);
+        void Error(string errorMessage,
+            [CallerFilePath] string sourceFilePath = "",
+            [CallerLineNumber] int sourceLineNumber = 0);
     }
 }

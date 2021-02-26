@@ -1,4 +1,6 @@
 using System.Diagnostics;
+using System.IO;
+using System.Runtime.CompilerServices;
 using SkyDrop.Core.Services;
 
 // Tooling can in exceptional cases be placed into the root namespace, to gain accessibility wherever we need the extensions.
@@ -6,14 +8,18 @@ namespace SkyDrop
 {
     public static class TraceLog
     {
+        // help from https://stackoverflow.com/a/39137495/9436321
+
 #pragma warning disable 612
         [Conditional("DEBUG")]
-        public static void Trace<T>(this T t, string message) where T : ILog
+        public static void Trace(this ILog t, string message,
+            [CallerFilePath] string sourceFilePath = "",
+            [CallerLineNumber] int sourceLineNumber = 0)
         {
-            // from https://stackoverflow.com/a/39137495/9436321
-            Debug.WriteLine(($"[{nameof(SkyLogger)}] " + message));
+            string fileName = Path.GetFileName(sourceFilePath);
+
+            Debug.WriteLine(($"{fileName}:{sourceLineNumber} " + message));
         }
 #pragma warning restore 612
-
     }
 }
