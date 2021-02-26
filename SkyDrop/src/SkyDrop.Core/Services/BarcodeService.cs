@@ -19,10 +19,7 @@ namespace SkyDrop.Core.Services
         {
             var scanner = new MobileBarcodeScanner();
             var result = await scanner.Scan();
-
-            var message = result == null ? "Scanned NULL Barcode" : "Scanned Barcode: " + result.Text;
-            log.Trace(message);
-            return message;
+            return result.Text;
         }
 
         public BitMatrix GenerateBarcode(string text, int width, int height)
