@@ -19,7 +19,8 @@ namespace SkyDrop.Core.Services
         {
             var scanner = new MobileBarcodeScanner();
             var result = await scanner.Scan();
-            return result.Text;
+            // Here you were getting a nullReference exception, which broke your app
+            return result?.Text;
         }
 
         public BitMatrix GenerateBarcode(string text, int width, int height)

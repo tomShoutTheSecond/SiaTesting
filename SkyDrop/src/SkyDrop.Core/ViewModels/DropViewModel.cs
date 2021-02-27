@@ -134,6 +134,9 @@ namespace SkyDrop.Core.ViewModels.Main
 
                 //open the QR code scan view
                 var codeJson = await barcodeService.ScanBarcode();
+
+                if (codeJson == null) return;
+
                 var skyFile = JsonConvert.DeserializeObject<SkyFile>(codeJson);
 
                 //open the file in browser
