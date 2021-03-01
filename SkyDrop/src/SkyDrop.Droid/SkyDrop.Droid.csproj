@@ -78,6 +78,7 @@
     <Compile Include="Bindings\CardBackgroundColorBinding.cs" />
     <Compile Include="Views\Main\BarcodeView.cs" />
     <Compile Include="Views\Main\DropView.cs" />
+    <Compile Include="Views\Main\MenuView.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MvvmCross">
@@ -162,6 +163,10 @@
       <Generator></Generator>
     </AndroidResource>
     <AndroidResource Include="Resources\drawable\ic_upload.xml">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\MenuView.axml">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
