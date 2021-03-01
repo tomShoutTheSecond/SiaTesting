@@ -1,11 +1,8 @@
 using System;
-using System.Diagnostics;
-using System.IO;
 using System.Runtime.CompilerServices;
 using FFImageLoading.Helpers;
-using SkyDrop.Core.Services;
 
-// Exposing SkyLogger and ILog to the entire namespace, because it is using for app output traces
+// In exceptional cases, tooling may be placed into the root namespace to gain accessibility to the members everywhere.
 namespace SkyDrop
 {
     public class SkyLogger : ILog, IMiniLogger
@@ -46,7 +43,6 @@ namespace SkyDrop
 
             exceptionCount++;
 
-            //TODO: had to comment this out because it was crashing the qr code scanner in DropViewModel, not sure whats up
             PrintError($"Encoutered exception no# {exceptionCount}", sourceFilePath, sourceLineNumber);
 
             PrintExceptionInfo(ex, isInnerException: false, sourceFilePath, sourceLineNumber);

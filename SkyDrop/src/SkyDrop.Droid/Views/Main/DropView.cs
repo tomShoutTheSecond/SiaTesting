@@ -59,7 +59,7 @@ namespace SkyDrop.Droid.Views.Main
         private async Task HandlePickedFile(Intent data)
         {
             var stagedFile = await AndroidUtil.HandlePickedFile(this, data);
-            ViewModel.StageFile(stagedFile);
+            await ViewModel.StageFile(stagedFile);
         }
 
         public async Task ShowBarcode()

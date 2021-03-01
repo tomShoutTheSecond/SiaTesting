@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Acr.UserDialogs;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using Newtonsoft.Json;
 using SkyDrop.Core.DataModels;
-using SkyDrop.Core.DataViewModels;
 using SkyDrop.Core.Services;
 using ZXing.Common;
 
@@ -113,7 +109,7 @@ namespace SkyDrop.Core.ViewModels.Main
                 SkyFileJson = JsonConvert.SerializeObject(skyFile);
                 await GenerateBarcodeAsyncFunc();
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Log.Exception(e);
             }
@@ -135,14 +131,15 @@ namespace SkyDrop.Core.ViewModels.Main
                 //open the QR code scan view
                 var codeJson = await barcodeService.ScanBarcode();
 
-                if (codeJson == null) return;
+                if (codeJson == null)
+                    return;
 
                 var skyFile = JsonConvert.DeserializeObject<SkyFile>(codeJson);
 
                 //open the file in browser
                 OpenFileCommand.Execute(skyFile);
             }
-            catch(JsonException e)
+            catch (JsonException e)
             {
                 Log.Exception(e);
 
@@ -156,11 +153,11 @@ namespace SkyDrop.Core.ViewModels.Main
             }
         }
 
-        public void StageFile(StagedFile stagedFile)
+        public async Task StageFile(StagedFile stagedFile)
         {
             this.stagedFile = stagedFile;
 
-            FinishSendFile();
+            await FinishSendFile();
         }
 
         private async Task<SkyFile> UploadFile()
