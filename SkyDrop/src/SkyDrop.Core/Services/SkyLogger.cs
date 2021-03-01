@@ -79,7 +79,7 @@ namespace SkyDrop
                            string sourceFilePath,
                            int sourceLineNumber)
         {
-            TraceLog.Trace(this, message, sourceFilePath, sourceLineNumber);
+            TraceLog.Print(message, sourceFilePath, sourceLineNumber);
         }
     }
 }

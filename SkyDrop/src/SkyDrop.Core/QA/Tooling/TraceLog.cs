@@ -16,10 +16,15 @@ namespace SkyDrop
             [CallerFilePath] string sourceFilePath = "",
             [CallerLineNumber] int sourceLineNumber = 0)
         {
+            Print(message, sourceFilePath, sourceLineNumber);
+        }
+#pragma warning restore 612
+
+        public static void Print(string message, string sourceFilePath, int sourceLineNumber)
+        {
             string fileName = Path.GetFileName(sourceFilePath);
 
             Debug.WriteLine(($"{fileName}:{sourceLineNumber} " + message));
         }
-#pragma warning restore 612
     }
 }
