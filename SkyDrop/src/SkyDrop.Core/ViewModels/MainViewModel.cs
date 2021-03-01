@@ -30,8 +30,6 @@ namespace SkyDrop.Core.ViewModels.Main
         public IMvxCommand SelectImageCommand { get; set; }
         public IMvxCommand FileTapCommand { get; set; }
         public IMvxCommand UploadCommand { get; set; }
-        public IMvxCommand NavBarcodeCommand { get; set; }
-        public IMvxCommand NavDropCommand { get; set; }
 
         private Func<Task> _selectFileAsyncFunc;
         public Func<Task> SelectFileAsyncFunc
@@ -64,18 +62,6 @@ namespace SkyDrop.Core.ViewModels.Main
             SelectFileCommand = new MvxAsyncCommand(async () => await SelectFileAsyncFunc());
             SelectImageCommand = new MvxAsyncCommand(async () => await SelectImageAsyncFunc());
             UploadCommand = new MvxAsyncCommand(UploadStagedFiles);
-            NavBarcodeCommand = new MvxAsyncCommand(NavToBarcode);
-            NavDropCommand = new MvxAsyncCommand(NavToDrop);
-        }
-
-        private async Task NavToBarcode()
-        {
-            await navigationService.Navigate<BarcodeViewModel>();
-        }
-
-        private async Task NavToDrop()
-        {
-            await navigationService.Navigate<DropViewModel>();
         }
 
         public override async Task Initialize()

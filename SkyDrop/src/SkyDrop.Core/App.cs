@@ -18,7 +18,7 @@ namespace SkyDrop.Core
 
             Mvx.IoCProvider.LazyConstructAndRegisterSingleton<ILog>(() => new SkyLogger());
 
-            RegisterAppStart<MainViewModel>();
+            RegisterAppStart<MenuViewModel>();
         }
     }
 }

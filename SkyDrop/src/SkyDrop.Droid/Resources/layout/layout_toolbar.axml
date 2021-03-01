@@ -19,15 +19,5 @@
             android:layout_gravity="left"
             app:MvxBind="Text Title"
             style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title" />
-        <Button
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:text="Q"
-            app:MvxBind="Click NavBarcodeCommand"/>
-        <Button
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:text="Q"
-            app:MvxBind="Click NavDropCommand"/>
     </androidx.appcompat.widget.Toolbar>
 </com.google.android.material.appbar.AppBarLayout>
