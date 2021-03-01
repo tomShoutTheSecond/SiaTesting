@@ -12,7 +12,7 @@ using SkyDrop.Core.Services;
 
 namespace SkyDrop.Core.ViewModels.Main
 {
-    public class MainViewModel : BaseViewModel
+    public class FilesViewModel : BaseViewModel
     {
         public List<SkyFileDVM> SkyFiles { get; set; } = new List<SkyFileDVM>();
         public List<StagedFileDVM> StagedFiles { get; set; } = new List<StagedFileDVM>();
@@ -45,7 +45,7 @@ namespace SkyDrop.Core.ViewModels.Main
             set => _selectImageAsyncFunc = value;
         }
 
-        public MainViewModel(ISingletonService singletonService,
+        public FilesViewModel(ISingletonService singletonService,
                              IApiService apiService,
                              IStorageService storageService,
                              IUserDialogs userDialogs,

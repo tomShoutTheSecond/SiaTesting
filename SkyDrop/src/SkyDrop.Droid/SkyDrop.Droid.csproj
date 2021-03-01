@@ -70,7 +70,7 @@
     <Compile Include="Setup.cs" />
     <Compile Include="Views\BaseActivity.cs" />
     <Compile Include="Views\BaseFragment.cs" />
-    <Compile Include="Views\Main\MainView.cs" />
+    <Compile Include="Views\Main\FilesView.cs" />
     <Compile Include="Views\Splash\SplashActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -122,7 +122,7 @@
   <ItemGroup>
     <AndroidResource Include="Resources\layout\fragment_main.axml" />
     <AndroidResource Include="Resources\layout\layout_toolbar.axml" />
-    <AndroidResource Include="Resources\layout\MainView.axml">
+    <AndroidResource Include="Resources\layout\FilesView.axml">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>

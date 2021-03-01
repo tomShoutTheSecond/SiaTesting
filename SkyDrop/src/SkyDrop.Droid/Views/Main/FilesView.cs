@@ -18,9 +18,9 @@ using ZXing.QrCode;
 namespace SkyDrop.Droid.Views.Main
 {
     [Activity(Theme = "@style/AppTheme", WindowSoftInputMode = SoftInput.AdjustResize | SoftInput.StateHidden)]
-    public class MainView : BaseActivity<MainViewModel>
+    public class FilesView : BaseActivity<FilesViewModel>
     {
-        protected override int ActivityLayoutId => Resource.Layout.MainView;
+        protected override int ActivityLayoutId => Resource.Layout.FilesView;
 
         protected override async void OnCreate(Bundle bundle)
         {

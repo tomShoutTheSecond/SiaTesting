@@ -12,7 +12,7 @@ using UIKit;
 namespace SkyDrop.iOS.Views.Main
 {
     [MvxRootPresentation(WrapInNavigationController = true)]
-    public class MainViewController : BaseViewController<MainViewModel>
+    public class MainViewController : BaseViewController<FilesViewModel>
     {
         private UILabel _labelWelcome, _labelMessage;
 

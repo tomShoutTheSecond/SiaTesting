@@ -34,7 +34,7 @@ namespace SkyDrop.Core.ViewModels.Main
                              IMvxNavigationService navigationService,
                              ILog log) : base(singletonService)
         {
-            Title = "Drop";
+            Title = "SkyDrop";
 
             this.apiService = apiService;
             this.storageService = storageService;
@@ -54,7 +54,7 @@ namespace SkyDrop.Core.ViewModels.Main
 
         private Task NavToFiles()
         {
-            return navigationService.Navigate<MainViewModel>();
+            return navigationService.Navigate<FilesViewModel>();
         }
 
         private Task NavToBarcode()
