@@ -19,6 +19,12 @@ namespace SkyDrop.Core.Services
         {
             var scanner = new MobileBarcodeScanner();
             var result = await scanner.Scan();
+
+            if (result == null)
+            {
+                log.Error("MobileBarcodeScanner result was null");
+            }
+
             // Here you were getting a nullReference exception, which broke your app
             return result?.Text;
         }

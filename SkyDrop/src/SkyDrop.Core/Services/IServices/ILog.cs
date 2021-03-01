@@ -1,7 +1,8 @@
 using System;
 using System.Runtime.CompilerServices;
 
-namespace SkyDrop.Core.Services
+// In exceptional cases, tooling may be placed into the root namespace to gain accessibility to the members everywhere.
+namespace SkyDrop
 {
     public interface ILog
     {
