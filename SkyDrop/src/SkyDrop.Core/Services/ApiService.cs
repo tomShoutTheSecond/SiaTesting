@@ -10,27 +10,23 @@ namespace SkyDrop.Core.Services
 {
     public class ApiService : IApiService
     {
+        private readonly HttpClient httpClient = new HttpClient();
+
         public async Task<SkyFile> UploadFile(string filename, byte[] file)
         {
             var url = "https://siasky.net/skynet/skyfile";
+            var form = new MultipartFormDataContent();
+            form.Add(new ByteArrayContent(file), "file", filename);
 
-            using (var httpClient = new HttpClient())
-            {
-                var form = new MultipartFormDataContent();
+            var response = await httpClient.PostAsync(url, form).ConfigureAwait(false);
+            response.EnsureSuccessStatusCode();
 
-                form.Add(new ByteArrayContent(file), "file", filename);
+            var responseString = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+            var skyfile = JsonConvert.DeserializeObject<SkyFile>(responseString);
+            skyfile.Filename = filename;
+            skyfile.Skylink = $"https://siasky.net/{skyfile.Skylink}";
 
-                var response = await httpClient.PostAsync(url, form).ConfigureAwait(false);
-
-                response.EnsureSuccessStatusCode();
-
-                var responseString = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-                var skyfile = JsonConvert.DeserializeObject<SkyFile>(responseString);
-                skyfile.Filename = filename;
-                skyfile.Skylink = $"https://siasky.net/{skyfile.Skylink}";
-
-                return skyfile;
-            }
+            return skyfile;
         }
     }
 
