@@ -34,7 +34,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Transfer file"
+                    android:text="Transfer File"
                     android:layout_gravity="center"
                     android:textColor="#fff"/>
                 <ImageView
@@ -58,7 +58,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="File storage"
+                    android:text="File Storage"
                     android:layout_gravity="center"
                     android:textColor="#fff"/>
                 <ImageView
