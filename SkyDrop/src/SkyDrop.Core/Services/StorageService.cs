@@ -28,16 +28,8 @@ namespace SkyDrop.Core.Services
         {
             var realm = Realm.GetInstance();
 
-            //var skyFiles = LoadSkyFiles();
             realm.Write(() =>
             {
-                /*
-                foreach (var file in skyFiles)
-                {
-                    if(file.Skylink == skyFile.Skylink)
-                        realm.Remove(file);
-                }
-                */
                 realm.Remove(skyFile);
             });
         }
