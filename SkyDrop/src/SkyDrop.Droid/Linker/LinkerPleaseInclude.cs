@@ -13,6 +13,7 @@ using MvvmCross.Core;
 using MvvmCross.IoC;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
+using MvvmCross.WeakSubscription;
 
 namespace SkyDrop.Droid.Linker
 {
@@ -178,6 +179,11 @@ namespace SkyDrop.Droid.Linker
             var _ = p;
         }
 
+        public void Include<Ts, Tr>(MvxWeakEventSubscription<Ts, Tr> mvxWeakEventSubscription)
+            where Ts : class
+        {
+            mvxWeakEventSubscription?.Dispose();
+        }
 
         public void Include(MvvmCross.Plugin.IMvxPlugin p)
         {

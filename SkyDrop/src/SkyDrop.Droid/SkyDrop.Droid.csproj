@@ -41,6 +41,7 @@
     <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
     <LangVersion>8.0</LangVersion>
 <AndroidLinkSkip></AndroidLinkSkip>
+<AndroidHttpClientHandlerType>Xamarin.Android.Net.AndroidClientHandler</AndroidHttpClientHandlerType>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
@@ -57,6 +58,7 @@
     <EnableProguard>true</EnableProguard>
     <LangVersion>8.0</LangVersion>
     <AndroidLinkTool>r8</AndroidLinkTool>
+    <AndroidHttpClientHandlerType>Xamarin.Android.Net.AndroidClientHandler</AndroidHttpClientHandlerType>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Android.Export" />
