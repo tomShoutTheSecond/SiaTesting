@@ -30,14 +30,14 @@ namespace SkyDrop.Droid.Views.Main
 
             Log.Trace("MainView OnCreate()");
 
-            ViewModel.SelectFileAsyncFunc = async () => await AndroidUtil.SelectFile(this);
-            ViewModel.SelectImageAsyncFunc = async () => await AndroidUtil.SelectImage(this);
+            ViewModel.SelectFileAsyncFunc = () => AndroidUtil.SelectFile(this);
+            ViewModel.SelectImageAsyncFunc = () => AndroidUtil.SelectImage(this);
             ViewModel.FileTapCommand = new MvxCommand<SkyFile>(skyFile => AndroidUtil.OpenFileInBrowser(this, skyFile));
 
             //this sets all progressbars in the app to white
             //I don't think we need this any more as progress bar color should be set in styles.xml
             var progressBar = FindViewById<ProgressBar>(Resource.Id.ProgressBar);
-            if(progressBar != null)
+            if (progressBar != null)
                 progressBar.IndeterminateDrawable.SetColorFilter(Color.White, PorterDuff.Mode.SrcIn);
         }
 

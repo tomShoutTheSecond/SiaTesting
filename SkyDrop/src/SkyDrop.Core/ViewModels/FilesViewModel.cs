@@ -25,6 +25,7 @@ namespace SkyDrop.Core.ViewModels.Main
         private readonly IStorageService storageService;
         private readonly IUserDialogs userDialogs;
         private readonly IMvxNavigationService navigationService;
+        private readonly ILog _log;
 
         public IMvxAsyncCommand SelectFileCommand { get; set; }
         public IMvxCommand SelectImageCommand { get; set; }
@@ -58,17 +59,17 @@ namespace SkyDrop.Core.ViewModels.Main
             this.storageService = storageService;
             this.userDialogs = userDialogs;
             this.navigationService = navigationService;
-
+            _log = log;
             SelectFileCommand = new MvxAsyncCommand(async () => await SelectFileAsyncFunc());
             SelectImageCommand = new MvxAsyncCommand(async () => await SelectImageAsyncFunc());
             UploadCommand = new MvxAsyncCommand(UploadStagedFiles);
         }
 
-        public override async Task Initialize()
+        public override Task Initialize()
         {
-            await base.Initialize();
-
             LoadSkyFiles();
+
+            return base.Initialize();
         }
 
         private void LoadSkyFiles()
