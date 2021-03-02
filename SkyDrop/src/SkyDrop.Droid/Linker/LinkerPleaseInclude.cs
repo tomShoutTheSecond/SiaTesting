@@ -7,9 +7,12 @@ using Android.App;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using AndroidX.CardView.Widget;
+using AndroidX.RecyclerView.Widget;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.Commands;
 using MvvmCross.Core;
+using MvvmCross.Droid.Support.V7.RecyclerView;
 using MvvmCross.IoC;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
@@ -58,6 +61,12 @@ namespace SkyDrop.Droid.Linker
             ratingBar.RatingBarChange += (sender, args) => ratingBar.Rating = 0 + ratingBar.Rating;
         }
 
+        public void Include(CardView cardView)
+        {
+            EventHandler F = null;
+            cardView.Click += F;
+        }
+
         public void Include(Activity act)
         {
             act.Title = $"{act.Title}";
@@ -65,27 +74,27 @@ namespace SkyDrop.Droid.Linker
 
         public void Include(ICommand command)
         {
-            _ = command;
+            command.Execute(null);
         }
 
         public void Include<T>(MvxAsyncCommand<T> command)
         {
-            _ = command;
+            command.Execute(null);
         }
 
         public void Include(MvxAsyncCommand command)
         {
-            _ = command;
+            command.Execute(null);
         }
 
         public void Include(MvxCommand command)
         {
-            _ = command;
+            command.Execute(null);
         }
 
         public void Include(IMvxAsyncCommand command)
         {
-            _ = command;
+            command.Execute(null);
         }
 
         public void Include(INotifyCollectionChanged changed)
@@ -119,6 +128,14 @@ namespace SkyDrop.Droid.Linker
         {
             _ = new MvxNavigationService(null, loader);
             _ = new MvxAppStart<MvxNullViewModel>(null, null);
+        }
+
+        public void Include(RecyclerView.ViewHolder vh, MvxRecyclerView list)
+        {
+            vh.ItemView.Click += (sender, args) => { };
+            vh.ItemView.LongClick += (sender, args) => { };
+            list.ItemsSource = null;
+            list.Click += (sender, args) => { };
         }
 
         public void Include(ConsoleColor color)
