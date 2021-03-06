@@ -29,7 +29,7 @@
                 <ImageView
                     android:layout_width="128dp"
                     android:layout_height="128dp"
-                    android:src="@drawable/ic_upload"/>
+                    android:src="@drawable/ic_upload_grey"/>
                 <TextView
                     android:textStyle="bold"
                     android:textColor="@color/midGrey"
@@ -62,7 +62,7 @@
                 <ImageView
                     android:layout_width="128dp"
                     android:layout_height="128dp"
-                    android:src="@drawable/ic_download"/>
+                    android:src="@drawable/ic_download_grey"/>
                 <TextView
                     android:textStyle="bold"
                     android:textColor="@color/midGrey"
