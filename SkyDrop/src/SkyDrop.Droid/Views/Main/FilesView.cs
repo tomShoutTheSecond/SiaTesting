@@ -22,6 +22,8 @@ namespace SkyDrop.Droid.Views.Main
         protected override int ActivityLayoutId => Resource.Layout.FilesView;
 
         public RecyclerView UploadedFilesRecyclerView { get; set; }
+        
+        private IMenu menu;
 
         protected override async void OnCreate(Bundle bundle)
         {
@@ -30,6 +32,7 @@ namespace SkyDrop.Droid.Views.Main
             UploadedFilesRecyclerView = FindViewById<RecyclerView>(Resource.Id.UploadedFilesList);
 
             await ViewModel.InitializeTask.Task;
+            ViewModel.PropertyChanged += HandlePropertyChanged;
 
             Log.Trace("MainView OnCreate()");
 
@@ -38,12 +41,37 @@ namespace SkyDrop.Droid.Views.Main
             ViewModel.FileTapCommand = new MvxCommand<SkyFile>(skyFile => AndroidUtil.OpenFileInBrowser(this, skyFile));
             ViewModel.AfterFileSelected = new MvxCommand(() => AfterFileWasSelected());
             ViewModel.HighlightNewFile = new MvxCommand(() => HighlightNewFile());
+        }
 
-            //this sets all progressbars in the app to white
-            //I don't think we need this any more as progress bar color should be set in styles.xml
-            var progressBar = FindViewById<ProgressBar>(Resource.Id.ProgressBar);
-            if (progressBar != null)
-                progressBar.IndeterminateDrawable.SetColorFilter(Color.White, PorterDuff.Mode.SrcIn);
+        private void HandlePropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if(e.PropertyName == nameof(ViewModel.StagedFiles))
+            {
+                var uploadItem = menu.FindItem(Resource.Id.menu_files_upload);
+                if (ViewModel.StagedFiles.Count > 0)
+                    uploadItem.SetIcon(GetDrawable(Resource.Drawable.ic_upload));
+                else
+                    uploadItem.SetIcon(GetDrawable(Resource.Drawable.ic_upload_grey));
+            }
+        }
+
+        public override bool OnCreateOptionsMenu(IMenu menu)
+        {
+            MenuInflater.Inflate(Resource.Menu.FilesMenu, menu);
+            this.menu = menu;
+            return true;
+        }
+
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            switch (item.ItemId)
+            {
+                case Resource.Id.menu_files_upload:
+                    ViewModel.UploadCommand?.Execute();
+                    break;
+            }
+
+            return true;
         }
 
         private void HighlightNewFile()

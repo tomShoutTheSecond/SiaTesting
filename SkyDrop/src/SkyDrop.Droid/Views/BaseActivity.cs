@@ -1,4 +1,5 @@
 using Android.OS;
+using AndroidX.AppCompat.Widget;
 using MvvmCross.Platforms.Android.Views;
 using MvvmCross.ViewModels;
 using SkyDrop.Core.Services;
@@ -19,6 +20,10 @@ namespace SkyDrop.Droid.Views
             base.OnCreate(bundle);
 
             SetContentView(ActivityLayoutId);
+
+            var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
+            SetSupportActionBar(toolbar);
+            SupportActionBar.SetDisplayShowTitleEnabled(false);
         }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Android.Content.PM.Permission[] grantResults)

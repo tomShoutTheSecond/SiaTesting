@@ -85,7 +85,11 @@ namespace SkyDrop.Core.ViewModels.Main
         {
             var file = "Select File";
             var image = "Select Image";
-            var fileType = await userDialogs.ActionSheetAsync("", "cancel", "", null, file, image);
+            var cancel = "cancel";
+            var fileType = await userDialogs.ActionSheetAsync("", cancel, "", null, file, image);
+            if (fileType == cancel)
+                return;
+
             if (fileType == file)
             {
                 await SelectFileAsyncFunc();

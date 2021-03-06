@@ -154,7 +154,7 @@ namespace SkyDrop.Droid.Helper
 
             var filename = GetFileName(context, uri);
 
-            Toast.MakeText(context, uri.Path, ToastLength.Long).Show();
+            //Toast.MakeText(context, uri.Path, ToastLength.Long).Show();
 
             var fileBytes = await ReadFile(context, uri);
             return new StagedFile
