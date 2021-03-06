@@ -18,6 +18,15 @@ namespace SkyDrop.Core.ViewModels.Main
         public MvxObservableCollection<SkyFileDVM> SkyFiles { get; } = new MvxObservableCollection<SkyFileDVM>();
         public MvxObservableCollection<StagedFileDVM> StagedFiles { get; } = new MvxObservableCollection<StagedFileDVM>();
 
+        /// <summary>
+        /// Updated with view binding.
+        /// </summary>
+        public int CurrentlySelectedFileIndex { get; set; }
+
+        public SkyFileDVM CurrentlySelectedFileDvm { get; set; }
+
+        public SkyFileDVM PreviousSelectedSkyFileDvm { get; set; }
+
         public string SkylinksText { get; set; }
 
         public bool IsLoading { get; set; }
@@ -46,6 +55,9 @@ namespace SkyDrop.Core.ViewModels.Main
             get => _selectImageAsyncFunc ?? throw new ArgumentNullException(nameof(SelectImageAsyncFunc));
             set => _selectImageAsyncFunc = value;
         }
+
+        public IMvxCommand AfterFileSelected { get; set; }
+        public IMvxCommand HighlightNewFile { get; set; }
 
         public FilesViewModel(ISingletonService singletonService,
                              IApiService apiService,
@@ -96,7 +108,7 @@ namespace SkyDrop.Core.ViewModels.Main
         private SkyFileDVM GetSkyFileDVM(SkyFile skyFile, bool isNew = false)
         {
             return new SkyFileDVM(skyFile,
-                new MvxCommand(() => SetSelectedFile(skyFile)),
+                new MvxCommand(() => ToggleSelectState(skyFile)),
                 new MvxCommand(() => FileTapCommand.Execute(skyFile)),
                 new MvxAsyncCommand(() => CopyFileLinkToClipboard(skyFile)),
                 new MvxCommand(() => DeleteSkyFileFromList(skyFile)))
@@ -162,7 +174,7 @@ namespace SkyDrop.Core.ViewModels.Main
                 var existingFile = SkyFiles.FirstOrDefault(s => s.SkyFile.Skylink == skyFile.Skylink);
                 if (existingFile != null)
                 {
-                    var message = "File already uploaded";
+                    var message = "File was already uploaded previously";
                     Log.Trace(message);
                     userDialogs.Toast(message);
 
@@ -170,10 +182,15 @@ namespace SkyDrop.Core.ViewModels.Main
                     int indexOfExistingFile = SkyFiles.IndexOf(existingFile);
                     SkyFiles.Move(indexOfExistingFile, 0);
 
+                    HighlightNewFile.Execute();
+
                     return;
                 }
 
-                SkyFiles.Insert(0, GetSkyFileDVM(skyFile, isNew: true));
+                var newDvm = GetSkyFileDVM(skyFile, isNew: true);
+                SkyFiles.Add(newDvm);
+                SkyFiles.Move(SkyFiles.IndexOf(newDvm), 0);
+                HighlightNewFile.Execute();
 
                 storageService.SaveSkyFiles(skyFile);
 
@@ -186,16 +203,42 @@ namespace SkyDrop.Core.ViewModels.Main
             }
         }
 
-        private void SetSelectedFile(SkyFile selectedFile)
+        private void ToggleSelectState(SkyFile selectedFile)
         {
             var selectedFileDVM = SkyFiles.FirstOrDefault(s => s.SkyFile.Skylink == selectedFile.Skylink);
 
-            foreach (var skyFile in SkyFiles)
-            {
-                skyFile.IsSelected = false;
-            }
+            bool currentSelectionState = selectedFileDVM.IsSelected;
+            bool newSelectionState = !currentSelectionState;
 
-            selectedFileDVM.IsSelected = true;
+            if (newSelectionState == true)
+            {
+                int newSelectedIndex = SkyFiles.IndexOf(selectedFileDVM);
+
+                CurrentlySelectedFileDvm = selectedFileDVM;
+                CurrentlySelectedFileIndex = newSelectedIndex;
+
+                foreach (var skyFile in SkyFiles)
+                {
+                    skyFile.IsSelected = false;
+                }
+
+                selectedFileDVM.IsSelected = true;
+
+                AfterFileSelected.Execute();
+
+                PreviousSelectedSkyFileDvm = selectedFileDVM;
+            }
+            else // newSelectionState == false
+            {
+                foreach (var skyFile in SkyFiles)
+                {
+                    skyFile.IsSelected = false;
+                }
+
+                AfterFileSelected.Execute();
+
+                PreviousSelectedSkyFileDvm = null;
+            }
         }
 
         private string GetSkyLinksText()
@@ -205,6 +248,19 @@ namespace SkyDrop.Core.ViewModels.Main
                 stringBuilder.Append(skyfile.SkyFile.Filename + "\n");
 
             return stringBuilder.ToString();
+        }
+
+        public int? GetIndexForPreviouslySelectedFile()
+        {
+            try
+            {
+                return SkyFiles.IndexOf(PreviousSelectedSkyFileDvm);
+            }
+            catch (Exception ex)
+            {
+                Log.Exception(ex);
+                return null;
+            }
         }
     }
 }

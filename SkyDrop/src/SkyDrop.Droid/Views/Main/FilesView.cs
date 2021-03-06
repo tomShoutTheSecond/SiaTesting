@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
@@ -6,14 +7,12 @@ using Android.Graphics;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
+using AndroidX.RecyclerView.Widget;
 using MvvmCross.Commands;
 using SkyDrop.Core.DataModels;
+using SkyDrop.Core.DataViewModels;
 using SkyDrop.Core.ViewModels.Main;
 using SkyDrop.Droid.Helper;
-using Xamarin.Essentials;
-using ZXing;
-using ZXing.Common;
-using ZXing.QrCode;
 
 namespace SkyDrop.Droid.Views.Main
 {
@@ -22,9 +21,13 @@ namespace SkyDrop.Droid.Views.Main
     {
         protected override int ActivityLayoutId => Resource.Layout.FilesView;
 
+        public RecyclerView UploadedFilesRecyclerView { get; set; }
+
         protected override async void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
+
+            UploadedFilesRecyclerView = FindViewById<RecyclerView>(Resource.Id.UploadedFilesList);
 
             await ViewModel.InitializeTask.Task;
 
@@ -33,12 +36,38 @@ namespace SkyDrop.Droid.Views.Main
             ViewModel.SelectFileAsyncFunc = () => AndroidUtil.SelectFile(this);
             ViewModel.SelectImageAsyncFunc = () => AndroidUtil.SelectImage(this);
             ViewModel.FileTapCommand = new MvxCommand<SkyFile>(skyFile => AndroidUtil.OpenFileInBrowser(this, skyFile));
+            ViewModel.AfterFileSelected = new MvxCommand(() => AfterFileWasSelected());
+            ViewModel.HighlightNewFile = new MvxCommand(() => HighlightNewFile());
 
             //this sets all progressbars in the app to white
             //I don't think we need this any more as progress bar color should be set in styles.xml
             var progressBar = FindViewById<ProgressBar>(Resource.Id.ProgressBar);
             if (progressBar != null)
                 progressBar.IndeterminateDrawable.SetColorFilter(Color.White, PorterDuff.Mode.SrcIn);
+        }
+
+        private void HighlightNewFile()
+        {
+            UploadedFilesRecyclerView.SmoothScrollToPosition(0);
+        }
+
+        private void AfterFileWasSelected()
+        {
+            int? previouslySelectedIndex = ViewModel.GetIndexForPreviouslySelectedFile();
+
+            if (previouslySelectedIndex == null)
+            {
+                UploadedFilesRecyclerView.GetAdapter().NotifyItemChanged(ViewModel.CurrentlySelectedFileIndex);
+            }
+            else if (ViewModel.CurrentlySelectedFileIndex == previouslySelectedIndex.Value)
+            {
+                UploadedFilesRecyclerView.GetAdapter().NotifyItemChanged(ViewModel.CurrentlySelectedFileIndex);
+            }
+            else
+            {
+                UploadedFilesRecyclerView.GetAdapter().NotifyItemChanged(previouslySelectedIndex.Value);
+                UploadedFilesRecyclerView.GetAdapter().NotifyItemChanged(ViewModel.CurrentlySelectedFileIndex);
+            }
         }
 
         protected override async void OnActivityResult(int requestCode, Android.App.Result resultCode, Intent data)
