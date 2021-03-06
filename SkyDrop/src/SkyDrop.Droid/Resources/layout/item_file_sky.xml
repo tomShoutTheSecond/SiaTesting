@@ -47,14 +47,15 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="right"
                     android:orientation="horizontal">
                     <ImageView
                         android:layout_width="32dp"
                         android:layout_height="32dp"
                         android:layout_margin="8dp"
                         android:orientation="vertical"
-                        android:src="@drawable/ic_file"
-                        app:MvxBind="Click OpenCommand"/>
+                        android:src="@drawable/ic_delete"
+                        app:MvxBind="Click DeleteCommand"/>
                     <ImageView
                         android:layout_width="32dp"
                         android:layout_height="32dp"
@@ -67,8 +68,8 @@
                         android:layout_height="32dp"
                         android:layout_margin="8dp"
                         android:orientation="vertical"
-                        android:src="@drawable/ic_delete"
-                        app:MvxBind="Click DeleteCommand"/>
+                        android:src="@drawable/ic_file"
+                        app:MvxBind="Click OpenCommand"/>
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
