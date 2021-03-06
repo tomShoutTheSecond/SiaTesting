@@ -45,14 +45,14 @@ namespace SkyDrop.Core.ViewModels.Main
         private Func<Task> _selectFileAsyncFunc;
         public Func<Task> SelectFileAsyncFunc
         {
-            get => _selectFileAsyncFunc ?? throw new ArgumentNullException(nameof(SelectFileAsyncFunc));
+            get => _selectFileAsyncFunc;
             set => _selectFileAsyncFunc = value;
         }
 
         private Func<Task> _selectImageAsyncFunc;
         public Func<Task> SelectImageAsyncFunc
         {
-            get => _selectImageAsyncFunc ?? throw new ArgumentNullException(nameof(SelectImageAsyncFunc));
+            get => _selectImageAsyncFunc;
             set => _selectImageAsyncFunc = value;
         }
 
