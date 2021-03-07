@@ -10,6 +10,7 @@ using MvvmCross.ViewModels;
 using SkyDrop.Core.DataModels;
 using SkyDrop.Core.DataViewModels;
 using SkyDrop.Core.Services;
+using SkyDrop.Core.Utility;
 
 namespace SkyDrop.Core.ViewModels.Main
 {
@@ -130,7 +131,7 @@ namespace SkyDrop.Core.ViewModels.Main
 
         private async Task CopyFileLinkToClipboard(SkyFile skyFile)
         {
-            string skyLink = skyFile.Skylink;
+            string skyLink = Util.GetSkylinkUrl(skyFile.Skylink);
             if (string.IsNullOrEmpty(skyLink))
                 return;
 
