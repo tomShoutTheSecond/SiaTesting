@@ -9,6 +9,7 @@ using Android.Widget;
 using MvvmCross;
 using SkyDrop.Core.DataModels;
 using SkyDrop.Core.Services;
+using SkyDrop.Core.Utility;
 using Xamarin.Essentials;
 using ZXing;
 using ZXing.Common;
@@ -188,7 +189,7 @@ namespace SkyDrop.Droid.Helper
         {
             Toast.MakeText(context, $"Opening file {file.Filename}", ToastLength.Long).Show();
 
-            var browserIntent = new Intent(Intent.ActionView, Android.Net.Uri.Parse(file.Skylink));
+            var browserIntent = new Intent(Intent.ActionView, Android.Net.Uri.Parse(Util.GetSkylinkUrl(file.Skylink)));
             context.StartActivity(browserIntent);
         }
 
