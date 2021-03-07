@@ -27,7 +27,7 @@ namespace SkyDrop.Core.ViewModels.Main
         private Func<Task> _generateBarcodeAsyncFunc;
         public Func<Task> GenerateBarcodeAsyncFunc
         {
-            get => _generateBarcodeAsyncFunc ?? throw new ArgumentNullException(nameof(GenerateBarcodeAsyncFunc));
+            get => _generateBarcodeAsyncFunc;
             set => _generateBarcodeAsyncFunc = value;
         }
 

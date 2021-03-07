@@ -50,7 +50,7 @@ namespace SkyDrop.Core.Services
 
                 Log.Exception(ex);
 
-                return null;
+                throw;
             }
         }
     }

@@ -1,16 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Acr.UserDialogs;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
-using Newtonsoft.Json;
-using SkyDrop.Core.DataModels;
-using SkyDrop.Core.DataViewModels;
 using SkyDrop.Core.Services;
-using ZXing.Common;
 
 namespace SkyDrop.Core.ViewModels.Main
 {
