@@ -89,7 +89,7 @@
       <Version>7.1.2</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.AndroidX.ConstraintLayout">
-      <Version>2.0.4.1</Version>
+      <Version>2.0.4.2</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Essentials">
       <Version>1.6.1</Version>
@@ -104,16 +104,21 @@
       <Version>6.4.2</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.AndroidX.Lifecycle.LiveData">
-      <Version>2.2.0.4</Version>
+      <Version>2.3.0.1</Version>
     </PackageReference>
     <PackageReference Include="Realm">
-      <Version>10.1.0</Version>
+      <Version>10.1.1</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.AndroidX.Legacy.Support.V4">
-     <Version>1.0.0.5</Version>
+     <Version>1.0.0.7</Version>
     </PackageReference>
     <PackageReference Include="ZXing.Net.Mobile">
       <Version>3.1.0-beta2</Version>
+    </PackageReference>
+    <PackageReference Include="Realm.Fody">
+      <Version>10.1.1</Version>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>

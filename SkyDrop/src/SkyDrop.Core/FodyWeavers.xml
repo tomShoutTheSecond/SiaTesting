@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <Weavers xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="FodyWeavers.xsd">
-    <Realm />
-    <Equals />
     <PropertyChanged />
+    <Equals />
+    <Realm />
     <ConfigureAwait />
 </Weavers>

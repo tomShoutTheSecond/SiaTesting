@@ -7,19 +7,33 @@ namespace SkyDrop.Core.Services
 {
     public class StorageService : IStorageService
     {
+        private readonly ILog log;
+
+        public StorageService(ILog log)
+        {
+            this.log = log;
+        }
+
         public List<SkyFile> LoadSkyFiles()
         {
             var realm = Realm.GetInstance();
 
-            return realm.All<SkyFile>().ToList();
+            var realmSkyFiles = realm.All<SkyFile>().ToList();
+
+            return realmSkyFiles;
         }
+
+        int saveCallCount = 0;
 
         public void SaveSkyFiles(params SkyFile[] skyFiles)
         {
+            saveCallCount++;
+
             var realm = Realm.GetInstance();
 
             realm.Write(() =>
             {
+                log.Trace("SaveSkyFiles() write for call #" + saveCallCount);
                 realm.Add(skyFiles);
             });
         }

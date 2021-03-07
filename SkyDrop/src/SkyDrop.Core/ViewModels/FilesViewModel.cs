@@ -149,7 +149,6 @@ namespace SkyDrop.Core.ViewModels.Main
 
             foreach (var stagedFile in currentlyStagedFiles)
             {
-                // todo make StagedFileDVM method called UploadFile() which does this logic
                 stagedFile.IsLoading = true;
                 var newSkyFiles = new List<StagedFileDVM>(StagedFiles);
                 StagedFiles.SwitchTo(newSkyFiles);
@@ -164,10 +163,15 @@ namespace SkyDrop.Core.ViewModels.Main
             IsLoading = false;
         }
 
+        int uploadCount = 0;
         private async Task UploadFile(StagedFile stagedFile)
         {
             try
             {
+                uploadCount++;
+
+                Log.Trace($"Uploading file #{uploadCount}: {stagedFile?.Filename ?? "null"}");
+
                 var skyFile = await apiService.UploadFile(stagedFile.Filename, stagedFile.Data);
                 Log.Trace("UPLOAD COMPLETE: " + skyFile.Skylink);
 
