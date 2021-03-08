@@ -17,9 +17,9 @@
     <AndroidResgenClass>Resource</AndroidResgenClass>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <TargetFrameworkVersion>v10.0</TargetFrameworkVersion>
-    <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
+    <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
@@ -123,7 +123,6 @@
   </ItemGroup>
   <ItemGroup>
     <ProguardConfiguration Include="proguard.cfg" />
-    <None Include="Properties\AndroidManifest.xml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\fragment_main.axml" />
@@ -216,51 +215,51 @@
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\mipmap-xxxhdpi\launch_skydrop_round.png">
+    <AndroidResource Include="Resources\mipmap-xxxhdpi\ic_launcher_round.png">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\mipmap-xxxhdpi\launch_skydrop.png">
+    <AndroidResource Include="Resources\mipmap-xxxhdpi\ic_launcher.png">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\mipmap-xxhdpi\launch_skydrop_round.png">
+    <AndroidResource Include="Resources\mipmap-xxhdpi\ic_launcher_round.png">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\mipmap-xxhdpi\launch_skydrop.png">
+    <AndroidResource Include="Resources\mipmap-xxhdpi\ic_launcher.png">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\mipmap-xhdpi\launch_skydrop_round.png">
+    <AndroidResource Include="Resources\mipmap-xhdpi\ic_launcher_round.png">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\mipmap-xhdpi\launch_skydrop.png">
+    <AndroidResource Include="Resources\mipmap-xhdpi\ic_launcher.png">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\mipmap-mdpi\launch_skydrop_round.png">
+    <AndroidResource Include="Resources\mipmap-mdpi\ic_launcher_round.png">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\mipmap-mdpi\launch_skydrop.png">
+    <AndroidResource Include="Resources\mipmap-mdpi\ic_launcher.png">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\mipmap-hdpi\launch_skydrop_round.png">
+    <AndroidResource Include="Resources\mipmap-hdpi\ic_launcher_round.png">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\mipmap-hdpi\launch_skydrop.png">
+    <AndroidResource Include="Resources\mipmap-hdpi\ic_launcher.png">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\mipmap-anydpi-v26\launch_skydrop_round.xml">
+    <AndroidResource Include="Resources\mipmap-anydpi-v26\ic_launcher_round.xml">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\mipmap-anydpi-v26\launch_skydrop.xml">
+    <AndroidResource Include="Resources\mipmap-anydpi-v26\ic_launcher.xml">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
@@ -298,6 +297,9 @@
     <Folder Include="Helper\" />
     <Folder Include="Bindings\" />
     <Folder Include="Resources\menu\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\AndroidManifest.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

@@ -17,7 +17,7 @@ using ZXing.QrCode;
 
 namespace SkyDrop.Droid.Views.Main
 {
-    [Activity(Theme = "@style/AppTheme", Icon = "@mipmap/launch_skydrop", RoundIcon = "@mipmap/launch_skydrop_round", WindowSoftInputMode = SoftInput.AdjustResize | SoftInput.StateHidden)]
+    [Activity(Theme = "@style/AppTheme", WindowSoftInputMode = SoftInput.AdjustResize | SoftInput.StateHidden)]
     public class MenuView : BaseActivity<MenuViewModel>
     {
         protected override int ActivityLayoutId => Resource.Layout.MenuView;
