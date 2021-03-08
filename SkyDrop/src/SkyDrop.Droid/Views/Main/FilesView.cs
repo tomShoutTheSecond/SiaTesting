@@ -45,10 +45,10 @@ namespace SkyDrop.Droid.Views.Main
 
         private void HandlePropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if(e.PropertyName == nameof(ViewModel.StagedFiles))
+            if(e.PropertyName == nameof(ViewModel.SkyFiles))
             {
                 var uploadItem = menu.FindItem(Resource.Id.menu_files_upload);
-                if (ViewModel.StagedFiles.Count > 0)
+                if (ViewModel.SkyFiles.Where(sf => sf.SkyFile.Status == FileStatus.Uploaded).Count() > 0)
                     uploadItem.SetIcon(GetDrawable(Resource.Drawable.ic_upload));
                 else
                     uploadItem.SetIcon(GetDrawable(Resource.Drawable.ic_upload_grey));
