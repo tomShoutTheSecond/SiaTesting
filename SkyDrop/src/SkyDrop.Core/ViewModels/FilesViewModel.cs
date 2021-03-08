@@ -56,7 +56,7 @@ namespace SkyDrop.Core.ViewModels.Main
         }
 
         public IMvxCommand AfterFileSelected { get; set; }
-        public IMvxCommand HighlightNewFile { get; set; }
+        public IMvxCommand ScrollToFileCommand { get; set; }
 
         public FilesViewModel(ISingletonService singletonService,
                              IApiService apiService,
@@ -75,7 +75,7 @@ namespace SkyDrop.Core.ViewModels.Main
             SelectFileCommand = new MvxAsyncCommand(async () => await SelectFileAsyncFunc());
             SelectImageCommand = new MvxAsyncCommand(async () => await SelectImageAsyncFunc());
             UploadCommand = new MvxAsyncCommand(UploadStagedFiles);
-            ClearDataCommand = new MvxCommand(storageService.ClearAllData);
+            ClearDataCommand = new MvxCommand(ClearData);
         }
 
         public override Task Initialize()
@@ -197,17 +197,20 @@ namespace SkyDrop.Core.ViewModels.Main
                     int indexOfExistingFile = SkyFiles.IndexOf(existingFile);
                     SkyFiles.Move(indexOfExistingFile, 0);
 
-                    HighlightNewFile.Execute();
+                    ScrollToFileCommand.Execute();
 
                     return;
                 }
 
-                var newSkyFiles = SkyFiles.ToList();
-                var fileDvm = newSkyFiles.FirstOrDefault(f => f.SkyFile.Skylink == stagedFile.Skylink);
+                //var newSkyFiles = SkyFiles.ToList();
+                var fileDvm = SkyFiles.FirstOrDefault(f => f.SkyFile.Skylink == stagedFile.Skylink);
                 fileDvm.SetUploaded(skyFile);
-                SkyFiles.SwitchTo(newSkyFiles);
+                //SkyFiles.SwitchTo(newSkyFiles);
 
-                HighlightNewFile.Execute();
+                _ = fileDvm.RaisePropertyChanged(() => fileDvm.FillColor);
+                _ = RaisePropertyChanged(() => SkyFiles);
+
+                ScrollToFileCommand.Execute();
 
                 storageService.SaveSkyFiles(skyFile);
             }
@@ -267,6 +270,13 @@ namespace SkyDrop.Core.ViewModels.Main
                 Log.Exception(ex);
                 return null;
             }
+        }
+
+        private void ClearData()
+        {
+            storageService.ClearAllData();
+
+            SkyFiles.Clear();
         }
     }
 }

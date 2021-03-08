@@ -19,6 +19,10 @@ namespace SkyDrop.Core.Services
             var realm = Realm.GetInstance();
 
             var realmSkyFiles = realm.All<SkyFile>().ToList();
+            foreach(var skyFile in realmSkyFiles)
+            {
+                skyFile.Status = FileStatus.Uploaded;
+            }
 
             return realmSkyFiles;
         }
