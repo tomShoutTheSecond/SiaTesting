@@ -216,6 +216,62 @@
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
+    <AndroidResource Include="Resources\mipmap-xxxhdpi\launch_skydrop_round.png">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\mipmap-xxxhdpi\launch_skydrop.png">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\mipmap-xxhdpi\launch_skydrop_round.png">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\mipmap-xxhdpi\launch_skydrop.png">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\mipmap-xhdpi\launch_skydrop_round.png">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\mipmap-xhdpi\launch_skydrop.png">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\mipmap-mdpi\launch_skydrop_round.png">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\mipmap-mdpi\launch_skydrop.png">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\mipmap-hdpi\launch_skydrop_round.png">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\mipmap-hdpi\launch_skydrop.png">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\mipmap-anydpi-v26\launch_skydrop_round.xml">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\mipmap-anydpi-v26\launch_skydrop.xml">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\launch_skydrop_foreground.xml">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\launch_skydrop_background.xml">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\strings.xml" />
@@ -224,25 +280,12 @@
     <AndroidResource Include="Resources\values\dimens.xml" />
     <AndroidResource Include="Resources\values-v21\styles.xml" />
     <AndroidResource Include="Resources\drawable\splash_screen.xml" />
-    <AndroidResource Include="Resources\mipmap-hdpi\ic_launcher.png" />
-    <AndroidResource Include="Resources\mipmap-hdpi\ic_launcher_round.png" />
-    <AndroidResource Include="Resources\mipmap-mdpi\ic_launcher.png" />
-    <AndroidResource Include="Resources\mipmap-mdpi\ic_launcher_round.png" />
-    <AndroidResource Include="Resources\mipmap-xhdpi\ic_launcher.png" />
-    <AndroidResource Include="Resources\mipmap-xhdpi\ic_launcher_round.png" />
-    <AndroidResource Include="Resources\mipmap-xxhdpi\ic_launcher.png" />
-    <AndroidResource Include="Resources\mipmap-xxhdpi\ic_launcher_round.png" />
-    <AndroidResource Include="Resources\mipmap-xxxhdpi\ic_launcher.png" />
-    <AndroidResource Include="Resources\mipmap-xxxhdpi\ic_launcher_round.png" />
     <AndroidResource Include="Resources\drawable-hdpi\ic_mvvmcross_logo.png" />
     <AndroidResource Include="Resources\drawable-mdpi\ic_mvvmcross_logo.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\ic_mvvmcross_logo.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\ic_mvvmcross_logo.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_mvvmcross_logo.png" />
     <AndroidResource Include="Resources\values-v19\styles.xml" />
-    <AndroidResource Include="Resources\drawable\ic_launcher_foreground.xml" />
-    <AndroidResource Include="Resources\mipmap-anydpi-v26\ic_launcher.xml" />
-    <AndroidResource Include="Resources\mipmap-anydpi-v26\ic_launcher_round.xml" />
     <AndroidResource Include="Resources\values\ic_launcher_background.xml" />
   </ItemGroup>
   <ItemGroup>
